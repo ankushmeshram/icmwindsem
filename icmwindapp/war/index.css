@@ -296,7 +296,7 @@ a:visited {
 }
 .navigationbar {
 	font-size: 18px;
-	background-color: White;
+	background-color: snow;
 }
 .navigationbar-menuitem {
 	margin: 0px auto;
@@ -327,5 +327,19 @@ a:visited {
 	border: thin solid Red;
 	vertical-align: top;
 	text-align: left;
+}
+.query-label {
+	font-weight: bold;
+}
+.gwt-DisclosurePanel-my gwt-DisclosurePanel-my-closed {
+}
+.timepass-about {
+	background-color: darkkhaki;
+}
+.timepass-report {
+	background-color: darkgrey;
+}
+.timepass-analysis {
+	background-color: papayawhip;
 }
 

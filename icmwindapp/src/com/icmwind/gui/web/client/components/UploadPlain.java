@@ -2,19 +2,15 @@ package com.icmwind.gui.web.client.components;
 
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.FormPanel;
-import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.InlineHTML;
-import com.google.gwt.user.client.ui.FileUpload;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.FormPanel.SubmitCompleteEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
-import com.icmwind.gui.web.client.helpers.DataToUpload;
+import com.icmwind.gui.web.client.helpers.Utils;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
@@ -22,8 +18,7 @@ import com.google.gwt.user.client.ui.HasVerticalAlignment;
 public class UploadPlain extends Composite {
 
 	public UploadPlain() {
-//		RootPanel.get("titleContainer").clear();
-//		RootPanel.get("titleContainer").add(new HTML("Upload Data"));
+		Utils.setTitle("Upload Data");
 		
 		VerticalPanel panel = new VerticalPanel();
 		panel.setSpacing(10);
@@ -33,8 +28,8 @@ public class UploadPlain extends Composite {
 		panel.add(nlnhtmlNewInlinehtml);
 		panel.setCellHeight(nlnhtmlNewInlinehtml, "30px");
 				
-		String pathText = "<b>Datasheet Path</b><br/>" +
-						  "Currently supported format is Comma Separated Verbose (*.csv).";
+//		String pathText = "<b>Datasheet Path</b><br/>" +
+//						  "Currently supported format is Comma Separated Verbose (*.csv).";
 		
 		VerticalPanel pathVPanel = new VerticalPanel();
 		pathVPanel.setSpacing(5);
@@ -67,9 +62,9 @@ public class UploadPlain extends Composite {
 		fileHPanel.add(btnSubmit_1);
 		fileHPanel.setCellVerticalAlignment(btnSubmit_1, HasVerticalAlignment.ALIGN_MIDDLE);
 		
-		String additionalInfoText = "<b>Additional Data Information</b><br/>" +
-									"Fill in additional information about data based on the content in the file." +
-									"If ID can not be found please check the System Settings";
+//		String additionalInfoText = "<b>Additional Data Information</b><br/>" +
+//									"Fill in additional information about data based on the content in the file." +
+//									"If ID can not be found please check the System Settings";
 		
 		VerticalPanel infoVPanel = new VerticalPanel();
 		infoVPanel.setSpacing(5);
@@ -116,8 +111,8 @@ public class UploadPlain extends Composite {
 		infoHPanel_2.add(listBox);
 		listBox.setWidth("150px");
 		
-		String analysisPeriodText = "<b>Analysis Period</b><br/>" +
-									"Choose the time period for analysis.";
+//		String analysisPeriodText = "<b>Analysis Period</b><br/>" +
+//									"Choose the time period for analysis.";
 		
 		VerticalPanel periodVPanel = new VerticalPanel();
 		periodVPanel.setSpacing(5);

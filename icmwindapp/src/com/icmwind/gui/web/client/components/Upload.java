@@ -3,7 +3,6 @@ package com.icmwind.gui.web.client.components;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.FormPanel;
-import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.InlineHTML;
 import com.google.gwt.user.client.ui.FileUpload;
@@ -15,12 +14,12 @@ import com.google.gwt.user.client.ui.FormPanel.SubmitCompleteEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.icmwind.gui.web.client.helpers.DataToUpload;
+import com.icmwind.gui.web.client.helpers.Utils;
 
 public class Upload extends Composite {
 
 	public Upload() {
-//		RootPanel.get("titleContainer").clear();
-//		RootPanel.get("titleContainer").add(new HTML("Upload Data"));
+		Utils.setTitle("Upload Data");
 		
 		final FormPanel form = new FormPanel();
 		form.setMethod(FormPanel.METHOD_POST);
@@ -130,6 +129,7 @@ public class Upload extends Composite {
 			
 			@Override
 			public void onSubmitComplete(SubmitCompleteEvent event) {
+				@SuppressWarnings("unused")
 				DataToUpload dtu = new DataToUpload(fileUpload.getFilename(),dateListBox.getItemText(dateListBox.getSelectedIndex()),
 						Integer.parseInt( dayListBox.getItemText(dayListBox.getSelectedIndex()) ));
 				

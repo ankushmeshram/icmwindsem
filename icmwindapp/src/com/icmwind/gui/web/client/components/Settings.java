@@ -2,28 +2,21 @@ package com.icmwind.gui.web.client.components;
 
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.DisclosurePanel;
 import com.google.gwt.user.client.ui.Tree;
 import com.google.gwt.user.client.ui.TreeItem;
-import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.FlexTable;
-import com.google.gwt.user.client.ui.Image;
-import com.google.gwt.user.client.ui.HasVerticalAlignment;
-import com.google.gwt.user.client.ui.HasHorizontalAlignment;
-import com.google.gwt.user.client.ui.PushButton;
-import com.google.gwt.user.client.ui.Button;
+import com.icmwind.gui.web.client.helpers.Utils;
 
 public class Settings extends Composite {
 
+	@SuppressWarnings("unused")
 	public Settings() {
 		
+		Utils.setTitle("Settings");
+		
 		VerticalPanel panel = new VerticalPanel();
-		panel.setBorderWidth(1);
 		panel.setSpacing(10);
 		initWidget(panel);
 		panel.setSize("900px", "");
@@ -74,13 +67,6 @@ public class Settings extends Composite {
 		TreeItem item2 = partsItems.addItem(new Hyperlink("CS100_567", false, "newHistoryToken"));
 		flexTable_1.getFlexCellFormatter().setColSpan(1, 0, 1);
 		
-		Hyperlink rhHLink = new Hyperlink("Rotor Hub", false, "newHistoryToken");
-		
-		Hyperlink gbHLink = new Hyperlink("GearBox", false, "newHistoryToken");
-		
-		String genDescText = "<b>Edited on</b> 10.10.2012 <br/>" +
-				 "<b>Installed on</b> 20.09.2009 <br/>" +
-				 "<b>Location</b> Marpingen";
 		
 		
 		VerticalPanel senVPanel = new VerticalPanel();
@@ -126,12 +112,6 @@ public class Settings extends Composite {
 		
 		TreeItem gbItem2 = gbTree.addItem(new Hyperlink("GB 7383", true, ""));
 		
-		
-					
-		
-		
-//		RootPanel.get("titleContainer").clear();
-//		RootPanel.get("titleContainer").add(new HTML("Settings"));
 	}
 
 }

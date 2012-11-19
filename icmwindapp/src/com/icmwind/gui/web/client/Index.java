@@ -20,13 +20,14 @@ import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.icmwind.gui.web.client.components.About;
+import com.icmwind.gui.web.client.components.AdvancedAnalysis;
 import com.icmwind.gui.web.client.components.Analyse;
+import com.icmwind.gui.web.client.components.Conceptual;
 import com.icmwind.gui.web.client.components.Footer;
 import com.icmwind.gui.web.client.components.Home;
 import com.icmwind.gui.web.client.components.Navigation;
 import com.icmwind.gui.web.client.components.Report;
 import com.icmwind.gui.web.client.components.Settings;
-import com.icmwind.gui.web.client.components.Upload;
 import com.icmwind.gui.web.client.components.UploadPlain;
 
 /**
@@ -58,9 +59,15 @@ public class Index implements EntryPoint {
 				} else if (historyToken.equals("analyse")) {
 					RootPanel.get("contentContainer").clear();
 					RootPanel.get("contentContainer").add(new Analyse());
+				} else if (historyToken.equals("advanced")) {
+					RootPanel.get("contentContainer").clear();
+					RootPanel.get("contentContainer").add(new AdvancedAnalysis());
 				} else if (historyToken.equals("report")) {
 					RootPanel.get("contentContainer").clear();
 					RootPanel.get("contentContainer").add(new Report());
+				} else if (historyToken.equals("conceptual")) {
+					RootPanel.get("contentContainer").clear();
+					RootPanel.get("contentContainer").add(new Conceptual());
 				} else if (historyToken.equals("settings")) {
 					RootPanel.get("contentContainer").clear();
 					RootPanel.get("contentContainer").add(new Settings());
@@ -70,5 +77,7 @@ public class Index implements EntryPoint {
 				}
 			}
 		});
+		
+		History.fireCurrentHistoryState();
 	}
 }

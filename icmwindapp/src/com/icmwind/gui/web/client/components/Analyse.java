@@ -1,11 +1,11 @@
 package com.icmwind.gui.web.client.components;
 
+import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Button;
@@ -16,10 +16,13 @@ import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.user.client.ui.ScrollPanel;
+import com.icmwind.gui.web.client.helpers.Utils;
 
 public class Analyse extends Composite {
 
 	public Analyse() {
+		
+		Utils.setTitle("Analyse Sensor Data");
 		
 		VerticalPanel panel = new VerticalPanel();
 		panel.setSpacing(10);
@@ -86,12 +89,15 @@ public class Analyse extends Composite {
 		grid.getCellFormatter().setVerticalAlignment(1, 0, HasVerticalAlignment.ALIGN_TOP);
 		
 		ScrollPanel scrollPanel = new ScrollPanel();
+		scrollPanel.setStyleName("timepass-analysis");
 		statusHPanel.add(scrollPanel);
-		scrollPanel.setSize("600px", "400px");
+		scrollPanel.setSize("700px", "400px");
 		
-		final Label label = new Label("New label");
-		scrollPanel.setWidget(label);
-		label.setSize("100%", "100%");
+		final Label lblExplanationOfThe = new Label("Explanation of the status of current system component selected.");
+		lblExplanationOfThe.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		lblExplanationOfThe.setStyleName("query-label");
+		scrollPanel.setWidget(lblExplanationOfThe);
+		lblExplanationOfThe.setSize("100%", "100%");
 		
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		horizontalPanel.setSpacing(5);
@@ -109,8 +115,7 @@ public class Analyse extends Composite {
 					@Override
 					public void onClick(ClickEvent event) {
 						db.hide();
-						RootPanel.get("contentContainer").clear();
-						RootPanel.get("contentContainer").add(new Upload());
+						History.newItem("upload");
 					}
 				});
 				Button noBtn = new Button("No", new ClickHandler() {
@@ -137,26 +142,30 @@ public class Analyse extends Composite {
 		Button btnNewButton = new Button("Session Report");
 		btnNewButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				RootPanel.get("contentContainer").clear();
-				RootPanel.get("contentContainer").add(new Report());
+				History.newItem("report");
 			}
 		});
 		horizontalPanel.add(btnNewButton);
 		btnNewButton.setSize("120px", "");
 		
 		Button btnAdavncedSemanticAnalysis = new Button("Adavnced Semantic Analysis");
+		btnAdavncedSemanticAnalysis.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				History.newItem("advanced");
+			}
+		});
 		horizontalPanel.add(btnAdavncedSemanticAnalysis);
 		btnAdavncedSemanticAnalysis.setSize("200px", "");
 		
 		thermoImg.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				label.setText("This is thermo image.");
+				lblExplanationOfThe.setText("This is thermo image.");
 			}
 		});
 		
 		filterImg.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				label.setText("This is filter image.");
+				lblExplanationOfThe.setText("This is filter image.");
 			}
 		});
 //		RootPanel.get("titleContainer").clear();
