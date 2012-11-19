@@ -1,6 +1,8 @@
 package com.icmwind.gui.web.client.components;
 
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -33,13 +35,12 @@ public class Analyse extends Composite {
 		panel.setCellHeight(analyseHtml, "40px");
 		
 		HorizontalPanel statusHPanel = new HorizontalPanel();
-		statusHPanel.setBorderWidth(1);
 		statusHPanel.setSpacing(5);
 		panel.add(statusHPanel);
 		statusHPanel.setSize("900px", "");
 		
 		Grid grid = new Grid(2, 1);
-		grid.setBorderWidth(1);
+		grid.setBorderWidth(0);
 		grid.setCellSpacing(1);
 		statusHPanel.add(grid);
 		statusHPanel.setCellWidth(grid, "200px");
@@ -85,7 +86,6 @@ public class Analyse extends Composite {
 		grid.getCellFormatter().setVerticalAlignment(1, 0, HasVerticalAlignment.ALIGN_TOP);
 		
 		ScrollPanel scrollPanel = new ScrollPanel();
-		scrollPanel.setAlwaysShowScrollBars(true);
 		statusHPanel.add(scrollPanel);
 		scrollPanel.setSize("600px", "400px");
 		
@@ -102,8 +102,33 @@ public class Analyse extends Composite {
 		Button btnAnalyseNewData = new Button("Upload New Data");
 		btnAnalyseNewData.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				RootPanel.get("contentContainer").clear();
-				RootPanel.get("contentContainer").add(new Upload());
+				final DialogBox db = new DialogBox();
+				db.setAnimationEnabled(true);
+				db.setText("This action will clear the current data. Do you want to continue?");
+				Button yesBtn = new Button("Yes", new ClickHandler() {
+					@Override
+					public void onClick(ClickEvent event) {
+						db.hide();
+						RootPanel.get("contentContainer").clear();
+						RootPanel.get("contentContainer").add(new Upload());
+					}
+				});
+				Button noBtn = new Button("No", new ClickHandler() {
+					
+					@Override
+					public void onClick(ClickEvent event) {
+						db.hide();						
+					}
+				});
+				HorizontalPanel btnHolder = new HorizontalPanel();
+				btnHolder.add(yesBtn);
+				btnHolder.add(noBtn);
+				db.setWidget(btnHolder);
+				int left = Window.getClientWidth()/ 2;
+	            int top = Window.getClientHeight()/ 2;
+				db.setPopupPosition(left, top);
+				db.show();
+				
 			}
 		});
 		horizontalPanel.add(btnAnalyseNewData);

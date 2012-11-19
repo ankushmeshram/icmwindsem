@@ -27,6 +27,7 @@ import com.icmwind.gui.web.client.components.Navigation;
 import com.icmwind.gui.web.client.components.Report;
 import com.icmwind.gui.web.client.components.Settings;
 import com.icmwind.gui.web.client.components.Upload;
+import com.icmwind.gui.web.client.components.UploadPlain;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
@@ -53,7 +54,7 @@ public class Index implements EntryPoint {
 					RootPanel.get("contentContainer").add(new About());
 				} else if (historyToken.equals("upload")) {
 					RootPanel.get("contentContainer").clear();
-					RootPanel.get("contentContainer").add(new Upload());
+					RootPanel.get("contentContainer").add(new UploadPlain());
 				} else if (historyToken.equals("analyse")) {
 					RootPanel.get("contentContainer").clear();
 					RootPanel.get("contentContainer").add(new Analyse());

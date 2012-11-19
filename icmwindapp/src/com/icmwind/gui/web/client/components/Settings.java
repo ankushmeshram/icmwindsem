@@ -109,11 +109,6 @@ public class Settings extends Composite {
 		senVPanel.add(senTree);
 		senTree.setWidth("300px");
 		
-		TreeItem newItem = new TreeItem("New item");
-		newItem.setText("Haramkhor");
-		senTree.addItem(newItem);
-		newItem.setState(true);
-		
 		VerticalPanel gbVPanel = new VerticalPanel();
 		gbVPanel.setSpacing(5);
 		panel.add(gbVPanel);
