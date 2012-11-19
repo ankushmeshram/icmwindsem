@@ -23,9 +23,10 @@ public class Subsumption extends Composite {
 	public Subsumption() {
 		
 		VerticalPanel verticalPanel = new VerticalPanel();
+		verticalPanel.setBorderWidth(1);
 		verticalPanel.setSpacing(10);
 		initWidget(verticalPanel);
-		verticalPanel.setWidth("800px");
+		verticalPanel.setWidth("700px");
 		
 		Label lblExampleFindSensors = new Label("Example: Find Sensors measuring temperature and pressure of Oil. ");
 		verticalPanel.add(lblExampleFindSensors);

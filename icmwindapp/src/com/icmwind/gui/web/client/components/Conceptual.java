@@ -23,10 +23,11 @@ public class Conceptual extends Composite {
 		panel.add(lblNewLabel);
 		
 		DisclosurePanel disclosurePanel = new DisclosurePanel("Find Sensors with certain functionality");
+		disclosurePanel.setOpen(true);
 		disclosurePanel.setStyleName("gwt-DisclosurePanel-my gwt-DisclosurePanel-my-closed");
 		disclosurePanel.setAnimationEnabled(true);
 		panel.add(disclosurePanel);
-		disclosurePanel.setWidth("800px");
+		disclosurePanel.setWidth("880px");
 		
 		Subsumption subsumption = new Subsumption();
 		disclosurePanel.setContent(subsumption);
@@ -35,7 +36,7 @@ public class Conceptual extends Composite {
 		DisclosurePanel disclosurePanel_1 = new DisclosurePanel("Find Sensors similar to given definition");
 		disclosurePanel_1.setStyleName("gwt-DisclosurePanel-my gwt-DisclosurePanel-my-closed");
 		panel.add(disclosurePanel_1);
-		disclosurePanel_1.setWidth("800px");
+		disclosurePanel_1.setWidth("880px");
 	}
 
 }
