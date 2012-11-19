@@ -15,12 +15,12 @@ public class Footer extends Composite {
 		initWidget(footerPanel);
 		footerPanel.setSize("250px", "50px");
 		
-		Image dfkiImage = new Image("dfki_logo.png");
+		Image dfkiImage = new Image("images/dfki_logo.png");
 		footerPanel.add(dfkiImage);
 		footerPanel.setCellVerticalAlignment(dfkiImage, HasVerticalAlignment.ALIGN_BOTTOM);
 		dfkiImage.setHeight("25px");
 		
-		Image zemaImage = new Image("zema_logo.png");
+		Image zemaImage = new Image("images/zema_logo.png");
 		footerPanel.add(zemaImage);
 		footerPanel.setCellVerticalAlignment(zemaImage, HasVerticalAlignment.ALIGN_BOTTOM);
 		zemaImage.setHeight("30px");

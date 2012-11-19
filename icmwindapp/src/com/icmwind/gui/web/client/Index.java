@@ -15,9 +15,17 @@
 package com.icmwind.gui.web.client;
 
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
+import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.icmwind.gui.web.client.components.About;
+import com.icmwind.gui.web.client.components.Analyse;
 import com.icmwind.gui.web.client.components.Footer;
+import com.icmwind.gui.web.client.components.Home;
 import com.icmwind.gui.web.client.components.Navigation;
+import com.icmwind.gui.web.client.components.Report;
+import com.icmwind.gui.web.client.components.Settings;
 import com.icmwind.gui.web.client.components.Upload;
 
 /**
@@ -26,8 +34,40 @@ import com.icmwind.gui.web.client.components.Upload;
 public class Index implements EntryPoint {
 	
 	public void onModuleLoad() {
-		RootPanel.get("contentContainer").add(new Upload());
+		
+		RootPanel.get("contentContainer").add(new Home());
 		RootPanel.get("navBarContainer").add(new Navigation());
 		RootPanel.get("footerContainer").add(new Footer());
+		
+		History.addValueChangeHandler(new ValueChangeHandler<String>() {
+			
+			@Override
+			public void onValueChange(ValueChangeEvent<String> event) {
+				String historyToken = event.getValue();
+				
+				if(historyToken.equals("home")) {
+					RootPanel.get("contentContainer").clear();
+					RootPanel.get("contentContainer").add(new Home());
+				} else if (historyToken.equals("about")) {
+					RootPanel.get("contentContainer").clear();
+					RootPanel.get("contentContainer").add(new About());
+				} else if (historyToken.equals("upload")) {
+					RootPanel.get("contentContainer").clear();
+					RootPanel.get("contentContainer").add(new Upload());
+				} else if (historyToken.equals("analyse")) {
+					RootPanel.get("contentContainer").clear();
+					RootPanel.get("contentContainer").add(new Analyse());
+				} else if (historyToken.equals("report")) {
+					RootPanel.get("contentContainer").clear();
+					RootPanel.get("contentContainer").add(new Report());
+				} else if (historyToken.equals("settings")) {
+					RootPanel.get("contentContainer").clear();
+					RootPanel.get("contentContainer").add(new Settings());
+				} else {
+					RootPanel.get("contentContainer").clear();
+					RootPanel.get("contentContainer").add(new Home());
+				}
+			}
+		});
 	}
 }

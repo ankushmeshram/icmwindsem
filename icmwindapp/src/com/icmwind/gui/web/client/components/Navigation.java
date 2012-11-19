@@ -3,8 +3,8 @@ package com.icmwind.gui.web.client.components;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.MenuBar;
 import com.google.gwt.user.client.ui.MenuItem;
-import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.Command;
+import com.google.gwt.user.client.History;
 
 
 public class Navigation extends Composite {
@@ -51,48 +51,42 @@ public class Navigation extends Composite {
 	private class HomeCommand implements Command{
 		@Override
 		public void execute() {
-			RootPanel.get("contentContainer").clear();
-			RootPanel.get("contentContainer").add(new Home());
+			History.newItem("home");			
 		}
 	}
 	
 	private class AboutCommand implements Command{
 		@Override
 		public void execute() {
-			RootPanel.get("contentContainer").clear();
-			RootPanel.get("contentContainer").add(new About());
+			History.newItem("about");
 		}
 	}
 	
 	private class UploadCommand implements Command{
 		@Override
 		public void execute() {
-			RootPanel.get("contentContainer").clear();
-			RootPanel.get("contentContainer").add(new Upload());
+			History.newItem("upload");
 		}
 	}
 	
 	private class AnalyseCommand implements Command{
 		@Override
 		public void execute() {
-			RootPanel.get("contentContainer").clear();
-			RootPanel.get("contentContainer").add(new Analyse());
+			History.newItem("analyse");
 		}
 	}
 	
 	private class ReportCommand implements Command{
 		@Override
 		public void execute() {
-			RootPanel.get("contentContainer").clear();
-			RootPanel.get("contentContainer").add(new Report());
+			History.newItem("report");
 		}
 	}
 	
 	private class SettingsCommand implements Command{
 		@Override
 		public void execute() {
-			RootPanel.get("contentContainer").clear();
-			RootPanel.get("contentContainer").add(new Settings());
+			History.newItem("settings");
 		}
 	}
 

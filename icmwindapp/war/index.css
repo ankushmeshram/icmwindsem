@@ -1,6 +1,6 @@
 body { 
 	color: black;
-	margin: 5px;
+	margin: 0px;
 	font-size: small;
 	font-family: Arial, sans-serif;
 	background-color: white;
@@ -309,5 +309,23 @@ a:visited {
 	font-size: 24px;
 	font-family: Comic Sans MS;
 	text-align: center;
+}
+.okay-Button {
+	background-repeat: no-repeat;
+	background-image: url(okImage.png);
+}
+.timepass {
+	background-color: paleturquoise;
+}
+.i-want-border {
+	border-top: thin solid;
+	border-right: thin;
+	border-bottom: thin;
+	border-left: thin;
+}
+.composite-outerVerticalPanel {
+	border: thin solid Red;
+	vertical-align: top;
+	text-align: left;
 }
 
