@@ -11,6 +11,7 @@ import java.util.Map;
 
 import org.icmwind.core.FileProcess;
 import org.icmwind.core.ICMWindSetup;
+import org.icmwind.util.Normalization;
 import org.icmwind.util.Utility;
 
 import com.csvreader.CsvReader;
@@ -78,8 +79,11 @@ public class FileProcessImpl implements FileProcess {
 					Charset.defaultCharset());
 			this.reader.readHeaders();
 			this.headNamesList = Arrays.asList(this.reader.getHeaders());
-			this.normHeadNamesList = Utility
-					.normalizeListWithTranslation(headNamesList);
+			
+			Normalization normalize = new Normalization();
+			this.normHeadNamesList = normalize.normalizeListWithTranslation(headNamesList);
+			this.normHeadNamesToHeadNames = normalize.getNormalizationMap();
+			
 			isFileOpened = true;
 			return isFileOpened;
 		} catch (IOException e) {
@@ -166,6 +170,17 @@ public class FileProcessImpl implements FileProcess {
 	}
 
 	/* (non-Javadoc)
+	 * @see org.icmwind.core.FileProcess#getNormalizationMap()
+	 */
+	@Override
+	public Map<String, String> getNormalizationMap() {
+		if(normHeadNamesToHeadNames.isEmpty())
+			return Collections.emptyMap();
+		else
+			return normHeadNamesToHeadNames;
+	}
+	
+	/* (non-Javadoc)
 	 * @see org.icmwind.core.FileProcess#getHeadNameFor(java.lang.String)
 	 * 
 	 * Returns Header Name mapped for given Normalized Header Name
@@ -183,14 +198,18 @@ public class FileProcessImpl implements FileProcess {
 		}
 	}
 
-	// DEBUG
-	// public static void main(String[] args) throws FileNotFoundException,
-	// IOException {
-	// FileProcessImpl f = FileProcessImpl.getInstance();
-	// Utility.initDictionary(ICMWindSetup.getDictionaryPath());
-	// f.openFile(ICMWindSetup.getDataFilePath());
-	// System.out.println(f.getHeadNamesList().toString() + "\n" +
-	// f.getNormHeadNamesList().toString());
-	// }
+	
+
+	 //DEBUG
+	 public static void main(String[] args) throws IOException 
+	 {
+		 FileProcess f = FileProcessImpl.getInstance();
+		 Utility.initDictionary(ICMWindSetup.getDictionaryPath());
+		 f.openFile(ICMWindSetup.getDataFilePath());
+		 System.out.println(f.getHeadNameFor("dmcs a"));
+//		 for(Map.Entry<String, String> entry : f.getNormalizationMap().entrySet())
+//			 System.out.println(entry.getKey() + " -- " + entry.getValue());
+//		 System.out.println(f.getHeadNamesList().toString() + "\n" + f.getNormHeadNamesList().toString());
+	 }
 
 }

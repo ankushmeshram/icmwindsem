@@ -1,6 +1,7 @@
 package org.icmwind.core;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author ANKUSH
@@ -55,6 +56,11 @@ public interface FileProcess {
 	 * @return Header Name corresponding to given Normalized Header Name
 	 */
 	public String getHeadNameFor(String normHeadName);
+	
+	/**
+	 * @return Map<String, String> containing key-value pair "normalized_head_name-head_name"
+	 */
+	public Map<String, String> getNormalizationMap();
 
 	/**
 	 * @return true if records are there to read

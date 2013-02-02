@@ -1,6 +1,7 @@
 package org.icmwind.core;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.semanticweb.owlapi.model.IRI;
@@ -56,6 +57,11 @@ public interface OntologyProcess {
 	 * @return Class Name mapped to normClassName
 	 */
 	public String getClassNameFor(String normClassName);
+	
+	/**
+	 * @return Map<String, String> containing key-value pair "normalized_class_name-class_name"
+	 */
+	public Map<String, String> getNormalizationMap();
 	
 	public int getClassCount();
 	

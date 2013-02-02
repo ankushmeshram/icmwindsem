@@ -11,7 +11,7 @@ import java.util.Set;
 
 import org.icmwind.core.ICMWindSetup;
 import org.icmwind.core.OntologyProcess;
-import org.icmwind.util.Utility;
+import org.icmwind.util.Normalization;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLAxiom;
@@ -77,7 +77,10 @@ public class OntologyProcessImpl implements OntologyProcess {
 			for (OWLClass aClass : this.getClasses())
 				classNamesList.add(aClass.getIRI().getFragment());
 
-			this.normClassNamesList = Utility.normalizeList(classNamesList);
+			Normalization normalize = new Normalization();
+			this.normClassNamesList = normalize.normalizeList(classNamesList);
+			this.normClassNamesToClassNames = normalize.getNormalizationMap();
+			
 			openSuccess = true;
 			return openSuccess;
 		} catch (OWLOntologyCreationException | URISyntaxException e) {
@@ -170,6 +173,18 @@ public class OntologyProcessImpl implements OntologyProcess {
 			return Collections.emptyList();
 		}
 	}
+	
+	/* (non-Javadoc)
+	 * @see org.icmwind.core.OntologyProcess#getNormalizationMap()
+	 */
+	@Override
+	public Map<String, String> getNormalizationMap() {
+		if(normClassNamesToClassNames.isEmpty())
+			return Collections.emptyMap();
+		else
+			return normClassNamesToClassNames;
+	}
+
 
 	/* (non-Javadoc)
 	 * @see org.icmwind.core.OntologyProcess#getClassNameFor(java.lang.String)
@@ -371,5 +386,14 @@ public class OntologyProcessImpl implements OntologyProcess {
 	// // remove unwanted chars "_"(underscore) to " "(whitespace)
 	// private String cleanText(String text) { return text.replaceAll("_",
 	// " ");}
+	
+//	//DEBUG
+//	public static void main(String[] args) {
+//		OntologyProcess op = OntologyProcessImpl.getInstance();
+//		op.openFile(ICMWindSetup.getCoreOntologyPath());
+//		for(Map.Entry<String, String> entry : op.getNormalizationMap().entrySet())
+//			System.out.println(entry.getKey() + " -- " + entry.getValue());
+//	}
 
+	
 }

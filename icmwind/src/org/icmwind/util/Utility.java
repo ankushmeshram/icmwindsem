@@ -21,8 +21,8 @@ import uk.ac.shef.wit.simmetrics.similaritymetrics.CosineSimilarity;
 /**
  * @author anme05
  * 
- *         Static Class to provide methods for Dictionary,Similarity Metrics (MatchOrSuggest) and
- *         Normalization IMPORTANT: Check whether ICMWindSetup has been
+ *         Static Class to provide methods for Dictionary and Similarity Metrics (MatchOrSuggest).
+ *         IMPORTANT: Check whether ICMWindSetup has been
  *         initialized or not.
  */
 public class Utility {
@@ -32,7 +32,6 @@ public class Utility {
 	private static AbstractStringMetric metric = new CosineSimilarity();
 	private static float thresholdscore = (float) 0.5;
 	
-
 	private Utility() {
 	}
 
@@ -43,7 +42,8 @@ public class Utility {
 	 * @throws IOException
 	 */
 	public static void initDictionary(String dictpath)
-			throws FileNotFoundException, IOException {
+			throws FileNotFoundException, IOException 
+	{
 
 		if (!ICMWindSetup.isInitialised())
 			ICMWindSetup.init();
@@ -53,12 +53,22 @@ public class Utility {
 	}
 
 	/**
+	 * @return true if Dictionary has been initialized via initDictionary(String dictpath) 
+	 */
+	public static boolean isDictInitialized() {
+		return isDictInitialized;
+	}
+
+		
+
+	/**
 	 * @param query
 	 *            German word for which English translation is requested. Also
 	 *            dictionary has to be initialized already, if not print error.
 	 * @return English translation if else return NA
 	 */
-	public static String searchInDict(String query) {
+	public static String searchInDict(String query) 
+	{
 		if (prop == null) {
 			System.out
 					.println("Error: Dicitionary not initialised. Check static method Utility.initDictionary(String dictpath)");
@@ -95,78 +105,9 @@ public class Utility {
 
 	}
 
-	/**
-	 * @param textToNormalize
-	 *            Text to "normalize". In normalization, extra white spaces, %,
-	 *            _ are removed and text is converted to lower case.
-	 * @return normalized text in lower case
-	 */
-	public static String normalizeText(String textToNormalize) {
-		return textToNormalize.replaceAll("\\s{2,}+|-|_", " ")
-				.replaceAll("%", "").toLowerCase();
-	}
-
-	/**
-	 * @param listToNormalize
-	 *            List of Text to "normalize". In normalization, extra white
-	 *            spaces, %, _ are removed and text is converted to lower case.
-	 * @return List of normalized text
-	 */
-	public static List<String> normalizeList(List<String> listToNormalize) {
-		List<String> tempList = new ArrayList<>(listToNormalize.size());
-		for (String text : listToNormalize)
-			tempList.add(normalizeText(text));
-		return tempList;
-	}
-
-	/**
-	 * @param textToNormalize
-	 *            Text to "normalize and translate". Use
-	 *            Utility.normalizeText(String textToNormalize) to normalize and
-	 *            then translate it using Dictionary. In normalization, extra
-	 *            white spaces, %, _ are removed and text is converted to lower
-	 *            case. In translation, query is searched against Ger-Eng
-	 *            Dictionary
-	 * @return Translated normalized text
-	 */
-	public static String normalizeTextWithTranslation(String textToNormalize) {
-		if (!isDictInitialized) {
-			System.out
-					.println("ERROR: Call Utility.initDictionary(String dictPath) before invoking Utility.normalizeTextWithTranslation(String textToNormalize).");
-			System.exit(0);
-		}
-
-		return searchTextInDict(normalizeText(textToNormalize));
-
-		// DEBUG
-		// String normtext = normalizeText(textToNormalize);
-		// System.out.println("SYSTEM: normTextWiTrans - normtext: " +
-		// normtext);
-		// return searchTextInDict(normtext);
-	}
-
-	/**
-	 * @param listToNormalize
-	 *            List of text to "normalize and translate". In normalization,
-	 *            extra white spaces, %, _ are removed and text is converted to
-	 *            lower case. In translation, query is searched against Ger-Eng
-	 *            Dictionary
-	 * @return Translated normalized list of text
-	 */
-	public static List<String> normalizeListWithTranslation(
-			List<String> listToNormalize) {
-		List<String> tempList = new ArrayList<>(listToNormalize.size());
-		for (String text : listToNormalize) {
-			tempList.add(normalizeTextWithTranslation(text));
-
-			// DEBUG
-			// String normtranstext = normalizeTextWithTranslation(text);
-			// System.out.println("SYSTEM: normListWTrans - normtransnext: " +
-			// normtranstext);
-			// tempList.add(normtranstext);
-		}
-		return tempList;
-	}
+	
+	
+	
 
 	/**
 	 * @param list List to convert to String array
@@ -218,24 +159,6 @@ public class Utility {
 		List<String> similartextlist = new ArrayList<>(createSimilarityMap(metric, query, dataList, thresholdscore).keySet()); 	
 		return similartextlist;
 	}
-	
-//	/**
-//	 * @param similarityMap
-//	 * @return
-//	 */
-//	public static List<String> getTopResults(int topNum, Map<String,Float> similarityMap) {
-//		List<String> topResults = new ArrayList<String>();
-//		int count = 0;
-//		
-//		for( Entry<String, Float> entry : similarityMap.entrySet() ) {
-//			if(count <= topNum) {
-//				topResults.add(entry.getKey());
-//				count ++;
-//			}
-//		}
-//		
-//		return topResults;
-//	}
 	
 	/**
 	 * @param query
@@ -314,6 +237,23 @@ public class Utility {
 	}
 	
 	
+//	/**
+//	 * @param similarityMap
+//	 * @return
+//	 */
+//	public static List<String> getTopResults(int topNum, Map<String,Float> similarityMap) {
+//		List<String> topResults = new ArrayList<String>();
+//		int count = 0;
+//		
+//		for( Entry<String, Float> entry : similarityMap.entrySet() ) {
+//			if(count <= topNum) {
+//				topResults.add(entry.getKey());
+//				count ++;
+//			}
+//		}
+//		
+//		return topResults;
+//	}	
 	
 	
 }
