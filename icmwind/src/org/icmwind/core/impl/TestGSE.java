@@ -1,21 +1,13 @@
 package org.icmwind.core.impl;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Scanner;
 
 
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 
 import de.dfki.isreal.semantic.impl.GlobalSESControllerImpl;
-import de.dfki.isreal.data.Statement;
 import de.dfki.isreal.helpers.Profiler;
 
 //ontology uri:http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl
@@ -26,7 +18,9 @@ public class TestGSE {
 	
 	public static void main(String[] args) throws OWLOntologyCreationException, URISyntaxException, IOException {
 		Profiler.init();
-		GlobalSESControllerImpl gseci = new GlobalSESControllerImpl("E:/ICM-Wind/Code/icmwind/gse_config/sab_2011.isrealomsconfig");
+		GlobalSESControllerImpl gseci = new GlobalSESControllerImpl("C:\\Users\\anme05\\git\\icmwindsem\\icmwind\\gse_config\\sab_2011.isrealomsconfig");
+		System.out.println(gseci.checkKBConsistency());
+		
 		
 		/*
 		String ns = "http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#";

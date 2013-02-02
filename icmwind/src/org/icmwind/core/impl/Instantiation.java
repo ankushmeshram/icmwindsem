@@ -2,6 +2,7 @@ package org.icmwind.core.impl;
 
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -19,16 +20,17 @@ public class Instantiation {
 	public static void main(String[] args) throws IOException, OWLOntologyCreationException, OWLOntologyStorageException {
 		long time = System.currentTimeMillis();
 		
-		FileProcessImpl fpi = new FileProcessImpl();
-		fpi.openFile("E:/ICM-Wind/Code/icmwind/data_files/Marpingen1_2Lac.csv", ';');
+		FileProcessImpl fpi = FileProcessImpl.getInstance();
+		fpi.openFile("E:/ICM-Wind/Code/icmwind/data_files/Marpingen1_2Lac.csv");
 		
-		String [] headerNames = fpi.getHeaderNames();
+		List<String> temp = fpi.getHeadNamesList();
+		String [] headerNames = temp.toArray(new String[temp.size()]);
 		
-		OntologyProcessImpl opi = new OntologyProcessImpl();
+		OntologyProcessImpl opi = OntologyProcessImpl.getInstance();
 		opi.openOntologyFromFile("E:/ICM-Wind/Code/icmwind/ontology/WindTurbineOnto.owl");
 		
 		Set<OWLClass> classes = opi.getClasses();
-		Set<String> classNames = opi.getClassNames();
+		List<String> classNames = opi.getClassNamesList();
 		
 		MappersImpl mi = new MappersImpl();
 		
@@ -53,7 +55,7 @@ public class Instantiation {
 
 		String mappedClassName = null;
 		
-		while(fpi.getReader().readRecord() && i<16) {
+		while(fpi.existsRecord() && i<16) {
 			
 			tempObservationIndividual = opi.createInstance("Observation" + "_" + i);
 			axiomsSet.add(opi.createClassAssertion(observation, tempObservationIndividual));
@@ -70,11 +72,11 @@ public class Instantiation {
 					axiomsSet.add(opi.createClassAssertion(tempClass, tempIndividual));
 					
 					if(mappedClassName.equals("Time")){
-						String timeRecord = fpi.getRecord(head);
+						String timeRecord = fpi.readRecord(head);
 						axiomsSet.add(opi.createObjectPropertyAssertion(hasSamplingTime, tempObservationIndividual, tempIndividual));
 						axiomsSet.add(opi.createDataPropertyAssertion(observedTime, tempIndividual, timeRecord));
 					} else {
-						float record = Float.parseFloat(fpi.getRecord(head));
+						float record = Float.parseFloat(fpi.readRecord(head));
 						axiomsSet.add(opi.createObjectPropertyAssertion(hasObservation, tempIndividual, tempObservationIndividual));
 						axiomsSet.add(opi.createDataPropertyAssertion(hasValue, tempIndividual, record));
 					}

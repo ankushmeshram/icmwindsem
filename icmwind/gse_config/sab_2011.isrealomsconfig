@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ISRealOMSConfig:OMSConfig xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ISRealOMSConfig="http://www.dfki.de/isreal/omsconfig/2011/omsconfig" cacheEnabled="true" tripleStoreSystemName="owlim" httpPort="9091" tripleStoreConfigPath="\\third_party_configs\\owlim.ttl" resourcePath="E:\\ICM-Wind\\Code\\icmwind\\gse_config" semReasoningEnabled="true" repositoryName="icmwind_gse">
-  
+<ISRealOMSConfig:OMSConfig xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ISRealOMSConfig="http://www.dfki.de/isreal/omsconfig/2011/omsconfig" cacheEnabled="true" tripleStoreSystemName="owlim" httpPort="9091" tripleStoreConfigPath="\\third_party_configs\\owlim.ttl" resourcePath="C:\\Users\\anme05\\git\\icmwindsem\\icmwind\\gse_config" semReasoningEnabled="true" repositoryName="icmwind_gse">
+  <!--
   <ontologies abstractURIString="http://www.dfki.de/isreal/room_abox.owl">
     <physicalURIString>room_abox.owl</physicalURIString>
   </ontologies>
-  <!--
-  <ontologies abstractURIString="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl">
-    <physicalURIString>WindTurbineOnto10.owl</physicalURIString>
-  </ontologies>
   -->
+  <ontologies abstractURIString="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl">
+    <physicalURIString>WindTurbineOnto.owl</physicalURIString>
+  </ontologies>
+  
 </ISRealOMSConfig:OMSConfig>

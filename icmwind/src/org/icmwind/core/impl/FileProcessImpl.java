@@ -1,9 +1,7 @@
 package org.icmwind.core.impl;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -11,79 +9,122 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 import org.icmwind.core.FileProcess;
+import org.icmwind.core.ICMWindSetup;
+import org.icmwind.util.Utility;
 
 import com.csvreader.CsvReader;
 
+/**
+ * @author anme05
+ * 
+ *         Singleton Implementation of FileProcess Interface. Overrides methods
+ *         which provides access to Header Names list, normalizes header names
+ *         and also provides access to Normalized Header Names list.
+ * 
+ *         IMPORTANT: Check whether ICMWindSetup has been initialized or not.
+ * 
+ */
 public class FileProcessImpl implements FileProcess {
 
-//	private String filepath = null;
-	private static final FileProcessImpl INSTANCE =  new FileProcessImpl();
+	private static final FileProcessImpl INSTANCE = new FileProcessImpl();
 	private char separator = ';';
 	private CsvReader reader = null;
 	boolean isFileOpened = false;
+
 	private List<String> headNamesList = new ArrayList<String>();
 	private List<String> normHeadNamesList = new ArrayList<String>();
-	private Map<String, String> normHeadNamesToHeadNames =  new HashMap<String,String>();
+	private Map<String, String> normHeadNamesToHeadNames = new HashMap<String, String>();
 
-	private FileProcessImpl() {}
-	
-	public static FileProcessImpl getInstance() { return INSTANCE; }
-	
-	@Override
-	public void setSeparator(char separator) { this.separator = separator; }
-	
-	
-	private boolean setFile(String filepath) {
-		try {
-			this.reader = new CsvReader(new FileReader(new File(filepath)), separator);
-			return true;
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-			return false;
-		}
+	private FileProcessImpl() {
 	}
-	
-	
+
+	/**
+	 * @return FileProcessImpl instance
+	 */
+	public static FileProcessImpl getInstance() {
+		if (!ICMWindSetup.isInitialised())
+			ICMWindSetup.init();
+
+		return INSTANCE;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.icmwind.core.FileProcess#setSeparator(char)
+	 * 
+	 * Set data separator
+	 */
+	@Override
+	public void setSeparator(char separator) {
+		this.separator = separator;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.icmwind.core.FileProcess#openFile(java.lang.String)
+	 * 
+	 * Open file from path with the DEFAULT separator. Get Header Names list and
+	 * then normalize them to get Normalized Header Names list Return true if
+	 * everything works.
+	 */
 	@Override
 	public boolean openFile(String path) {
-		if(this.setFile(path)) {
-			try {
-				this.reader.readHeaders();
-				this.headNamesList = Arrays.asList(this.reader.getHeaders());
-				isFileOpened = true;
-				this.normalize();
-				return isFileOpened;
-			} catch (IOException e) {
-				e.printStackTrace();
-				isFileOpened = false;
-				return isFileOpened;
-			}
-		} else {
+		try {
+			this.reader = new CsvReader(this.getClass().getClassLoader()
+					.getResourceAsStream(path), separator,
+					Charset.defaultCharset());
+			this.reader.readHeaders();
+			this.headNamesList = Arrays.asList(this.reader.getHeaders());
+			this.normHeadNamesList = Utility
+					.normalizeListWithTranslation(headNamesList);
+			isFileOpened = true;
+			return isFileOpened;
+		} catch (IOException e) {
+			e.printStackTrace();
 			isFileOpened = false;
 			return isFileOpened;
 		}
-	}	
-	
-	
-	@Override
-	public void closeFile() { this.reader.close(); }
+	}
 
-	
-	// Checks if records exist further or not
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.icmwind.core.FileProcess#closeFile()
+	 * 
+	 * Close the data file
+	 */
 	@Override
-	public boolean existsRecord() { 
+	public void closeFile() {
+		this.reader.close();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.icmwind.core.FileProcess#existsRecord()
+	 * 
+	 * Checks if records exist further or not
+	 */
+	@Override
+	public boolean existsRecord() {
 		try {
 			return reader.readRecord();
 		} catch (IOException e) {
 			e.printStackTrace();
-			return false; 
+			return false;
 		}
 	}
-	
-	
-	// Returns value for the given Header for current row.
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.icmwind.core.FileProcess#readRecord(java.lang.String)
+	 * 
+	 * Returns record for the given Header in the current row.
+	 */
 	@Override
 	public String readRecord(String headerName) {
 		try {
@@ -94,119 +135,62 @@ public class FileProcessImpl implements FileProcess {
 		}
 	}
 
-	
+	/* (non-Javadoc)
+	 * @see org.icmwind.core.FileProcess#getHeadNamesList()
+	 * 
+	 * Returns list of Header Names of Data file
+	 */
 	@Override
 	public List<String> getHeadNamesList() {
-		if(isFileOpened)
+		if (isFileOpened) {
 			return headNamesList;
-		else
+		} else {
 			System.out.println("ERROR: File not found.");
 			return Collections.emptyList();
+		}
 	}
-	
-	
+
+	/* (non-Javadoc)
+	 * @see org.icmwind.core.FileProcess#getNormHeadNamesList()
+	 * 
+	 * Return list of Normalized Header Names
+	 */
 	@Override
 	public List<String> getNormHeadNamesList() {
-		if(isFileOpened)
+		if (isFileOpened) {
 			return normHeadNamesList;
-		else
+		} else {
 			System.out.println("ERROR: File not found.");
 			return Collections.emptyList();
+		}
 	}
-	
 
+	/* (non-Javadoc)
+	 * @see org.icmwind.core.FileProcess#getHeadNameFor(java.lang.String)
+	 * 
+	 * Returns Header Name mapped for given Normalized Header Name
+	 */
 	@Override
 	public String getHeadNameFor(String normHeadName) {
-		if(isFileOpened)
-			if(normHeadNamesList.contains(normHeadName))
+		if (isFileOpened) {
+			if (normHeadNamesList.contains(normHeadName)) {
 				return normHeadNamesToHeadNames.get(normHeadName);
-			else
+			} else {
 				return "normHeadName not found in system.";
-		else
-			return "ERROR: File not found.";
-	}
-	
-	
-	/*
-	 * Normalize HeaderNames to NormalizedHeaderNames
-	 *  	Remove unwanted characters
-	 *  	Change everything to lower case
-	 *  		eg: text.replaceAll("\\s{2,}+|-", " ").replaceAll("%", "").toLowerCase()
-	 *  	Translate german2english
-	 *  	Map NormalizedHeaderNames2HeaderNames
-	 */ 
-	private void normalize() {
-
-		// Initialise german-english dictionary by providing path of "ger2engDictionary.properties"
-		try {
-			Utility.initDictionary("C:\\ICMWind\\eclipse_workspace\\icmwind\\ger2engDictionary.properties");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		String normhead = null;
-		
-		for(String head : headNamesList) {
-			// clean text to remove unwanted chars
-			normhead = cleanText(head).toLowerCase();
-			
-			// translate text ,if any
-			try {
-				normhead = translateText(normhead);
-			} catch ( IOException e) {
-				e.printStackTrace();
-			}
-			
-			// add normalised head to normalised headers list.
-			normHeadNamesList.add(normhead);
-			
-			// map for normhead (Normalised Header Names) to head (Headers Names)
-			normHeadNamesToHeadNames.put(normhead, head);
-		}
-
-
-
-
-	}
-
-	
-	// remove unwanted chars like "-" and >=2 whitespaces with " "
-	// remove unwanted chars like "%" with ""
-	private String cleanText(String text) { return text.replaceAll("\\s{2,}+|-", " ").replaceAll("%", ""); }
-	
-	
-	// split text and find their english translations, if any
-	private String translateText(String query) throws FileNotFoundException, IOException {
-		String[] splitText = query.split(" ");
-		StringBuilder result = new StringBuilder();
-		String dictResult = null;
-
-		// if more than one word in the query
-		if(splitText.length > 1) {
-			for(int i = 0; i < splitText.length; i++) {
-				dictResult = Utility.searchInDict(splitText[i]);
-				
-				// if translated word found
-				if(!dictResult.equals("NA"))
-					result.append(dictResult);
-				else
-					result.append(splitText[i]);
-				
-				result.append(" ");
 			}
 		} else {
-			dictResult = Utility.searchInDict(query);
-									
-			// if translated word found
-			if(!dictResult.equals("NA"))
-				result.append(dictResult);
-			else
-				result.append(query);
+			return "ERROR: File not found.";
 		}
-		
-		// return result
-		return result.toString().trim();
 	}
 
+	// DEBUG
+	// public static void main(String[] args) throws FileNotFoundException,
+	// IOException {
+	// FileProcessImpl f = FileProcessImpl.getInstance();
+	// Utility.initDictionary(ICMWindSetup.getDictionaryPath());
+	// f.openFile(ICMWindSetup.getDataFilePath());
+	// System.out.println(f.getHeadNamesList().toString() + "\n" +
+	// f.getNormHeadNamesList().toString());
+	// }
 
 }

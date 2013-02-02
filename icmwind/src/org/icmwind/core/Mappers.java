@@ -2,6 +2,7 @@ package org.icmwind.core;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -16,5 +17,8 @@ public interface Mappers {
 	public Map<String, String> getClassToHeaderMap();
 	
 	public Map<String, OWLClass> getClassToURIMap(Set<String> classNames, Set<OWLClass> classes);
+
+	Map<String, OWLClass> getClassToURIMap(List<String> classNames,
+			Set<OWLClass> classes);
 	
 }

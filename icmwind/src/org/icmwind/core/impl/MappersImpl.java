@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
@@ -41,7 +42,7 @@ public class MappersImpl implements Mappers {
 
 	
 	@Override
-	public Map<String, OWLClass> getClassToURIMap(Set<String> classNames, Set<OWLClass> classes) {
+	public Map<String, OWLClass> getClassToURIMap(List<String> classNames, Set<OWLClass> classes) {
 		for(String className : classNames) {
 			for(OWLClass aClass : classes ) {
 				if(className.equals(aClass.getIRI().getFragment())){
@@ -52,4 +53,14 @@ public class MappersImpl implements Mappers {
 		return classToURIMap;
 	}
 
+
+	@Override
+	public Map<String, OWLClass> getClassToURIMap(Set<String> classNames,
+			Set<OWLClass> classes) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	
 }

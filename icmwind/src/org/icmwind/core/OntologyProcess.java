@@ -11,18 +11,29 @@ import org.semanticweb.owlapi.model.OWLIndividual;
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
 import org.semanticweb.owlapi.model.OWLObjectProperty;
 import org.semanticweb.owlapi.model.OWLOntology;
-import org.semanticweb.owlapi.model.OWLOntologyCreationException;
-import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 
+
+/**
+ * @author anme05
+ *
+ */
 public interface OntologyProcess {
 	
+	/**
+	 * @param filepath Path of Core Ontology
+	 * @return true if Success 
+	 */
 	public boolean openFile(String filepath);
 	
-	public void openOntologyFromFile(String filePath) throws OWLOntologyCreationException;
+	public void openOntologyFromFile(String filePath);
 	
-	public void openOntologyFromIri(IRI ontologyIri) throws OWLOntologyCreationException;
+	public void openOntologyFromIri(IRI ontologyIri);
 	
-	public void saveOntologyRDFXML(OWLOntology ontology,String outputFile) throws OWLOntologyStorageException;
+	/**
+	 * @param ontology Ontology to be saved.
+	 * @param outputFile Path of file to save the ontology. 
+	 */
+	public void saveOntologyRDFXML(OWLOntology ontology,String outputFile);
 	
 	public OWLOntology getOntology();
 	
@@ -30,10 +41,20 @@ public interface OntologyProcess {
 	
 	public Set<OWLClass> getClasses();
 	
+	/**
+	 * @return List of Class names in Core Ontology
+	 */
 	public List<String> getClassNamesList();
 	
+	/**
+	 * @return List of normalized Class names in Core Ontology 
+	 */
 	public List<String> getNormClassNamesList();
 	
+	/**
+	 * @param normClassName Normalized Class Name for which Class Name is requested
+	 * @return Class Name mapped to normClassName
+	 */
 	public String getClassNameFor(String normClassName);
 	
 	public int getClassCount();

@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -30,10 +31,11 @@ public class CreateIndividuals {
 		
 		//Open csv file. Get headers.
 		
-		FileProcessImpl fpi = new FileProcessImpl();
-		fpi.openFile("E:/ICM-Wind/Code/icmwind/data_files/Marpingen1_2Lac.csv", ';');
+		FileProcessImpl fpi = FileProcessImpl.getInstance();
+		fpi.openFile("E:/ICM-Wind/Code/icmwind/data_files/Marpingen1_2Lac.csv");
 		
 		String [] headerNames = fpi.getHeaderNames();
+		List<String> headerNamesList = fpi.getHeadNamesList();
 		
 		//Jena model. Connect to ontology on disk. Get all classes and class names.
 		
