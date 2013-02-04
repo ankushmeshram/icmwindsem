@@ -9,20 +9,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.semanticweb.owlapi.model.OWLClass;
-import org.semanticweb.owlapi.model.OWLDataProperty;
-import org.semanticweb.owlapi.model.OWLObjectProperty;
-
-import com.hp.hpl.jena.datatypes.RDFDatatype;
 import com.hp.hpl.jena.ontology.DatatypeProperty;
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.ObjectProperty;
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntDocumentManager;
 import com.hp.hpl.jena.ontology.OntModel;
-import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.hp.hpl.jena.vocabulary.XSD;
 
 
 public class CreateIndividuals {
@@ -34,9 +27,10 @@ public class CreateIndividuals {
 		FileProcessImpl fpi = FileProcessImpl.getInstance();
 		fpi.openFile("E:/ICM-Wind/Code/icmwind/data_files/Marpingen1_2Lac.csv");
 		
-		String [] headerNames = fpi.getHeaderNames();
-		List<String> headerNamesList = fpi.getHeadNamesList();
-		
+		List<String> headList = fpi.getHeadNamesList();
+		String [] headerNames = new String[headList.size()];
+		headerNames = headList.toArray(headerNames);
+				
 		//Jena model. Connect to ontology on disk. Get all classes and class names.
 		
 		String src = "http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl";
@@ -92,7 +86,7 @@ public class CreateIndividuals {
 		
 		int i = 1;
 		
-		while(fpi.getReader().readRecord() && i<21) {
+		while(fpi.existsRecord() && i<21) {
 			
 			if(i%1000 == 0) {
 				System.out.println(i);
@@ -108,11 +102,11 @@ public class CreateIndividuals {
 					tempClass = classToURIMap.get(mappedClassName);
 					tempInstance = tempClass.createIndividual(ns + mappedClassName + "_" + i);
 					if(mappedClassName.equals("Time")){
-						String timeRecord = fpi.getRecord(head);
+						String timeRecord = fpi.readRecord(head);
 						tempInstance.addProperty(observedTime, timeRecord);
 						tempObservationInstance.addProperty(hasSamplingTime, tempInstance);
 					} else {
-						float record = Float.parseFloat(fpi.getRecord(head));
+						float record = Float.parseFloat(fpi.readRecord(head));
 						tempInstance.addProperty(hasObservation, tempObservationInstance);
 						tempInstance.addLiteral(hasValue, record);
 					}

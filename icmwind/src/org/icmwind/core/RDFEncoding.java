@@ -3,6 +3,9 @@
  */
 package org.icmwind.core;
 
+import java.util.List;
+import java.util.Map;
+
 
 /**
  * @author ANKUSH
@@ -56,9 +59,9 @@ public interface RDFEncoding {
 	
 	public void initFileProcess(String filepath);
 	
-	public void initOntologyProcess(String ontologypath);
+	public void initOntologyProcess();
 	
-	public void initMappers();	
+	public Map<String, List<String>> returnMapping();
 	
 
 }

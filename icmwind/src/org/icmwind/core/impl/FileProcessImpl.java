@@ -12,7 +12,7 @@ import java.util.Map;
 import org.icmwind.core.FileProcess;
 import org.icmwind.core.ICMWindSetup;
 import org.icmwind.util.Normalization;
-import org.icmwind.util.Utility;
+
 
 import com.csvreader.CsvReader;
 
@@ -74,9 +74,12 @@ public class FileProcessImpl implements FileProcess {
 	@Override
 	public boolean openFile(String path) {
 		try {
-			this.reader = new CsvReader(this.getClass().getClassLoader()
-					.getResourceAsStream(path), separator,
-					Charset.defaultCharset());
+			
+			if(this.getClass().getClassLoader().getResourceAsStream(path) != null)
+				this.reader = new CsvReader(this.getClass().getClassLoader().getResourceAsStream(path), separator,Charset.defaultCharset());
+			else
+				this.reader = new CsvReader(path , separator);
+			
 			this.reader.readHeaders();
 			this.headNamesList = Arrays.asList(this.reader.getHeaders());
 			
@@ -201,15 +204,15 @@ public class FileProcessImpl implements FileProcess {
 	
 
 	 //DEBUG
-	 public static void main(String[] args) throws IOException 
-	 {
-		 FileProcess f = FileProcessImpl.getInstance();
-		 Utility.initDictionary(ICMWindSetup.getDictionaryPath());
-		 f.openFile(ICMWindSetup.getDataFilePath());
-		 System.out.println(f.getHeadNameFor("dmcs a"));
-//		 for(Map.Entry<String, String> entry : f.getNormalizationMap().entrySet())
-//			 System.out.println(entry.getKey() + " -- " + entry.getValue());
-//		 System.out.println(f.getHeadNamesList().toString() + "\n" + f.getNormHeadNamesList().toString());
-	 }
+//	 public static void main(String[] args) throws IOException 
+//	 {
+//		 FileProcess f = FileProcessImpl.getInstance();
+//		 Utility.initDictionary(ICMWindSetup.getDictionaryPath());
+//		 f.openFile(ICMWindSetup.getDataFilePath());
+//		 System.out.println(f.getHeadNameFor("dmcs a"));
+////		 for(Map.Entry<String, String> entry : f.getNormalizationMap().entrySet())
+////			 System.out.println(entry.getKey() + " -- " + entry.getValue());
+////		 System.out.println(f.getHeadNamesList().toString() + "\n" + f.getNormHeadNamesList().toString());
+//	 }
 
 }
