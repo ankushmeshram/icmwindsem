@@ -13,13 +13,13 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FormPanel.SubmitCompleteEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.icmwind.gui.web.client.helpers.ClientUtils;
 import com.icmwind.gui.web.client.helpers.DataToUpload;
-import com.icmwind.gui.web.client.helpers.Utils;
 
 public class Upload extends Composite {
 
 	public Upload() {
-		Utils.setTitle("Upload Data");
+		ClientUtils.setTitle("Upload Data");
 		
 		final FormPanel form = new FormPanel();
 		form.setMethod(FormPanel.METHOD_POST);

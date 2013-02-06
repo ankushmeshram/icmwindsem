@@ -7,14 +7,15 @@ import com.google.gwt.user.client.ui.Tree;
 import com.google.gwt.user.client.ui.TreeItem;
 import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.FlexTable;
-import com.icmwind.gui.web.client.helpers.Utils;
+import com.icmwind.gui.web.client.helpers.ClientUtils;
+
 
 public class Settings extends Composite {
 
 	@SuppressWarnings("unused")
 	public Settings() {
 		
-		Utils.setTitle("Settings");
+		ClientUtils.setTitle("Settings");
 		
 		VerticalPanel panel = new VerticalPanel();
 		panel.setSpacing(10);

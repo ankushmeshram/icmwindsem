@@ -7,14 +7,14 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
-import com.icmwind.gui.web.client.helpers.Utils;
+import com.icmwind.gui.web.client.helpers.ClientUtils;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 
 public class AdvancedAnalysis extends Composite {
 
 	public AdvancedAnalysis() {
-		Utils.setTitle("Advanced Data Analysis");
+		ClientUtils.setTitle("Advanced Data Analysis");
 		
 		VerticalPanel panel = new VerticalPanel();
 		panel.setSpacing(20);
@@ -30,7 +30,7 @@ public class AdvancedAnalysis extends Composite {
 						"Queries regarding the conceptual knowledge of Wind Turbine domain particularly Fluid Condition " +
 						"Monitoring can be asked here. User can query for Sensors with certain functionalities. Another type of " +
 						"query is to find Sensors with similar functionalities";
-		HTML cqHtml = new HTML("<b>Conceptual Queries</b><br/>Queries regarding the conceptual knowledge of Wind Turbine domain particularly Fluid Condition Monitoring can be asked here. User can query for Sensors with certain functionalities. Another type of query is to find Sensors with similar functionalities", true);
+		HTML cqHtml = new HTML(cqText, true);
 		panel.add(cqHtml);
 		
 		String dcqText = "<b>Data Centric Queries</b><br/>" +

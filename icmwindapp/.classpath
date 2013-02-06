@@ -3,5 +3,11 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-fileupload-1.2.2.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-io-2.4.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/owlapi-bin.jar" sourcepath="war/WEB-INF/lib/owlapi-src.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/simmetrics_jar_v1_6_2_d07_02_07.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/javacsv.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/icmwind"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

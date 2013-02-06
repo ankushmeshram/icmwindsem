@@ -16,31 +16,32 @@ import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.user.client.ui.ScrollPanel;
-import com.icmwind.gui.web.client.helpers.Utils;
+import com.icmwind.gui.web.client.helpers.ClientUtils;
+
 
 public class Analyse extends Composite {
 
 	public Analyse() {
 		
-		Utils.setTitle("Analyse Sensor Data");
+		ClientUtils.setTitle("Analyse Sensor Data");
 		
 		VerticalPanel panel = new VerticalPanel();
 		panel.setSpacing(10);
 		initWidget(panel);
-		panel.setSize("900px", "");
+		panel.setSize("800px", "");
 		
 		String analyseText = "The uploaded data is analyzed for fault detection and diagnosis. " +
 							 "The severity of system component’s condition is represented by Red, Orange, Green colors denoting condition from worst to okay respectively. " +
 							 "Conditions are checked based on the rules defined in the system settings.";
 		HTML analyseHtml = new HTML(analyseText, true);
 		panel.add(analyseHtml);
-		analyseHtml.setWidth("900px");
+		analyseHtml.setWidth("800px");
 		panel.setCellHeight(analyseHtml, "40px");
 		
 		HorizontalPanel statusHPanel = new HorizontalPanel();
 		statusHPanel.setSpacing(5);
 		panel.add(statusHPanel);
-		statusHPanel.setSize("900px", "");
+		statusHPanel.setSize("800px", "");
 		
 		Grid grid = new Grid(2, 1);
 		grid.setBorderWidth(0);

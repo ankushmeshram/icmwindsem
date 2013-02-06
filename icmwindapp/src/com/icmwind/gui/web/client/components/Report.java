@@ -2,7 +2,7 @@ package com.icmwind.gui.web.client.components;
 
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
-import com.icmwind.gui.web.client.helpers.Utils;
+import com.icmwind.gui.web.client.helpers.ClientUtils;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 
@@ -20,7 +20,7 @@ public class Report extends Composite {
 		lblThisIsSession.setStyleName("query-label");
 		lblThisIsSession.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		verticalPanel.add(lblThisIsSession);
-		Utils.setTitle("Session Report");
+		ClientUtils.setTitle("Session Report");
 		
 	}
 

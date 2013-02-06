@@ -4,7 +4,6 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.StackPanel;
 import com.google.gwt.user.client.ui.DisclosurePanel;
 
 public class Conceptual extends Composite {
@@ -29,9 +28,9 @@ public class Conceptual extends Composite {
 		panel.add(disclosurePanel);
 		disclosurePanel.setWidth("880px");
 		
-		Subsumption subsumption = new Subsumption();
-		disclosurePanel.setContent(subsumption);
-		subsumption.setSize("800px", "4cm");
+		QueryEditor queryEditor = new QueryEditor();
+		disclosurePanel.setContent(queryEditor);
+		queryEditor.setSize("5cm", "4cm");
 		
 		DisclosurePanel disclosurePanel_1 = new DisclosurePanel("Find Sensors similar to given definition");
 		disclosurePanel_1.setStyleName("gwt-DisclosurePanel-my gwt-DisclosurePanel-my-closed");

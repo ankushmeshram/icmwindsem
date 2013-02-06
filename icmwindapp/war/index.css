@@ -344,4 +344,12 @@ a:visited {
 .timepass-analysis {
 	background-color: papayawhip;
 }
+.gwt-Label-Subsumption-columns {
+	text-align: right;
+	width: 150px;
+}
+.makeItCenter {
+	text-align: center;
+	width: 200px;
+}
 

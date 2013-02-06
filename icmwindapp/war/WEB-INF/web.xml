@@ -9,5 +9,23 @@
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
+	
+	<servlet>
+		<servlet-name>RDFEncoderService</servlet-name>
+		<servlet-class>com.icmwind.gui.web.server.RDFEncoderServiceImpl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RDFEncoderService</servlet-name>
+		<url-pattern>/com.icmwind.gui.web.home/RDFEncoderService</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>uploadServlet</servlet-name>
+		<servlet-class>com.icmwind.gui.web.server.FileUploadServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>uploadServlet</servlet-name>
+		<url-pattern>/uploadme</url-pattern>
+	</servlet-mapping>
 
 </web-app>

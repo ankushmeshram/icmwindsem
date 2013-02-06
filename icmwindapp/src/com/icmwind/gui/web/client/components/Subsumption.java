@@ -5,110 +5,61 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.ListBox;
-import com.google.gwt.user.client.ui.HasHorizontalAlignment;
-import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ChangeEvent;
+import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.icmwind.gui.web.client.helpers.ClientUtils;
 
 public class Subsumption extends Composite {
-
-	static ListBox listBox;
-	static ListBox listBox_1;
-	static ListBox listBox_2;
-	static ListBox listBox_3;
 	static Label lblCurrentQuery;
+	FlexTable flexTable;
+	int flag = 1;
 	
 	public Subsumption() {
 		
-		VerticalPanel verticalPanel = new VerticalPanel();
-		verticalPanel.setBorderWidth(1);
-		verticalPanel.setSpacing(10);
-		initWidget(verticalPanel);
-		verticalPanel.setWidth("700px");
+		VerticalPanel panel = new VerticalPanel();
+		panel.setBorderWidth(1);
+		panel.setSpacing(10);
+		initWidget(panel);
+		panel.setWidth("800px");
 		
 		Label lblExampleFindSensors = new Label("Example: Find Sensors measuring temperature and pressure of Oil. ");
-		verticalPanel.add(lblExampleFindSensors);
+		panel.add(lblExampleFindSensors);
+		lblExampleFindSensors.setWidth("780px");
 		
-		HorizontalPanel horizontalPanel = new HorizontalPanel();
-		horizontalPanel.setSpacing(5);
-		verticalPanel.add(horizontalPanel);
-		horizontalPanel.setWidth("600px");
+		VerticalPanel selectionVPanel = new VerticalPanel();
+		panel.add(selectionVPanel);
+		selectionVPanel.setSize("600px", "");
 		
-		Label lblConcept = new Label("Concept :");
-		horizontalPanel.add(lblConcept);
-		horizontalPanel.setCellHorizontalAlignment(lblConcept, HasHorizontalAlignment.ALIGN_RIGHT);
-		horizontalPanel.setCellWidth(lblConcept, "200px");
-		lblConcept.setWidth("200px");
+		flexTable = new FlexTable();
+		selectionVPanel.add(flexTable);
+		flexTable.setWidth("100%");
 		
-		listBox = new ListBox();
-		listBox.addChangeHandler(new Changer());
-		listBox.addItem("Sensor");
-		horizontalPanel.add(listBox);
-		listBox.setWidth("100px");
-		listBox.setVisibleItemCount(1);
+		Label lblNewLabel = new Label("");
+		lblNewLabel.setStyleName("gwt-Label-Subsumption-columns");
+		flexTable.setWidget(0, 0, lblNewLabel);
 		
-		HorizontalPanel horizontalPanel_1 = new HorizontalPanel();
-		horizontalPanel_1.setSpacing(5);
-		verticalPanel.add(horizontalPanel_1);
-		horizontalPanel_1.setWidth("600px");
+		Label lblNewLabel_1 = new Label("");
+		lblNewLabel_1.setStyleName("gwt-Label-Subsumption-columns");
+		flexTable.setWidget(0, 1, lblNewLabel_1);
 		
-		Label lblProperty = new Label("Property :");
-		horizontalPanel_1.add(lblProperty);
-		horizontalPanel_1.setCellHorizontalAlignment(lblProperty, HasHorizontalAlignment.ALIGN_RIGHT);
-		horizontalPanel_1.setCellWidth(lblProperty, "200px");
-		lblProperty.setWidth("200px");
+		Label lblNewLabel_2 = new Label("");
+		lblNewLabel_2.setStyleName("gwt-Label-Subsumption-columns");
+		flexTable.setWidget(0, 2, lblNewLabel_2);
 		
-		listBox_1 = new ListBox();
-		listBox_1.addChangeHandler(new Changer());
-		listBox_1.addItem("");
-		listBox_1.addItem("measures");
-		listBox_1.addItem("hasLocation");
-		listBox_1.addItem("isSensorOf");
-		horizontalPanel_1.add(listBox_1);
-		listBox_1.setWidth("100px");
-		listBox_1.setVisibleItemCount(1);
-		
-		HorizontalPanel horizontalPanel_2 = new HorizontalPanel();
-		horizontalPanel_2.setSpacing(5);
-		verticalPanel.add(horizontalPanel_2);
-		horizontalPanel_2.setWidth("600px");
-		
-		Label lblMeasuredProperty = new Label("Measured Property :");
-		horizontalPanel_2.add(lblMeasuredProperty);
-		horizontalPanel_2.setCellHorizontalAlignment(lblMeasuredProperty, HasHorizontalAlignment.ALIGN_RIGHT);
-		horizontalPanel_2.setCellWidth(lblMeasuredProperty, "200px");
-		lblMeasuredProperty.setWidth("200px");
-		
-		listBox_2 = new ListBox();
-		listBox_2.addChangeHandler(new Changer());
-		listBox_2.addItem("");
-		listBox_2.addItem("Temperature");
-		listBox_2.addItem("Pressure");
-		listBox_2.addItem("Flow");
-		horizontalPanel_2.add(listBox_2);
-		listBox_2.setWidth("100px");
-		listBox_2.setVisibleItemCount(1);
-		
-		Label lblFeatureOfInterest = new Label("Feature Of Interest :");
-		horizontalPanel_2.add(lblFeatureOfInterest);
-		horizontalPanel_2.setCellHorizontalAlignment(lblFeatureOfInterest, HasHorizontalAlignment.ALIGN_RIGHT);
-		horizontalPanel_2.setCellWidth(lblFeatureOfInterest, "150px");
-		lblFeatureOfInterest.setWidth("150px");
-		
-		listBox_3 = new ListBox();
-		listBox_3.addChangeHandler(new Changer());
-		listBox_3.addItem("");
-		listBox_3.addItem("Oil");
-		listBox_3.addItem("Air");
-		horizontalPanel_2.add(listBox_3);
-		listBox_3.setWidth("100px");
-		listBox_3.setVisibleItemCount(1);
+		Label lblNewLabel_3 = new Label("");
+		lblNewLabel_3.setStyleName("gwt-Label-Subsumption-columns");
+		flexTable.setWidget(0, 3, lblNewLabel_3);
+
+		addConceptRow();
 		
 		HorizontalPanel horizontalPanel_3 = new HorizontalPanel();
 		horizontalPanel_3.setSpacing(5);
-		verticalPanel.add(horizontalPanel_3);
+		panel.add(horizontalPanel_3);
 		horizontalPanel_3.setWidth("600px");
 		
 		Label lblQuery = new Label("Query :");
@@ -125,7 +76,7 @@ public class Subsumption extends Composite {
 		
 		HorizontalPanel horizontalPanel_4 = new HorizontalPanel();
 		horizontalPanel_4.setSpacing(5);
-		verticalPanel.add(horizontalPanel_4);
+		panel.add(horizontalPanel_4);
 		horizontalPanel_4.setWidth("180px");
 		
 		Button btnNewButton = new Button("Execute");
@@ -138,7 +89,7 @@ public class Subsumption extends Composite {
 		
 		HorizontalPanel horizontalPanel_5 = new HorizontalPanel();
 		horizontalPanel_5.setSpacing(5);
-		verticalPanel.add(horizontalPanel_5);
+		panel.add(horizontalPanel_5);
 		horizontalPanel_5.setWidth("600px");
 		
 		Label lblResult = new Label("Result :");
@@ -152,18 +103,176 @@ public class Subsumption extends Composite {
 		textArea.setWidth("400px");
 	}
 	
-	static class Changer implements ChangeHandler{
-
-		@Override
-		public void onChange(ChangeEvent event) {
-			resetQueryLabel();
-		}
-	} 
+	private Label getFlexLabel(String labelText) {
+		Label label = new Label(labelText);
+		label.addStyleName("gwt-Label-Subsumption-columns");
+		
+		return label;
+	}
 	
-	private static void resetQueryLabel() {
-		String query  = listBox.getItemText(listBox.getSelectedIndex()) + " AND " + listBox_1.getItemText(listBox_1.getSelectedIndex()) + " AND " + listBox_2.getItemText(listBox_2.getSelectedIndex()) + 
-				" AND " + listBox_3.getItemText(listBox_3.getSelectedIndex());
-		lblCurrentQuery.setText(query);
+	private ListBox getFlexListBox(String key) {
+		final ListBox listBox = new ListBox();
+		listBox.setWidth("150px");
+		listBox.setVisibleItemCount(1);
+		
+		String[] listData = null;
+		
+		
+		if(key.equals("sub-system")){
+			listData = ClientUtils.getSubsystems();
+		} else if (key.equals("property")) {
+			listData = ClientUtils.getProperties();
+		} else if (key.equals("measured-property")) {
+			listData = ClientUtils.getMeasuredproperties();
+		} else if (key.equals("feature")) {
+			listData = ClientUtils.getFeatureofinterests();
+		} else if (key.equals("location")) {
+			listData = ClientUtils.getLocations();
+		} else if (key.equals("concept")) {
+			listData = ClientUtils.getConcepts();
+		} 
+		
+		for(int i = 0; i < listData.length; i++) {
+			listBox.addItem(listData[i]);
+		}
+		
+		if(key.equals("property")) {
+			listBox.addChangeHandler(new ChangeHandler() {
+				@Override
+				public void onChange(ChangeEvent event) {
+					String selectedItem = listBox.getItemText(listBox.getSelectedIndex());
+															
+					if(selectedItem.equals("measures")) {
+						addMeasuredPropertyRow();
+					} else if (selectedItem.equals("hasLocation")) {
+						addLocationRow();
+					} else if (selectedItem.equals("isSensorOf")) {
+						addSubSystemRow();
+					}
+					
+					listBox.setEnabled(false);
+				}
+			});
+		}
+			
+		return listBox;
+	}
+	
+	private void addConceptRow() {
+		int row = flexTable.getRowCount();
+	
+		flexTable.setWidget(row, 0, getFlexLabel("Concept :"));
+		flexTable.setWidget(row, 1, getFlexListBox("concept"));
+		
+		HorizontalPanel horizontalPanel = new HorizontalPanel();
+		flexTable.setWidget(3, 0, horizontalPanel);
+		horizontalPanel.setWidth("100%");
+		
+		Button btnAddProperty = new Button("Add Property");
+		btnAddProperty.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				addPropertyRow();
+			}
+		});
+		
+		horizontalPanel.add(btnAddProperty);
+		flexTable.getFlexCellFormatter().setColSpan(3, 0, 4);
+	}
+	
+	private void addPropertyRow() {
+		int row = flexTable.getRowCount();
+		
+		flexTable.setWidget(row, 0, getFlexLabel("Property :"));
+		flexTable.setWidget(row, 1, getFlexListBox("property"));
+	}
+	
+		
+	private void addMeasuredPropertyRow() {
+		int row = 0;
+		
+		if(flag == 1) {
+			row = flexTable.getRowCount();
+			flag = 0;
+		} else {
+			row = flexTable.getRowCount() - 1;
+			flexTable.removeCells(row - 1, 2, 2);
+			flexTable.removeRow(row);
+			row = flexTable.getRowCount();
+//			row = flexTable.getRowCount() - 1;
+		}
+		
+		
+		Label measPropLabel = new Label("Measured Property :");
+		measPropLabel.addStyleName("gwt-Label-Subsumption-columns");
+		
+		Label featOfIntLabel = new Label("Feature Of Interest :");
+		featOfIntLabel.addStyleName("gwt-Label-Subsumption-columns");
+		
+		final Button removeProperty = new Button("X", new ClickHandler() {
+			
+			@Override
+			public void onClick(ClickEvent event) {
+				// TODO Auto-generated method stub
+				System.out.println();
+				
+			}
+		});
+		
+		flexTable.setWidget(row - 1, 2, getFlexLabel("Measured Property :"));
+		flexTable.setWidget(row - 1, 3, getFlexListBox("measured-property"));
+		flexTable.setWidget(row, 2, getFlexLabel("Feature Of Interest :"));
+		flexTable.setWidget(row, 3, getFlexListBox("feature"));
+		flexTable.setWidget(row - 1, 4, removeProperty);
+	}
+	
+	
+	private void addLocationRow() {
+		int row = 0;
+		
+		if(flag == 1) {
+			row = flexTable.getRowCount();
+			flag = 0;
+		} else {
+			row = flexTable.getRowCount() - 1;
+			flexTable.removeRow(row);
+			row = flexTable.getRowCount();
+//			row = flexTable.getRowCount() - 1;
+		}
+		
+//		if(flag == 1) {
+//			row = flexTable.getRowCount();
+//			flag = 0;
+//		} else {
+//			row = flexTable.getRowCount() - 1;
+//		}
+				
+		flexTable.setWidget(row - 1, 2, getFlexLabel("Location :"));
+		flexTable.setWidget(row - 1, 3, getFlexListBox("location"));
+	}
+	
+		
+	private void addSubSystemRow() {
+		int row = 0;
+		
+		if(flag == 1) {
+			row = flexTable.getRowCount();
+			flag = 0;
+		} else {
+			row = flexTable.getRowCount() - 1;
+			flexTable.removeRow(row);
+			row = flexTable.getRowCount();
+//			row = flexTable.getRowCount() - 1;
+		}
+		
+//		if(flag == 1) {
+//			row = flexTable.getRowCount();
+//			flag = 0;
+//		} else {
+//			row = flexTable.getRowCount() - 1;
+//		}
+		
+		flexTable.setWidget(row - 1, 2, getFlexLabel("Sub Sytem :"));
+		flexTable.setWidget(row - 1, 3, getFlexListBox("sub-system"));
 	}
 
 }

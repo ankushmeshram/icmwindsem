@@ -18,17 +18,21 @@ import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.History;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.icmwind.gui.web.client.components.About;
 import com.icmwind.gui.web.client.components.AdvancedAnalysis;
 import com.icmwind.gui.web.client.components.Analyse;
 import com.icmwind.gui.web.client.components.Conceptual;
+import com.icmwind.gui.web.client.components.FileUpload;
 import com.icmwind.gui.web.client.components.Footer;
 import com.icmwind.gui.web.client.components.Home;
 import com.icmwind.gui.web.client.components.Navigation;
 import com.icmwind.gui.web.client.components.Report;
 import com.icmwind.gui.web.client.components.Settings;
-import com.icmwind.gui.web.client.components.UploadPlain;
+import com.icmwind.gui.web.client.services.RDFEncoderService.RDFEncoderServiceUtil;
+
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
@@ -41,6 +45,22 @@ public class Index implements EntryPoint {
 		RootPanel.get("navBarContainer").add(new Navigation());
 		RootPanel.get("footerContainer").add(new Footer());
 		
+		// RemoteService Call to initialize RDF Encoding
+		RDFEncoderServiceUtil.getInstance().initRDFEncoder(new AsyncCallback<String>() {
+			
+			@Override
+			public void onSuccess(String result) {
+				Window.alert((String)result);
+			}
+			
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Failure");
+			}
+		});
+		
+	
+		// For History Tokens
 		History.addValueChangeHandler(new ValueChangeHandler<String>() {
 			
 			@Override
@@ -55,7 +75,7 @@ public class Index implements EntryPoint {
 					RootPanel.get("contentContainer").add(new About());
 				} else if (historyToken.equals("upload")) {
 					RootPanel.get("contentContainer").clear();
-					RootPanel.get("contentContainer").add(new UploadPlain());
+					RootPanel.get("contentContainer").add(new FileUpload());
 				} else if (historyToken.equals("analyse")) {
 					RootPanel.get("contentContainer").clear();
 					RootPanel.get("contentContainer").add(new Analyse());
@@ -80,4 +100,6 @@ public class Index implements EntryPoint {
 		
 		History.fireCurrentHistoryState();
 	}
+
+
 }

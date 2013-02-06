@@ -10,7 +10,7 @@ import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
-import com.icmwind.gui.web.client.helpers.Utils;
+import com.icmwind.gui.web.client.helpers.ClientUtils;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
@@ -18,7 +18,7 @@ import com.google.gwt.user.client.ui.HasVerticalAlignment;
 public class UploadPlain extends Composite {
 
 	public UploadPlain() {
-		Utils.setTitle("Upload Data");
+		ClientUtils.setTitle("Upload Data");
 		
 		VerticalPanel panel = new VerticalPanel();
 		panel.setSpacing(10);
