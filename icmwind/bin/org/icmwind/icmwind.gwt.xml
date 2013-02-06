@@ -1,0 +1,7 @@
+<module>
+	<inherits name='com.google.gwt.user.User'/>
+	<source path="icmwind"></source>
+	<source path="core"></source>
+	<source path="core.impl"></source>
+	<source path="util"></source>
+</module>

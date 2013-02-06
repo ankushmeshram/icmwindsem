@@ -90,25 +90,25 @@ public class OntologyProcessImpl implements OntologyProcess {
 		}
 	}
 
-	@Override
-	public void openOntologyFromFile(String filePath) {
-		// System.out.println("Loading ontology from file " + filePath);
-		try {
-			ontology = manager.loadOntology(IRI.create(new File(filePath)));
-		} catch (OWLOntologyCreationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-	@Override
-	public void openOntologyFromIri(IRI ontologyIri) {
-		try {
-			ontology = manager.loadOntology(ontologyIri);
-		} catch (OWLOntologyCreationException e) {
-			e.printStackTrace();
-		}
-	}
+//	@Override
+//	public void openOntologyFromFile(String filePath) {
+//		// System.out.println("Loading ontology from file " + filePath);
+//		try {
+//			ontology = manager.loadOntology(IRI.create(new File(filePath)));
+//		} catch (OWLOntologyCreationException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
+//
+//	@Override
+//	public void openOntologyFromIri(IRI ontologyIri) {
+//		try {
+//			ontology = manager.loadOntology(ontologyIri);
+//		} catch (OWLOntologyCreationException e) {
+//			e.printStackTrace();
+//		}
+//	}
 
 	/* (non-Javadoc)
 	 * @see org.icmwind.core.OntologyProcess#saveOntologyRDFXML(org.semanticweb.owlapi.model.OWLOntology, java.lang.String)

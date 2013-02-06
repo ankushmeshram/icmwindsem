@@ -1,0 +1,2 @@
+serviceClass: com.icmwind.gui.web.client.services.RDFEncoderService
+path: 7EA2FE93AFD51A5FE25523298E385110.gwt.rpc

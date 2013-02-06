@@ -26,9 +26,9 @@ public interface OntologyProcess {
 	 */
 	public boolean openFile(String filepath);
 	
-	public void openOntologyFromFile(String filePath);
-	
-	public void openOntologyFromIri(IRI ontologyIri);
+//	public void openOntologyFromFile(String filePath);
+//	
+//	public void openOntologyFromIri(IRI ontologyIri);
 	
 	/**
 	 * @param ontology Ontology to be saved.

@@ -10,13 +10,11 @@ import java.util.Map;
 import org.icmwind.core.FileProcess;
 import org.icmwind.core.ICMWindSetup;
 import org.icmwind.core.OntologyProcess;
-import org.icmwind.core.RDFEncoding;
+import org.icmwind.core.RDFEncoder;
 import org.icmwind.util.Utility;
 
-import uk.ac.shef.wit.simmetrics.similaritymetrics.AbstractStringMetric;
-import uk.ac.shef.wit.simmetrics.similaritymetrics.CosineSimilarity;
 
-public class RDFEncodingImpl implements RDFEncoding {
+public class RDFEncodingImpl implements RDFEncoder {
 
 	private static RDFEncodingImpl INSTANCE = new RDFEncodingImpl();
 	
@@ -26,7 +24,7 @@ public class RDFEncodingImpl implements RDFEncoding {
 	private static List<String> headerslist;
 	private static List<String> classeslist;
 	
-	private static AbstractStringMetric similaritymetric = new CosineSimilarity();
+//	private static AbstractStringMetric similaritymetric = new CosineSimilarity();
 	
 	private static Map<String, List<String>> mapping = new HashMap<String, List<String>>();
 	
@@ -61,7 +59,7 @@ public class RDFEncodingImpl implements RDFEncoding {
 		fileproc.openFile(filepath);
 		headerslist = fileproc.getNormHeadNamesList();
 		
-		Utility.setSimilarityMetric(similaritymetric);
+//		Utility.setSimilarityMetric(similaritymetric);
 		for(String header : headerslist) {
 			List<String> templist = new ArrayList<String>(); 
 			for(String clas : Utility.getSimilarTextList(header, classeslist)) {

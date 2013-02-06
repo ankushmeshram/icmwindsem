@@ -8,7 +8,6 @@
 	<classpathentry kind="lib" path="libs/guava-12.0.jar"/>
 	<classpathentry kind="lib" path="libs/javacsv.jar"/>
 	<classpathentry kind="lib" path="libs/lucene-core-3.6.2.jar"/>
-	<classpathentry kind="lib" path="libs/owlapi-bin.jar"/>
 	<classpathentry kind="lib" path="ext-libs/allegro-3.2.jar"/>
 	<classpathentry kind="lib" path="ext-libs/arq-2.8.1.jar"/>
 	<classpathentry kind="lib" path="ext-libs/aterm-java-1.6.jar"/>
@@ -57,5 +56,6 @@
 	<classpathentry kind="lib" path="ext-libs/xercesImpl-2.7.1.jar"/>
 	<classpathentry kind="lib" path="ext-libs/xsdlip-0.0.1.jar"/>
 	<classpathentry kind="lib" path="libs/simmetrics_jar_v1_6_2_d07_02_07.jar" sourcepath="libs/srcs/simmetrics_src_v1_6_2_d07_02_07.zip"/>
+	<classpathentry kind="lib" path="libs/owlapi-bin.jar" sourcepath="libs/srcs/owlapi-src.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

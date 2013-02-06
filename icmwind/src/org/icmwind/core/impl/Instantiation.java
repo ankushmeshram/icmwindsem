@@ -27,7 +27,7 @@ public class Instantiation {
 		String [] headerNames = temp.toArray(new String[temp.size()]);
 		
 		OntologyProcessImpl opi = OntologyProcessImpl.getInstance();
-		opi.openOntologyFromFile("E:/ICM-Wind/Code/icmwind/ontology/WindTurbineOnto.owl");
+		opi.openFile("E:/ICM-Wind/Code/icmwind/ontology/WindTurbineOnto.owl");
 		
 		Set<OWLClass> classes = opi.getClasses();
 		List<String> classNames = opi.getClassNamesList();
