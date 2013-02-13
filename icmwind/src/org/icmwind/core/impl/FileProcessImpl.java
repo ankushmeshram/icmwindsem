@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.icmwind.core.FileProcess;
-import org.icmwind.core.ICMWindSetup;
+import org.icmwind.util.ICMWindSetup;
 import org.icmwind.util.Normalization;
 
 

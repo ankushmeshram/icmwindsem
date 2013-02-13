@@ -63,6 +63,7 @@ public interface OntologyProcess {
 	 */
 	public Map<String, String> getNormalizationMap();
 	
+	
 	public int getClassCount();
 	
 	public OWLClass getClass(String className);

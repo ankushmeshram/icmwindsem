@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.icmwind.core.ICMWindSetup;
 import org.icmwind.core.OntologyProcess;
+import org.icmwind.util.ICMWindSetup;
 import org.icmwind.util.Normalization;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.IRI;
