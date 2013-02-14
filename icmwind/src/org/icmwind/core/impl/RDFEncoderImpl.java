@@ -25,12 +25,15 @@ import org.semanticweb.owlapi.model.OWLObjectProperty;
 public class RDFEncoderImpl implements RDFEncoder {
 
 	private static RDFEncoderImpl INSTANCE = new RDFEncoderImpl();
+
+	//TODO Resolve teh usage
+	private static String storeEncodedDataAt;
 	
 	private static OntologyProcess ontoproc = OntologyProcessImpl.getInstance();
 	private static FileProcess fileproc = FileProcessImpl.getInstance();
 	
 	private static List<String> headerslist;
-	private static List<String> classeslist;
+	private static List<String> classeslist; //TODO Check this.
 	
 	private static List<String> normheaderslist;
 	private static List<String> normclasseslist;
@@ -53,6 +56,9 @@ public class RDFEncoderImpl implements RDFEncoder {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		//Get Path to folder to store Encoded Files to.
+		storeEncodedDataAt = RDFEncoderImpl.class.getClassLoader().getResource(ICMWindSetup.getEncodingPath()).toString();
 	}
 	
 	public static RDFEncoderImpl getInstance() {
@@ -149,8 +155,42 @@ public class RDFEncoderImpl implements RDFEncoder {
 					mappedClassName = mappingMap.get(header);
 					
 					//get Ontlogy Concept URI for the concept name
-
+					tempClass = ontoproc.getClassURIFor(mappedClassName);
 					
+					//create Ontology Individual for the mapped Ontology Class
+					tempIndividual = ontoproc.createInstance(mappedClassName + "_" + i); 
+					
+					// add Assertion to Axioms holder
+					axiomsSet.add(ontoproc.createClassAssertion(tempClass, tempIndividual));
+					
+					//if it's 'Time' Ontology Class 
+					//then connect 'Observation' Individual to 'Time' Individual via 'hasSamplingTime' Ontology Object Property
+					//and connect 'Time' Individual to value of sampling time via 'observedTime' Ontology Data Property
+					//Add to Axioms holder
+					if(mappedClassName.equals("Time")){
+						//get Sampling Time value
+						String timeRecord = fileproc.readRecord(header);
+						axiomsSet.add(ontoproc.createObjectPropertyAssertion(hasSamplingTime, tempObservationIndividual, tempIndividual));
+						axiomsSet.add(ontoproc.createDataPropertyAssertion(observedTime, tempIndividual, timeRecord));
+					} else {
+						//Connnect 'Observation' Individual to temporary Individual via 'hasObservation' Ontology Object Property
+						//Connect temporary Individual to value of it's record time via 'hasValue' Ontology Data Property
+						//Add to Axioms holder
+						float record = Float.parseFloat(fileproc.readRecord(header));
+						axiomsSet.add(ontoproc.createObjectPropertyAssertion(hasObservation, tempIndividual, tempObservationIndividual));
+						axiomsSet.add(ontoproc.createDataPropertyAssertion(hasValue, tempIndividual, record));
+					}
+					
+					//To avoid exhausting Heap Space,
+					//after even number of iterations, append newly created Axioms to provided Ontology  and clear Axioms holder
+					//TODO Add Axioms to new Ontology, we need ABox separately
+					if(i%2==0){
+						ontoproc.addAxiomSet(ontoproc.getOntology(), axiomsSet);
+						axiomsSet.clear();
+						System.out.println(i);
+					}
+					
+					i++;
 					
 				}
 				
@@ -158,8 +198,11 @@ public class RDFEncoderImpl implements RDFEncoder {
 			
 		}
 		
+		fileproc.closeFile();
+		//TODO Add FileName to store ABox
+		ontoproc.saveOntologyRDFXML(ontoproc.getOntology(), "");
 		
-		return false;
+		return true;
 	}
 
 	

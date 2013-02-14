@@ -13,7 +13,6 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Map.Entry;
 
-import org.icmwind.core.ICMWindSetup;
 
 import uk.ac.shef.wit.simmetrics.similaritymetrics.AbstractStringMetric;
 import uk.ac.shef.wit.simmetrics.similaritymetrics.CosineSimilarity;

@@ -5,6 +5,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -43,9 +44,11 @@ public class OntologyProcessImpl implements OntologyProcess {
 	private OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
 	private OWLDataFactory factory = manager.getOWLDataFactory();
 	private OWLOntology ontology = null;
+	private Set<OWLClass> classURISet = new HashSet<OWLClass>();
 	private List<String> classNamesList = new ArrayList<String>();
 	private List<String> normClassNamesList = new ArrayList<String>();
 	Map<String, String> normClassNamesToClassNames = new HashMap<String, String>();
+	Map<String, OWLClass> classNameToClassURIMap = new HashMap<String, OWLClass>();
 	boolean openSuccess = false;
 
 	private OntologyProcessImpl() {
@@ -73,9 +76,16 @@ public class OntologyProcessImpl implements OntologyProcess {
 			this.ontology = manager.loadOntology(IRI
 					.create(OntologyProcessImpl.class.getClassLoader()
 							.getResource(ICMWindSetup.getCoreOntologyPath())));
-
-			for (OWLClass aClass : this.getClasses())
-				classNamesList.add(aClass.getIRI().getFragment());
+			
+			classURISet = this.getClassURIs();
+			
+			// Add String OWLClass names
+			// Add OWLClass URI and OWLClass name to classNameToClassURIMap
+			for (OWLClass classURI : classURISet) {
+				String classname = classURI.getIRI().getFragment();
+				classNamesList.add(classname);
+				classNameToClassURIMap.put(classname, classURI);
+			}
 
 			Normalization normalize = new Normalization();
 			this.normClassNamesList = normalize.normalizeList(classNamesList);
@@ -140,7 +150,7 @@ public class OntologyProcessImpl implements OntologyProcess {
 	 * Returns OWLClasses of the Ontology 
 	 */
 	@Override
-	public Set<OWLClass> getClasses() {
+	public Set<OWLClass> getClassURIs() {
 		return ontology.getClassesInSignature();
 	}
 
@@ -204,8 +214,13 @@ public class OntologyProcessImpl implements OntologyProcess {
 	}
 
 	@Override
+	public OWLClass getClassURIFor(String className) {
+		return classNameToClassURIMap.get(className);
+	}
+	
+	@Override
 	public int getClassCount() {
-		return getClasses().size();
+		return getClassURIs().size();
 	}
 
 	@Override
@@ -374,6 +389,8 @@ public class OntologyProcessImpl implements OntologyProcess {
 				value);
 	}
 
+	
+
 	// private void normalize() {
 	// // change them to lower case
 	// for(String className : classNamesList) {
@@ -387,7 +404,7 @@ public class OntologyProcessImpl implements OntologyProcess {
 	// private String cleanText(String text) { return text.replaceAll("_",
 	// " ");}
 	
-//	//DEBUG
+//	//DEBUGc
 //	public static void main(String[] args) {
 //		OntologyProcess op = OntologyProcessImpl.getInstance();
 //		op.openFile(ICMWindSetup.getCoreOntologyPath());

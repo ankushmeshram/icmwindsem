@@ -40,7 +40,7 @@ public interface OntologyProcess {
 	
 	public IRI getOntologyIRI();
 	
-	public Set<OWLClass> getClasses();
+	public Set<OWLClass> getClassURIs();
 	
 	/**
 	 * @return List of Class names in Core Ontology
@@ -63,6 +63,11 @@ public interface OntologyProcess {
 	 */
 	public Map<String, String> getNormalizationMap();
 	
+	/**
+	 * @param className Class name for which URI is requested
+	 * @return URI/IRI of corresponding OWL Class
+	 */
+	public OWLClass getClassURIFor(String className);
 	
 	public int getClassCount();
 	
