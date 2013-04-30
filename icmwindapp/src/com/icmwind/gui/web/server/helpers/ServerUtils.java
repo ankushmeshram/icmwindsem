@@ -1,5 +1,7 @@
 package com.icmwind.gui.web.server.helpers;
 
+import com.icmwind.gui.web.client.helpers.GlobalInitializer;
+
 /**
  * @author anme05
  *
@@ -7,5 +9,7 @@ package com.icmwind.gui.web.server.helpers;
  */
 public class ServerUtils {
 	
-	
+	public static void init() {
+		
+	}
 }

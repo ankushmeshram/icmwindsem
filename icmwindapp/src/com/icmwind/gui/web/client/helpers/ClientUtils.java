@@ -22,6 +22,9 @@ public class ClientUtils {
 	
 	static RootPanel headerHolder = RootPanel.get("headerContainer");
 	
+	
+	
+	
 	public static void setTitle(String title) {
 		headerHolder.clear();
 		headerHolder.add(new HTML(title));
@@ -55,5 +58,5 @@ public class ClientUtils {
 		return subSystems;
 	}
 
-
+	
 }

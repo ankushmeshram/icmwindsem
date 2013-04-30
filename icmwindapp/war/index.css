@@ -352,4 +352,12 @@ a:visited {
 	text-align: center;
 	width: 200px;
 }
+.blabla {
+	border: thin dashed;
+
+}
+.gwt-Label-Bold {
+	font-family: serif, monospace;
+	font-weight: bold;
+}
 

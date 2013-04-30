@@ -35,7 +35,7 @@ public interface OntologyProcess {
 	 * @param outputFile Path of file to save the ontology. 
 	 */
 	public void saveOntologyRDFXML(OWLOntology ontology,String outputFile);
-	
+
 	public OWLOntology getOntology();
 	
 	public IRI getOntologyIRI();

@@ -15,13 +15,21 @@
 package com.icmwind.gui.web.server;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 
 import org.icmwind.core.RDFEncoder;
-import org.icmwind.core.impl.RDFEncodingImpl;
+import org.icmwind.core.impl.RDFEncoderImpl;
+
 
 import com.icmwind.gui.web.client.helpers.FoundMatch;
+import com.icmwind.gui.web.client.helpers.GlobalInitializer;
+import com.icmwind.gui.web.client.helpers.ObservationPeriod;
 import com.icmwind.gui.web.client.services.RDFEncoderService;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
@@ -34,26 +42,35 @@ public class RDFEncoderServiceImpl extends RemoteServiceServlet implements RDFEn
 
 	private static final long serialVersionUID = 1L;
 	
-	private RDFEncoder rdfencoder = RDFEncodingImpl.getInstance();
+	private RDFEncoder rdfencoder = RDFEncoderImpl.getInstance();
 
 	// Initialize encoding environment 
 	@Override
 	public String initRDFEncoder() {
 		rdfencoder.initOntologyProcess();
+		rdfencoder.setEncodeStorage(GlobalInitializer.get().ONTOLOGIES_LOCATION);
 		return "Success OntoProc";
 	}
 
-	// Pass file to be encoded
+	
+	// Read file from the path set in GlibalInitializer.UPLOADED_FILE_PATH
 	@Override
-	public String fileToEncode(String path) {
-		rdfencoder.initFileProcess(path);
-		return "Success FileProc";
+	public String readUploadedFile() {
+		String path = GlobalInitializer.get().getUploadedFilePath();
+		
+		if(path.equals("")) {
+			return "Failure FileProc. File not found!";
+		} else {
+			rdfencoder.initFileProcess(path);
+			return "Success FileProc";
+		}
+		
 	}
 
 	// Return MatchOrSuggest mapping as List<FoundMatch>, where FoundMatch is encapsulation for each mapping.
-	public List<FoundMatch> mosMap() {
+	public List<FoundMatch> getMatchOrSuggestMap() {
 		List<FoundMatch> tempList = new ArrayList<FoundMatch>();
-		for(Entry<String, List<String>> entry : rdfencoder.returnMapping().entrySet()) {
+		for(Entry<String, List<String>> entry : rdfencoder.getMoSMap().entrySet()) {
 			FoundMatch fm = new FoundMatch();
 			fm.setQuery(entry.getKey());
 			fm.setMatches(entry.getValue());
@@ -62,6 +79,46 @@ public class RDFEncoderServiceImpl extends RemoteServiceServlet implements RDFEn
 		return tempList;
 	}
 
+	@Override
+	public boolean encodeFile(Map<String, String> mapping) {
+		rdfencoder.setHeaderToClassNamesMap(mapping);
+		
+		//Set Storage Folder for encoded files
+		rdfencoder.setEncodeStorage("C:\\Users\\anme05\\git\\icmwindsem\\icmwindapp\\war\\data\\encoded");
+		
+		return rdfencoder.encode();
+	}
+
 	
-	
+	//CHECK HERE
+	public static <K extends Comparable,V extends Comparable> Map<K,V> sortMapByValues(Map<K,V> unsortedMap) {
+		List<Map.Entry<K, V>> entries = new LinkedList<Map.Entry<K,V>>(unsortedMap.entrySet());
+		
+		Collections.sort(entries, new Comparator<Map.Entry<K, V>>() {
+			
+			@SuppressWarnings("unchecked")
+			@Override
+			public int compare(Entry<K, V> o1, Entry<K, V> o2) {
+				// for descending order otherwise o1.getValue().compareTo(o2.getValue())				
+				return o2.getValue().compareTo(o1.getValue());
+			}
+		});
+		
+		Map<K, V> sortedMap = new LinkedHashMap<K, V>();
+		
+		for(Map.Entry<K, V> entry : entries) {
+			sortedMap.put(entry.getKey(), entry.getValue());
+		}
+		
+		return sortedMap;
+	}
+
+
+	@Override
+	public ObservationPeriod getObservationPeriod() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+		
 }

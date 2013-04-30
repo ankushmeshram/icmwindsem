@@ -15,6 +15,8 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FilenameUtils;
 
+import com.icmwind.gui.web.client.helpers.ICMWindUtils;
+
 /**
  * @author anme05
  * 
@@ -26,14 +28,15 @@ import org.apache.commons.io.FilenameUtils;
 public class FileUploadServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	
-	private static final String UPLOAD_DIRECTORY = "C:\\ICMWIND_DATA";
-	
+
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		super.doGet(req, resp);
 	}
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		System.out.println("FileUpload Servlet Called.");
+		
 		if(ServletFileUpload.isMultipartContent(req)) {
 			
 			FileItemFactory factory = new DiskFileItemFactory();
@@ -50,18 +53,20 @@ public class FileUploadServlet extends HttpServlet {
 					
 					String filename = item.getName();
 					
+					System.out.println("FileUpload Servlet - Filename: " + filename);
+					
 					// Only get filename, most browser doesn't allow full path.
 					if(filename != null)
 						filename = FilenameUtils.getName(filename);
 				
 					// Locate the upload directory
-					File uploadDirectory = new File(UPLOAD_DIRECTORY);
+					File uploadDirectory = new File(ICMWindUtils.getDataDirectory());
 					
 					// if directory doesn't exist, create it 
 					if(!uploadDirectory.exists())
 						uploadDirectory.mkdir();
 					else
-						System.out.println("C:\\ICMWIND_DATA Directory already exists.");
+						System.out.println("FileUploadServlet: " + ICMWindUtils.getDataDirectory() + " Directory already exists.");
 					
 					// Create File Object at UPLOAD_DIRECTORY with filename
 					File uploadedFile = new File(uploadDirectory, filename);
@@ -71,11 +76,11 @@ public class FileUploadServlet extends HttpServlet {
 					if(uploadedFile.createNewFile()) {
 						item.write(uploadedFile);
 						resp.setStatus(HttpServletResponse.SC_ACCEPTED);
-						resp.getWriter().print("The file was created successfully.");
+						resp.getWriter().print("FileUploadServlet: The file was created successfully.");
 //						DEBUG - removed
 //						resp.flushBuffer();
 					} else {
-						resp.getWriter().print("The file was created successfully.");
+						resp.getWriter().print("FileUploadServlet: The file already exists.");
 //						DEBUG - removed
 //						throw new IOException("The file already exists in repository.");
 					}

@@ -1,0 +1,22 @@
+# Wind Turbine Info Page
+# THIS IS THE STANDARD FORMAT and HAS TO BE FOLLOWED
+# KEY are simialr to Ontology Class names
+
+Name = marpI 
+Location = marpingen
+Installation\ Date = 08.09.2006
+
+#--PARTS--#
+Gearbox = gb_marpI
+Rotor\ Hub = hub_maprI
+Oil\ Pump = pump_marpI
+Thermo\ Bypass\ Valve = tbv_marpI
+Cooler = cool_marpI
+
+#--SENSORS--#
+CS\ 1000 = cs_marpI
+MCS\ 1000 = mcs_marpI
+HYDAC\ Lab = hlb_marpI
+
+
+  

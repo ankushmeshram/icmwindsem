@@ -27,5 +27,24 @@
 		<servlet-name>uploadServlet</servlet-name>
 		<url-pattern>/uploadme</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>eServlet</servlet-name>
+		<servlet-class>com.icmwind.gui.web.server.E1Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>eServlet</servlet-name>
+		<url-pattern>/eserv</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>GlobalInitializerService</servlet-name>
+		<servlet-class>com.icmwind.gui.web.server.services.GlobalInitializerServiceImpl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GlobalInitializerService</servlet-name>
+		<url-pattern>/com.icmwind.gui.web.home/GlobalInitializerService</url-pattern>
+	</servlet-mapping>
 
 </web-app>

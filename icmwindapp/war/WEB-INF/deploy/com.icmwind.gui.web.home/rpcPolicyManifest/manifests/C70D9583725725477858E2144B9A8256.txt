@@ -1,0 +1,2 @@
+serviceClass: com.icmwind.gui.web.client.services.GlobalInitializerService
+path: 7789359D02004F3BBE4EBF70D2F9BF6F.gwt.rpc

@@ -1,0 +1,2216 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#"
+     xml:base="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#hasObservation -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#hasObservation"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#hasSamplingTime -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#hasSamplingTime"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#hasValue -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#hasValue"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#observedTime -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#observedTime"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CSM_ON -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CSM_ON"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Drive -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Drive"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Flow -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Flow"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_DK -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_DK"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_S -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_S"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_Temp -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_Temp"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_14 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_14"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_4 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_4"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_6 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_6"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_A -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_A"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_B -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_B"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_C -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_C"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_D -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_D"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_E -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_E"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_F -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_F"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_Temp -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_Temp"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#P_In -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#P_In"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Speed -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Speed"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Air -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Air"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_In -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_In"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Out -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Out"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Time -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Time"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_P -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_P"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_dP -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_dP"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CSM_ON_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CSM_ON_1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CSM_ON"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">NaN</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CSM_ON_2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CSM_ON_2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CSM_ON"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">NaN</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CSM_ON_3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CSM_ON_3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CSM_ON"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">NaN</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CSM_ON_4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CSM_ON_4">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CSM_ON"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">NaN</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_4"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CSM_ON_5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CSM_ON_5">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CSM_ON"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">NaN</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_5"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CSM_ON_6 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CSM_ON_6">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CSM_ON"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">NaN</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_6"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CSM_ON_7 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CSM_ON_7">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CSM_ON"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">NaN</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_7"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CSM_ON_8 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CSM_ON_8">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CSM_ON"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">NaN</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_8"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Drive_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Drive_1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Drive"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">5.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Drive_2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Drive_2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Drive"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">7.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Drive_3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Drive_3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Drive"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">7.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Drive_4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Drive_4">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Drive"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_4"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Drive_5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Drive_5">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Drive"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_5"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Drive_6 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Drive_6">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Drive"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_6"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Drive_7 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Drive_7">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Drive"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_7"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Drive_8 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Drive_8">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Drive"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_8"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Flow_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Flow_1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Flow"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">5.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Flow_2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Flow_2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Flow"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">7.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Flow_3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Flow_3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Flow"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">7.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Flow_4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Flow_4">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Flow"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_4"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Flow_5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Flow_5">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Flow"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_5"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Flow_6 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Flow_6">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Flow"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_6"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Flow_7 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Flow_7">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Flow"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_7"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Flow_8 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Flow_8">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#CS_Flow"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_8"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_DK_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_DK_1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_DK"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_DK_2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_DK_2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_DK"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_DK_3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_DK_3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_DK"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_DK_4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_DK_4">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_DK"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_4"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_DK_5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_DK_5">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_DK"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_5"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_DK_6 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_DK_6">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_DK"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_6"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_DK_7 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_DK_7">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_DK"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_7"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_DK_8 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_DK_8">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_DK"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_8"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_S_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_S_1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_S"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">5.24</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_S_2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_S_2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_S"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">5.29</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_S_3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_S_3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_S"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">5.06</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_S_4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_S_4">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_S"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">5.2</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_4"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_S_5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_S_5">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_S"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">5.29</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_5"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_S_6 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_S_6">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_S"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">5.25</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_6"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_S_7 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_S_7">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_S"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">5.22</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_7"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_S_8 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_S_8">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_S"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">5.33</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_8"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_Temp_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_Temp_1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_Temp"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">20.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_Temp_2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_Temp_2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_Temp"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">19.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_Temp_3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_Temp_3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_Temp"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">19.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_Temp_4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_Temp_4">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_Temp"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">18.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_4"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_Temp_5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_Temp_5">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_Temp"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">18.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_5"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_Temp_6 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_Temp_6">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_Temp"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">17.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_6"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_Temp_7 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_Temp_7">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_Temp"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">17.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_7"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_Temp_8 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_Temp_8">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#HLB_Temp"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">17.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_8"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_14_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_14_1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_14"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">10.1</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_14_2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_14_2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_14"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">11.1</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_14_3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_14_3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_14"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">11.1</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_14_4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_14_4">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_14"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">-0.1</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_4"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_14_5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_14_5">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_14"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">-0.1</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_5"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_14_6 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_14_6">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_14"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">-0.1</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_6"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_14_7 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_14_7">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_14"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">-0.1</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_7"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_14_8 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_14_8">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_14"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">-0.1</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_8"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_4_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_4_1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_4"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">15.4</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_4_2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_4_2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_4"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">17.1</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_4_3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_4_3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_4"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">17.1</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_4_4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_4_4">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_4"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">-0.1</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_4"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_4_5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_4_5">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_4"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">-0.1</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_5"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_4_6 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_4_6">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_4"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">-0.1</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_6"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_4_7 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_4_7">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_4"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">-0.1</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_7"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_4_8 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_4_8">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_4"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">-0.1</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_8"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_6_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_6_1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_6"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">14.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_6_2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_6_2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_6"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">15.9</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_6_3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_6_3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_6"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">15.9</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_6_4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_6_4">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_6"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">-0.1</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_4"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_6_5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_6_5">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_6"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">-0.1</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_5"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_6_6 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_6_6">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_6"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">-0.1</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_6"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_6_7 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_6_7">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_6"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">-0.1</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_7"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_6_8 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_6_8">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#ISO_6"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">-0.1</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_8"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_A_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_A_1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_A"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_A_2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_A_2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_A"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_A_3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_A_3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_A"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_A_4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_A_4">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_A"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_4"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_A_5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_A_5">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_A"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_5"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_A_6 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_A_6">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_A"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_6"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_A_7 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_A_7">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_A"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_7"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_A_8 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_A_8">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_A"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_8"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_B_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_B_1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_B"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_B_2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_B_2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_B"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_B_3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_B_3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_B"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_B_4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_B_4">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_B"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_4"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_B_5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_B_5">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_B"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_5"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_B_6 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_B_6">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_B"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_6"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_B_7 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_B_7">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_B"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_7"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_B_8 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_B_8">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_B"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_8"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_C_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_C_1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_C"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_C_2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_C_2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_C"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_C_3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_C_3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_C"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_C_4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_C_4">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_C"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_4"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_C_5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_C_5">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_C"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_5"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_C_6 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_C_6">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_C"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_6"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_C_7 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_C_7">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_C"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_7"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_C_8 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_C_8">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_C"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_8"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_D_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_D_1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_D"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_D_2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_D_2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_D"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_D_3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_D_3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_D"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_D_4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_D_4">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_D"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_4"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_D_5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_D_5">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_D"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_5"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_D_6 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_D_6">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_D"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_6"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_D_7 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_D_7">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_D"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_7"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_D_8 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_D_8">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_D"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_8"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_E_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_E_1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_E"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_E_2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_E_2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_E"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_E_3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_E_3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_E"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_E_4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_E_4">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_E"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_4"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_E_5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_E_5">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_E"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_5"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_E_6 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_E_6">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_E"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_6"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_E_7 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_E_7">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_E"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_7"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_E_8 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_E_8">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_E"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_8"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_F_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_F_1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_F"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_F_2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_F_2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_F"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_F_3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_F_3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_F"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_F_4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_F_4">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_F"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_4"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_F_5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_F_5">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_F"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_5"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_F_6 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_F_6">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_F"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_6"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_F_7 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_F_7">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_F"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_7"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_F_8 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_F_8">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_F"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_8"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_Temp_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_Temp_1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_Temp"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_Temp_2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_Temp_2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_Temp"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_Temp_3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_Temp_3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_Temp"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_Temp_4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_Temp_4">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_Temp"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_4"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_Temp_5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_Temp_5">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_Temp"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_5"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_Temp_6 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_Temp_6">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_Temp"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_6"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_Temp_7 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_Temp_7">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_Temp"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_7"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_Temp_8 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_Temp_8">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#MCS_Temp"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_8"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation"/>
+        <hasSamplingTime rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Time_1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation"/>
+        <hasSamplingTime rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Time_2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation"/>
+        <hasSamplingTime rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Time_3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_4">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation"/>
+        <hasSamplingTime rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Time_4"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_5">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation"/>
+        <hasSamplingTime rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Time_5"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_6 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_6">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation"/>
+        <hasSamplingTime rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Time_6"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_7 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_7">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation"/>
+        <hasSamplingTime rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Time_7"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_8 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_8">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation"/>
+        <hasSamplingTime rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Time_8"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#P_In_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#P_In_1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#P_In"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#P_In_2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#P_In_2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#P_In"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#P_In_3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#P_In_3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#P_In"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#P_In_4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#P_In_4">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#P_In"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_4"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#P_In_5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#P_In_5">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#P_In"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_5"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#P_In_6 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#P_In_6">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#P_In"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_6"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#P_In_7 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#P_In_7">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#P_In"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_7"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#P_In_8 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#P_In_8">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#P_In"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_8"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Speed_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Speed_1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Speed"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Speed_2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Speed_2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Speed"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Speed_3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Speed_3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Speed"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Speed_4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Speed_4">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Speed"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_4"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Speed_5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Speed_5">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Speed"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_5"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Speed_6 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Speed_6">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Speed"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_6"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Speed_7 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Speed_7">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Speed"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_7"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Speed_8 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Speed_8">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Speed"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_8"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Air_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Air_1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Air"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">-39.9</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Air_2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Air_2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Air"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">-39.9</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Air_3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Air_3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Air"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">-39.9</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Air_4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Air_4">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Air"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">-39.9</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_4"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Air_5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Air_5">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Air"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">-39.9</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_5"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Air_6 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Air_6">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Air"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">-39.9</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_6"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Air_7 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Air_7">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Air"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">-39.9</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_7"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Air_8 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Air_8">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Air"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">-39.9</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_8"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_In_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_In_1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_In"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">19.1</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_In_2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_In_2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_In"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">19.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_In_3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_In_3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_In"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">19.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_In_4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_In_4">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_In"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">-24.9</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_4"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_In_5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_In_5">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_In"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">19.2</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_5"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_In_6 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_In_6">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_In"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">19.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_6"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_In_7 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_In_7">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_In"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">19.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_7"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_In_8 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_In_8">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_In"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">19.3</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_8"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Out_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Out_1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Out"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">-24.9</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Out_2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Out_2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Out"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">-24.9</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Out_3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Out_3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Out"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">-24.9</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Out_4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Out_4">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Out"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">-24.9</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_4"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Out_5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Out_5">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Out"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">-24.9</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_5"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Out_6 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Out_6">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Out"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">-24.9</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_6"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Out_7 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Out_7">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Out"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">-24.9</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_7"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Out_8 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Out_8">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#T_Out"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">-24.9</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_8"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Time_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Time_1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Time"/>
+        <observedTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">04.09.2008 13:10:21</observedTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Time_2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Time_2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Time"/>
+        <observedTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">04.09.2008 13:11:00</observedTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Time_3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Time_3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Time"/>
+        <observedTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">04.09.2008 13:12:00</observedTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Time_4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Time_4">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Time"/>
+        <observedTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">04.09.2008 13:13:00</observedTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Time_5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Time_5">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Time"/>
+        <observedTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">04.09.2008 13:14:00</observedTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Time_6 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Time_6">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Time"/>
+        <observedTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">04.09.2008 13:15:00</observedTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Time_7 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Time_7">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Time"/>
+        <observedTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">04.09.2008 13:16:00</observedTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Time_8 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Time_8">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Time"/>
+        <observedTime rdf:datatype="http://www.w3.org/2001/XMLSchema#string">04.09.2008 13:17:00</observedTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_P_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_P_1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_P"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_P_2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_P_2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_P"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_P_3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_P_3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_P"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_P_4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_P_4">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_P"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_4"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_P_5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_P_5">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_P"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_5"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_P_6 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_P_6">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_P"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_6"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_P_7 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_P_7">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_P"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_7"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_P_8 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_P_8">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_P"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_8"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_dP_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_dP_1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_dP"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_dP_2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_dP_2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_dP"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_dP_3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_dP_3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_dP"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_dP_4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_dP_4">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_dP"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_4"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_dP_5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_dP_5">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_dP"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_5"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_dP_6 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_dP_6">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_dP"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_6"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_dP_7 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_dP_7">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_dP"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_7"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_dP_8 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_dP_8">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#VLGW_dP"/>
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValue>
+        <hasObservation rdf:resource="http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl#Observation_8"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2.unknown) http://owlapi.sourceforge.net -->
+

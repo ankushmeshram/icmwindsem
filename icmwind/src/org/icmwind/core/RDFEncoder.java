@@ -30,7 +30,15 @@ public interface RDFEncoder {
 	 * @param matchMap Map which has mapping of Column name to Ontology Concept name. 
 	 * @return true if success
 	 */
-	public boolean setMapping(Map<String, String> matchMap);
+	public boolean setHeaderToClassNamesMap(Map<String, String> matchMap);
+	
+	/**
+	 * Set the location to store encoded files (ABoxes) 
+	 * 
+	 * @param folderPath Path to folder to save Encoded file
+	 * @return true if folder exists.
+	 */
+	public void setEncodeStorage(String folderPath);
 	
 	/**
 	 * Encode the file passed in RDFEncoder.initFileProcess(filepath) to RDF triples.

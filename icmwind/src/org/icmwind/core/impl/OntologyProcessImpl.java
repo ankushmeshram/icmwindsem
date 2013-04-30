@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.icmwind.core.OntologyProcess;
-import org.icmwind.util.ICMWindSetup;
+import org.icmwind.util.ICMWindConfig;
 import org.icmwind.util.Normalization;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.IRI;
@@ -58,8 +58,8 @@ public class OntologyProcessImpl implements OntologyProcess {
 	 * @return OntologyProcessImpl Singelton instance
 	 */
 	public static OntologyProcessImpl getInstance() {
-		if (!ICMWindSetup.isInitialised())
-			ICMWindSetup.init();
+		if (!ICMWindConfig.isInitialised())
+			ICMWindConfig.init();
 
 		return INSTANCE;
 	}
@@ -75,7 +75,7 @@ public class OntologyProcessImpl implements OntologyProcess {
 		try {
 			this.ontology = manager.loadOntology(IRI
 					.create(OntologyProcessImpl.class.getClassLoader()
-							.getResource(ICMWindSetup.getCoreOntologyPath())));
+							.getResource(ICMWindConfig.getCoreOntologyPath())));
 			
 			classURISet = this.getClassURIs();
 			
@@ -412,5 +412,5 @@ public class OntologyProcessImpl implements OntologyProcess {
 //			System.out.println(entry.getKey() + " -- " + entry.getValue());
 //	}
 
-	
+
 }

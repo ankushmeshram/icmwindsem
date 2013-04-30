@@ -1,5 +1,6 @@
 package org.icmwind.core;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -32,13 +33,20 @@ public interface FileProcess {
 	 *            file.
 	 * @return true if success
 	 */
-	public boolean openFile(String filepath);
+	public boolean readFile(String filepath);
 
+	public long getNumberOfRows();
+	
 	/**
 	 * Close data file
 	 */
 	public void closeFile();
 
+	/**
+	 * @return File name of the File passed for analysis.
+	 */
+	public String getFileName();
+	
 	/**
 	 * @return List of Header Names
 	 */
@@ -73,5 +81,13 @@ public interface FileProcess {
 	 * @return record for the given Header Name at current row
 	 */
 	public String readRecord(String headerName);
+	
+	public String getTimeBegin();
+	
+	public Date getBeginPeriod();
+	
+	public Date getEndPeriod();
+		
+	public String getTimeEnd();
 
 }

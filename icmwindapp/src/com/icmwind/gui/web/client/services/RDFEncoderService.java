@@ -14,12 +14,15 @@
  *******************************************************************************/
 package com.icmwind.gui.web.client.services;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 import com.icmwind.gui.web.client.helpers.FoundMatch;
+import com.icmwind.gui.web.client.helpers.ObservationPeriod;
 
 /**
  * @author anme05
@@ -52,13 +55,27 @@ public interface RDFEncoderService extends RemoteService {
 	 * @param path
 	 * @return
 	 */
-	public String fileToEncode(String path);
+	public String readUploadedFile();
 	
 	/**
 	 * @return
 	 * @gwt.typeArgs <client.helpers.FoundMatch>
 	 */
-	public List<FoundMatch> mosMap();
+	public List<FoundMatch> getMatchOrSuggestMap();
+	
+	
+	/**
+	 * Get Observation period of the uploaded file
+	 * 
+	 * @return
+	 */
+	public ObservationPeriod getObservationPeriod();
+	
+	/**
+	 * @param headToClassNameMap
+	 * @gwt.typeArgs java.util.Map<java.lang.String, java.lang.String>
+	 */
+	public boolean encodeFile(Map<String, String> headToClassNameMap);
 	
 	
 }

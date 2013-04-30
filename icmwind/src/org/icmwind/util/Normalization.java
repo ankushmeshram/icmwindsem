@@ -1,5 +1,6 @@
 package org.icmwind.util;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -16,7 +17,21 @@ public class Normalization {
 	
 	private Map<String, String> normalizationMap = new HashMap<String, String>();
 	
+	public Normalization() {
+		if(!ICMWindConfig.isInitialised())
+			ICMWindConfig.init();
+
+		// Initialize dictionary from the Dictionary resource path 
+		try {
+			TranslationUtility.initDictionary(ICMWindConfig.getDictionaryPath());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	/**
+	 * Normalize input_text to normalized_text 
+	 * 
 	 * @param textToNormalize
 	 *            Text to "normalize". In normalization, extra white spaces, %,
 	 *            _ are removed and text is converted to lower case.
@@ -28,6 +43,8 @@ public class Normalization {
 	}
 
 	/**
+	 * Normalize List of input_text to List of normalized_text
+	 * 
 	 * @param listToNormalize
 	 *            List of Text to "normalize". In normalization, extra white
 	 *            spaces, %, _ are removed and text is converted to lower case.
@@ -49,6 +66,8 @@ public class Normalization {
 	}
 
 	/**
+	 * Normalize input_text to translated normalized_text
+	 * 
 	 * @param textToNormalize
 	 *            Text to "normalize and translate". Use
 	 *            Utility.normalizeText(String textToNormalize) to normalize and
@@ -59,12 +78,18 @@ public class Normalization {
 	 * @return Translated normalized text
 	 */
 	public String normalizeTextWithTranslation(String textToNormalize) {
-		if (!Utility.isDictInitialized()) {
-			System.out.println("ERROR: Call Utility.initDictionary(String dictPath) before invoking Utility.normalizeTextWithTranslation(String textToNormalize).");
+		if (!TranslationUtility.isDictInitialized()) {
+			System.out.println("ERROR: Call TranslationUtility.initDictionary(String dictPath) before invoking TranslationUtility.normalizeTextWithTranslation(String textToNormalize).");
 			System.exit(0);
 		}
+		
+		String normalizedWord = this.normalizeText(textToNormalize);
+		String translatedNormWord = TranslationUtility.searchTextInDict(normalizedWord); //TranslationUtility.searchTextInDict(normalizedWord); 
+		
+		//debug
+		System.out.println("Normalization.normalizaTextWithTranslation - text to normalise : " + textToNormalize + " -- normalized word : " + normalizedWord + " -- translated word : " + translatedNormWord);
 
-		return Utility.searchTextInDict(this.normalizeText(textToNormalize));
+		return translatedNormWord; 
 
 		// DEBUG
 		// String normtext = normalizeText(textToNormalize);
@@ -74,6 +99,8 @@ public class Normalization {
 	}
 
 	/**
+	 * Normalize List of input_text to List of translated normalized_text
+	 * 
 	 * @param listToNormalize
 	 *            List of text to "normalize and translate". In normalization,
 	 *            extra white spaces, %, _ are removed and text is converted to
@@ -103,6 +130,8 @@ public class Normalization {
 	}
 
 	/**
+	 * Normalization map <normalized_text, input_text>
+	 * 
 	 * @return the normalizationMap with "normalized_text-text"
 	 */
 	public  Map<String, String> getNormalizationMap() {

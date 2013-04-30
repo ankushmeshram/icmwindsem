@@ -25,6 +25,9 @@ import com.icmwind.gui.web.client.components.About;
 import com.icmwind.gui.web.client.components.AdvancedAnalysis;
 import com.icmwind.gui.web.client.components.Analyse;
 import com.icmwind.gui.web.client.components.Conceptual;
+import com.icmwind.gui.web.client.components.D;
+import com.icmwind.gui.web.client.components.E;
+import com.icmwind.gui.web.client.components.E1;
 import com.icmwind.gui.web.client.components.FileUpload;
 import com.icmwind.gui.web.client.components.Footer;
 import com.icmwind.gui.web.client.components.Home;
@@ -41,11 +44,15 @@ public class Index implements EntryPoint {
 	
 	public void onModuleLoad() {
 		
+		
+		/*
 		RootPanel.get("contentContainer").add(new Home());
 		RootPanel.get("navBarContainer").add(new Navigation());
 		RootPanel.get("footerContainer").add(new Footer());
+		*/
 		
 		// RemoteService Call to initialize RDF Encoding
+		// TODO ADD this after Wind Turbine 
 		RDFEncoderServiceUtil.getInstance().initRDFEncoder(new AsyncCallback<String>() {
 			
 			@Override
@@ -58,8 +65,9 @@ public class Index implements EntryPoint {
 				Window.alert("Failure");
 			}
 		});
-		
-	
+
+		RootPanel.get("contentContainer").add(new E());
+		/*
 		// For History Tokens
 		History.addValueChangeHandler(new ValueChangeHandler<String>() {
 			
@@ -99,6 +107,7 @@ public class Index implements EntryPoint {
 		});
 		
 		History.fireCurrentHistoryState();
+		*/
 	}
 
 

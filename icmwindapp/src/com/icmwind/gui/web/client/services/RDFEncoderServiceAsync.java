@@ -14,9 +14,12 @@
  *******************************************************************************/
 package com.icmwind.gui.web.client.services;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import com.icmwind.gui.web.client.helpers.FoundMatch;
+import com.icmwind.gui.web.client.helpers.ObservationPeriod;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 /**
@@ -31,9 +34,20 @@ public interface RDFEncoderServiceAsync {
 	/**
 	 * @param path
 	 */
-	public void fileToEncode(String path, AsyncCallback<String> callback);
+	public void readUploadedFile(AsyncCallback<String> callback);
 	
-	public void mosMap(AsyncCallback<List<FoundMatch>> callback);
+	public void getMatchOrSuggestMap(AsyncCallback<List<FoundMatch>> callback);
+	
+	
+	/**
+	 * Get Observation period of the uploaded file
+	 */
+	public void getObservationPeriod(AsyncCallback<ObservationPeriod> callback);
+	
+	/**
+	 * @param headToClassNameMap
+	 */
+	public void encodeFile(Map<String, String> headToClassNameMap, AsyncCallback<Boolean> callback);
 	
 	
 }
