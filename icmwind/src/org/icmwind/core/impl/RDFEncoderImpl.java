@@ -1,34 +1,31 @@
 package org.icmwind.core.impl;
 
 import java.io.File;
-import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
+import org.apache.log4j.Logger;
 import org.icmwind.core.FileProcess;
-import org.icmwind.core.OntologyProcess;
 import org.icmwind.core.RDFEncoder;
 import org.icmwind.util.ICMWindConfig;
+import org.icmwind.util.Normalization;
 import org.icmwind.util.SimilarityUtility;
-import org.icmwind.util.TranslationUtility;
-import org.semanticweb.owlapi.apibinding.OWLManager;
-import org.semanticweb.owlapi.model.IRI;
-import org.semanticweb.owlapi.model.OWLAxiom;
-import org.semanticweb.owlapi.model.OWLClass;
-import org.semanticweb.owlapi.model.OWLDataProperty;
-import org.semanticweb.owlapi.model.OWLIndividual;
-import org.semanticweb.owlapi.model.OWLNamedIndividual;
-import org.semanticweb.owlapi.model.OWLObjectProperty;
-import org.semanticweb.owlapi.model.OWLOntology;
-import org.semanticweb.owlapi.model.OWLOntologyCreationException;
-import org.semanticweb.owlapi.model.OWLOntologyManager;
-import org.semanticweb.owlapi.util.SimpleIRIMapper;
+
+import com.hp.hpl.jena.ontology.DatatypeProperty;
+import com.hp.hpl.jena.ontology.Individual;
+import com.hp.hpl.jena.ontology.ObjectProperty;
+import com.hp.hpl.jena.ontology.OntClass;
+import com.hp.hpl.jena.ontology.OntModel;
+import com.hp.hpl.jena.rdf.model.Literal;
+
+
 
 
 public class RDFEncoderImpl implements RDFEncoder {
@@ -37,7 +34,8 @@ public class RDFEncoderImpl implements RDFEncoder {
 	private static RDFEncoderImpl INSTANCE = new RDFEncoderImpl();
 	
 	// Singleton instances for Ontology and File processing
-	private static OntologyProcess ontoproc = OntologyProcessImpl.getInstance();
+//	private static OntologyProcess ontoproc = OntologyProcessImpl.getInstance();
+	private static OntologyProcessJenaImpl op = OntologyProcessJenaImpl.getInstance();
 	private static FileProcess fileproc = FileProcessImpl.getInstance();
 	
 	// Lists to store Class names and normalized Class names too
@@ -49,6 +47,9 @@ public class RDFEncoderImpl implements RDFEncoder {
 	private static List<String> headerslist;
 	private static List<String> normheaderslist;
 	
+	// Start and End Dates between which the data needs to be encoded
+	private static Date startAnalysisPeriod = null;
+	private static Date endAnalysisPeriod = null;
 	
 	// MatchOrSuggest Map to store matches for Header names of the datasheet files in Class names of Core Ontology : <String headername. List classname>  
 	private static Map<String, List<String>> matchOrSuggestMap = new HashMap<String, List<String>>();
@@ -67,7 +68,14 @@ public class RDFEncoderImpl implements RDFEncoder {
 	private static String storeEncodedDataAt;
 	
 	// URI of core Ontology
-	private static final String coreOntologyIri = "http://www.semanticweb.org/ontologies/2012/4/WindTurbineOnto.owl";
+	private static final String coreOntologyIri = "http://www.icmwind.com/WindTurbineOnto.owl";
+	
+	// Namespace of ontology
+	private static final String NS = coreOntologyIri + "#";
+	
+	private static final String DATASTORE_FOLDER = "C:/Users/anme05/git/icmwindsem/icmwindapp/war/data store/";
+	
+	Logger logger = Logger.getLogger(RDFEncoderImpl.class);
 	
 //	private static AbstractStringMetric similaritymetric = new CosineSimilarity();
 	
@@ -79,6 +87,7 @@ public class RDFEncoderImpl implements RDFEncoder {
 	}
 	
 	public static RDFEncoderImpl getInstance() {
+		System.out.println("RDFEncoderImpl.getInstance()");
 		return INSTANCE;
 	}
 	
@@ -86,10 +95,12 @@ public class RDFEncoderImpl implements RDFEncoder {
 	public void initOntologyProcess()
 	{
 		// Open  core Ontology from from Core Ontology resource path 
-		ontoproc.openFile(ICMWindConfig.getCoreOntologyPath());
+//		ontoproc.openFile(ICMWindConfig.getCoreOntologyPath());
+		op.init();
 		
 		// get List of normalized class names of Core Ontology
-		normclasseslist = ontoproc.getNormClassNamesList();
+//		normclasseslist = ontoproc.getNormClassNamesList();
+		normclasseslist = op.getNormClassNamesList();
 	}
 
 	@Override
@@ -99,10 +110,10 @@ public class RDFEncoderImpl implements RDFEncoder {
 		fileproc.readFile(filepath);
 		
 		// get List of header names of passed Datasheet file
-		headerslist = fileproc.getHeadNamesList();
+		headerslist = fileproc.getColumnNamesList();
 		
 		// get List of normalized header names of passed Datasheet file
-		normheaderslist = fileproc.getNormHeadNamesList();
+		normheaderslist = fileproc.getNormColumnNamesList();
 		
 		// Find class names similar to header name
 		// Create MatchOrSuggest map for the matches : <String headername, List classname>
@@ -111,9 +122,10 @@ public class RDFEncoderImpl implements RDFEncoder {
 		for(String normheader : normheaderslist) {
 			List<String> templist = new ArrayList<String>(); 
 			for(String normclass : SimilarityUtility.getSimilarTextList(normheader, normclasseslist)) {
-				templist.add(ontoproc.getClassNameFor(normclass));
+//				templist.add(ontoproc.getClassNameFor(normclass));
+				templist.add(op.getClassNameFor(normclass));
 			}
-			matchOrSuggestMap.put(fileproc.getHeadNameFor(normheader), templist);
+			matchOrSuggestMap.put(fileproc.getColumnNameFor(normheader), templist);
 		}
 		
 		isInitialised = true;
@@ -153,7 +165,24 @@ public class RDFEncoderImpl implements RDFEncoder {
 
 	@Override
 	public boolean encode() {
+		/*
+		 * createTBoxInstancesAndRelations();
+		 * 
+		 * isWithinAnalysisPeriod();
+		 * 	int i = 0;
+		 * 
+		 * createObservationInstance();
+		 * createTimeInstance(); // date to xsd:dateTime
+		 * create hasSamplingTimeRelationEncoding()
+		 * 
+		 * create
+		 * 
+		 * 
+		 *  		
+		*/
 		
+		
+/*		
 		//create New Ontology to store ABox
 		OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
 		OWLOntology abox = null;
@@ -216,10 +245,145 @@ public class RDFEncoderImpl implements RDFEncoder {
 
 		//counter for records read
 		int i = 1;
+*/		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+		
+		Calendar c = Calendar.getInstance();
+		c.setTime(endAnalysisPeriod);
+		c.add(Calendar.DATE, 1);
+		endAnalysisPeriod = c.getTime();
+		
+		System.out.println("endAnalysis : " + endAnalysisPeriod);
+		
+		int rowsRead = 1;
+		
+		String beginDate = null;
+		String endDate = null;
+		
+		boolean reset = false;
+	
+		OntModel abox = null;
 		
 		//while records(rows) exists in file 
 		while(fileproc.existsRecord()) {
+			try {
+				
+				Date temp = sdf.parse(fileproc.readRecord("Zeit"));
+				
+				// read when the observation date is between startAnalysisPeriod and endAnalysisPeriod
+				if(temp.equals(startAnalysisPeriod) || (temp.after(startAnalysisPeriod) && temp.before(endAnalysisPeriod)) ) {
+				
+					// Create ABox
+					if(rowsRead == 1 || reset) {
+						reset = false;
+						beginDate = fileproc.readRecord("Zeit").substring(0, 10);
+//						abox =
+//						op.createAbox();
+						System.out.println("ABox Created.");
+					}
+///*
+//					OntClass tempObservationClass = op.getClass("Observation");
+					OntClass tempObservationClass = op.getClassForURI(op.getNS() + "Observation");
+//					OntClass tempObservationClass = abox.getOntClass(op.getNS() + "Observation");
+					Individual tempObservationInstance = op.createInstance(tempObservationClass, op.getNS() + "Observation_" + rowsRead);
+					
+					
+					// Read headers acc to final headerToClassNameMap
+					for(Map.Entry<String, String> entry :  headerToClassNameMap.entrySet()) {
+						
+						String headerName = entry.getKey();
+						String propertyName = entry.getValue();
+						
+						System.out.println("Reading header - " + headerName + " : class - " + propertyName);
+						
+						// If Sensor measuring a particular property class name is present in existing scenario, only then do this
+						if(checkSensorAvailabilityFor(propertyName)) {
+							
+							// Get mapped Class for Header and create its instance 
+							OntClass tempClass = op.getClassForURI(op.getClassURIFor(propertyName));
+							Individual tempInstance = op.createInstance(tempClass, op.getNS() + propertyName + "_" + rowsRead);
+							
+							if(headerName.equals("Zeit")) {
+								
+								// Time--observedTime--""^^xsd:dateTime
+								DatatypeProperty observedTimeDataProperty = op.getDataPropertyForURI(op.getNS() + "observedTime");
+								Literal tempTimeLiteral = op.createTimeLiteral(temp);
+								tempInstance.addProperty(observedTimeDataProperty, tempTimeLiteral);
+								
+								// Observation--hasSamplingTime--Time
+								ObjectProperty hasSamplingTimeObjectProperty = op.getObjectPropertyForURI(op.getNS() + "hasSamplingTime");
+								tempObservationInstance.addProperty(hasSamplingTimeObjectProperty, tempInstance);
+							} else {
+															
+								// Property--hasValue--""^^xsd:Float
+								DatatypeProperty hasValueDataProperty = op.getDataPropertyForURI(op.getNS() + "hasValue");
+								String value = fileproc.readRecord(headerName);
+								System.out.println("record value : " + value);
+								Literal tempValueLiteral = op.createValueLiteral(Float.parseFloat(value));
+								tempInstance.addProperty(hasValueDataProperty, tempValueLiteral);
+								
+								// Property--hasObservation--Observation
+								ObjectProperty hasObservationObjectProperty = op.getObjectPropertyForURI(op.getNS() + "hasObservation");
+								tempInstance.addProperty(hasObservationObjectProperty, tempObservationInstance);
+							
+								// Sensor--measuresProperty--Property
+								String sensorClassName = op.getPropertyClassNameToSensorClassNameMap().get(propertyName);
+								String sensorInstanceURI = op.getTBoxClassNameToIndividualURIMap().get(sensorClassName);
+								Individual tempSensorInstance = op.getInstanceForURI(sensorInstanceURI);
+								ObjectProperty measuresPropertyObjectProperty = op.getObjectPropertyForURI(op.getNS() + "measuresProperty");
+								tempSensorInstance.addProperty(measuresPropertyObjectProperty, tempInstance);
+							}
+						} // close checkSensorAvailabilityFor()
+					}// finish reading a row
+					
+					System.out.println("******Observations read : " + rowsRead);
+										
+					rowsRead++;
+					
+					
+				} else if(temp.equals(endAnalysisPeriod)) {
+					endDate = fileproc.readRecord("Zeit").substring(0, 10);
+
+					String timestamp = beginDate + "-" + endDate; 
+					
+					String aboxUri = "http://www.icmwind.com/instances/WTO" + "-" + timestamp + ".owl";
+					String aboxFile = DATASTORE_FOLDER + "ontologies/wto-abox-" + timestamp + ".owl";
+					
+					if(op.saveAboxToFile(aboxUri, aboxFile))
+						System.out.println("File saved at " + aboxFile);
+					else
+						System.out.println("Error in saving file " + aboxFile);
+				}
+				
+				
+				// Write ABox to a File
+				if( (rowsRead % 10000) == 0 ) {
+					endDate = fileproc.readRecord("Zeit").substring(0, 10);
+
+					String timestamp = beginDate + "-" + endDate; 
+					
+					String aboxUri = "http://www.icmwind.com/instances/WTO" + "-" + timestamp + ".owl";
+					String aboxFile = DATASTORE_FOLDER + "ontologies/wto-abox-" + timestamp + ".owl";
+					
+					if(op.saveAboxToFile(aboxUri, aboxFile))
+						System.out.println("File saved at " + aboxFile);
+					else
+						System.out.println("Error in saving file " + aboxFile);
+					
+					
+					reset = true;
+				}
+					
+				
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
 			
+			
+			
+
+			
+/*			
 			//create instance of 'Observation' Ontology Class and add Assertion to Axioms holder
 			tempObservationIndividual = ontoproc.createInstance("Observation" + "_" + i);
 			axiomsSet.add(ontoproc.createClassAssertion(observation, tempObservationIndividual));
@@ -297,16 +461,218 @@ public class RDFEncoderImpl implements RDFEncoder {
 			}
 			
 			i++;
-		}
-		
+*/	
+		} // all the rows have been read
+	
 		fileproc.closeFile();
 		//TODO Add FileName to store ABox
-		ontoproc.saveOntologyRDFXML(abox, aboxFile.getPath());
+//		ontoproc.saveOntologyRDFXML(abox, aboxFile.getPath());
 		
 		return true;
 	}
 
+	@Override
+	public Map<String, String> getFileSummary() {
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("name", fileproc.getFileName());
+		map.put("begin", sdf.format(fileproc.getBeginDate()));
+		map.put("end", sdf.format(fileproc.getEndDate()));
+		
+		return map;
+	}
+
+	@Override
+	public void setAnalysisPeriod(Date beginAnalysisPeriod, Date endAnalysisPeriod) {
+		RDFEncoderImpl.startAnalysisPeriod = beginAnalysisPeriod;
+		RDFEncoderImpl.endAnalysisPeriod = endAnalysisPeriod;
+	}
+
+	@Override
+	public void setDataFileSourceInfo(Map<String, String> infoMap) {
+		System.out.println("RDFEncoderImpl.setFileSourceInfo(infoMap)");
+		
+		// Create ABox Model
+		op.createAbox();
+		String aboxUri = "http://www.icmwind.com/instance/wto_abox.owl";
+		String aboxFile = "C:/Users/anme05/Desktop/wto_abox.owl";
+		
+		Normalization normalization = new Normalization();
+		
+		// map to store classname-individual mappings
+		Map<String, String> map = new HashMap<String, String>();
+		
+		// convert key set to key list, normalise key list, get normKeyMap
+		List<String> normKeyList = normalization.normalizeList(new ArrayList<>(infoMap.keySet()));
+		Map<String,String> mapNormKeyToKey = normalization.getNormalizationMap();
+				
+		// get normalised class names list i.e. normclasseslist
+		System.out.println("\n" + normclasseslist.toString());
+				
+		// get similarity of normCNL, normKL as mapResult
+		Map<String, List<String>> simMap = SimilarityUtility.getSimilarityBetweenLists(normKeyList, normclasseslist);
+		
+		for(Map.Entry<String, List<String>> entry : simMap.entrySet()) {
+			
+			if(entry.getKey().toLowerCase().equals("name")) {
+				// create Wind Turbine instance from the value of the key
+				String tempClassName = "Wind_Turbine";
+				// Get OntClass from URI
+				String tempClassURI = op.getClassURIFor(tempClassName);
+				OntClass tempClass = op.getClassForURI(tempClassURI);
+				
+				// Get OWL Class from class name
+//				System.out.println("^ " + ontoproc.getClassURIFor(tempClassName).toStringID());
+				
+				String tempKeyName = mapNormKeyToKey.get(entry.getKey());
+				String tempInstncName = infoMap.get(tempKeyName);
+				String tempInstncURI = NS + tempInstncName;
+				// Individual URI
+				System.out.println("@ " + tempInstncURI);
+				
+				// add to ClassName-IndividualURI map
+				map.put(tempClassName, tempInstncURI);
+				
+				// Create OWL Individual using OWL Class & Individual URI
+				op.createInstance(tempClass, tempInstncURI);
+			}
+			
+			// if no matching found
+			if(!entry.getValue().isEmpty()) {
+				if(entry.getKey().toLowerCase().equals("location")) {
+					continue;
+				} else {
+					// get class name from matched norm class name, get its URI
+//					String tempClassName =  ontoproc.getClassNameFor(entry.getValue().get(0));
+					String tempClassName =  op.getClassNameFor(entry.getValue().get(0));
+					// Get OntClass from URI
+					String tempClassURI = op.getClassURIFor(tempClassName);
+					OntClass tempClass = op.getClassForURI(tempClassURI);
+					
+					// Get OWL Class from class name
+//					System.out.println("^ " + ontoproc.getClassURIFor(tempClassName).toStringID());
+										
+					// get key name from norm key name, get its value, add NS to value
+					String tempKeyName = mapNormKeyToKey.get(entry.getKey());
+					String tempInstncName = infoMap.get(tempKeyName);
+					String tempInstncURI = NS + tempInstncName;
+					// Individual URI
+					System.out.println("@ " + tempInstncURI);
+					
+					// add to ClassName-IndividualURI map
+					map.put(tempClassName, tempInstncURI);
+					
+					// Create OWL Individual using OWL Class & Individual URI
+					op.createInstance(tempClass, tempInstncURI);
+				}
+			}
+		}
+		
+		
+		
+		// set the classname-inidividual mappings
+//		ontoproc.setClassNameToIndividualURIMap(map);
+		op.setTBoxClassNameToIndividualURIMap(map);
+		
+		// start "partOf" relations creation
+		isPartOfRelationEncoding();
+		
+		// start "isSensorOf" relations creation
+		isSensorOfRelationEncoding();
+		
+		op.saveAboxToFile(aboxUri, aboxFile);
+	}
+
+	@Override
+	public void isPartOfRelationEncoding() {
+		
+//		for(Map.Entry<String, String> entry : ontoproc.getPartClassNameToSystemClassNameMap().entrySet()) {
+//			String tempSubSystemClassURI = ontoproc.getClassNameToIndividualURIMap().get(entry.getKey());
+//			String tempSystemClassURI = ontoproc.getClassNameToIndividualURIMap().get(entry.getValue());
+//			String isPartOfPropertyURI = "";
+//			
+//			// use these URIs for assertions :	(tempSubSystemClassURI,isPartOfPropertyURI,tempSystemClassURI)
+//		}
+		
+		for(Map.Entry<String, String> entry : op.getPartClassNameToSystemClassNameMap().entrySet()) {
+			System.out.println("Part - " + entry.getKey().toString() + " : System - " + entry.getValue().toString());
+			
+			String tempSubSystemInstanceURI = op.getTBoxClassNameToIndividualURIMap().get(entry.getKey());
+			String tempSystemInstanceURI = op.getTBoxClassNameToIndividualURIMap().get(entry.getValue());
+			String isPartOfPropertyURI = NS + "isPartOf";
+			
+			// use these URIs for assertions :	(tempSubSystemClassURI,isPartOfPropertyURI,tempSystemClassURI)
+			Individual subSysInstance = op.getInstanceForURI(tempSubSystemInstanceURI);
+			Individual sysInstance = op.getInstanceForURI(tempSystemInstanceURI);
+			ObjectProperty isPartOfObjectProperty = op.getObjectPropertyForURI(isPartOfPropertyURI);
+			
+			subSysInstance.addProperty(isPartOfObjectProperty, sysInstance);
+			
+		}
+	}
+
+	@Override
+	public void isSensorOfRelationEncoding() {
+		
+//		for(Map.Entry<String, String> entry : ontoproc.getSensorClassNameToPartClassNameMap().entrySet()) {
+//			String tempSubSystemClassURI = ontoproc.getClassNameToIndividualURIMap().get(entry.getKey());
+//			String tempSystemClassURI = ontoproc.getClassNameToIndividualURIMap().get(entry.getValue());
+//			String isSensorOfPropertyURI = "";
+//			
+//			// use these URIs for assertions :	(tempSubSystemClassURI,isSensorOfPropertyURI,tempSystemClassURI)
+//		}
+		for(Map.Entry<String, String> entry : op.getSensorClassNameToPartClassNameMap().entrySet()) {
+			System.out.println("Sensor - " + entry.getKey().toString() + " : Part - " + entry.getValue().toString());
+			
+			String tempSensorInstanceURI = op.getTBoxClassNameToIndividualURIMap().get(entry.getKey());
+			String tempPartInstanceURI = op.getTBoxClassNameToIndividualURIMap().get(entry.getValue());
+			String isSensorOfPropertyURI = NS + "isSensorOf";
+			
+			// use these URIs for assertions :	(tempSubSystemClassURI,isSensorOfPropertyURI,tempSystemClassURI)
+			Individual sensInstance = op.getInstanceForURI(tempSensorInstanceURI);
+			Individual partInstance = op.getInstanceForURI(tempPartInstanceURI);
+			ObjectProperty isSensorOfObjectProperty = op.getObjectPropertyForURI(isSensorOfPropertyURI);
+			
+			sensInstance.addProperty(isSensorOfObjectProperty, partInstance);
+			
+		}
+		
+	}
+
+	@Override
+	public void propertyMeasuredByRelationEncoding() {
+
+//		for(Map.Entry<String, String> entry : ontoproc.getPropertyClassNameToSensorClassNameMap().entrySet()) {
+//			String tempSubSystemClassURI = ontoproc.getClassNameToIndividualURIMap().get(entry.getKey());
+//			String tempSystemClassURI = ontoproc.getClassNameToIndividualURIMap().get(entry.getValue());
+//			String propertyMeasuredByPropertyURI = "";
+//			
+//			// use these URIs for assertions :	(tempSubSystemClassURI,propertyMeasuredByPropertyURI,tempSystemClassURI)
+//		}
+		for(Map.Entry<String, String> entry : op.getPropertyClassNameToSensorClassNameMap().entrySet()) {
+			String tempSubSystemClassURI = op.getTBoxClassNameToIndividualURIMap().get(entry.getKey());
+			String tempSystemClassURI = op.getTBoxClassNameToIndividualURIMap().get(entry.getValue());
+			String propertyMeasuredByPropertyURI = "";
+			
+			// use these URIs for assertions :	(tempSubSystemClassURI,propertyMeasuredByPropertyURI,tempSystemClassURI)
+		}
+		
+	}
 	
+	private boolean checkSensorAvailabilityFor(String propertyName) {
+		String measuringSensor = op.getPropertyClassNameToSensorClassNameMap().get(propertyName);
+		String installedSensor = op.getTBoxClassNameToIndividualURIMap().get(measuringSensor);
+		
+		if(installedSensor == null) {
+			System.out.println("Sensor Information not available for property" + propertyName);
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
 
 	
 //	public static void main(String args[]) {

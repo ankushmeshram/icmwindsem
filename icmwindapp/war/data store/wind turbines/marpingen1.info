@@ -17,6 +17,7 @@ Cooler = cool_marpI
 CS\ 1000 = cs_marpI
 MCS\ 1000 = mcs_marpI
 HYDAC\ Lab = hlb_marpI
-
+Pressure\ Sensor = p_marpI
+Differential\ Pressure\ Sensor = dps_marpI
 
   

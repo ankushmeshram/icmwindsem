@@ -24,6 +24,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.icmwind.gui.web.client.components.About;
 import com.icmwind.gui.web.client.components.AdvancedAnalysis;
 import com.icmwind.gui.web.client.components.Analyse;
+import com.icmwind.gui.web.client.components.C;
 import com.icmwind.gui.web.client.components.Conceptual;
 import com.icmwind.gui.web.client.components.D;
 import com.icmwind.gui.web.client.components.E;
@@ -34,6 +35,8 @@ import com.icmwind.gui.web.client.components.Home;
 import com.icmwind.gui.web.client.components.Navigation;
 import com.icmwind.gui.web.client.components.Report;
 import com.icmwind.gui.web.client.components.Settings;
+import com.icmwind.gui.web.client.components.T;
+import com.icmwind.gui.web.client.components.TestSelector;
 import com.icmwind.gui.web.client.services.RDFEncoderService.RDFEncoderServiceUtil;
 
 
@@ -52,7 +55,8 @@ public class Index implements EntryPoint {
 		*/
 		
 		// RemoteService Call to initialize RDF Encoding
-		// TODO ADD this after Wind Turbine 
+		// TODO ADD this after Wind Turbine
+///* TESTING - REMOVE these		
 		RDFEncoderServiceUtil.getInstance().initRDFEncoder(new AsyncCallback<String>() {
 			
 			@Override
@@ -65,8 +69,8 @@ public class Index implements EntryPoint {
 				Window.alert("Failure");
 			}
 		});
-
-		RootPanel.get("contentContainer").add(new E());
+//*/
+		RootPanel.get("contentContainer").add(new D());
 		/*
 		// For History Tokens
 		History.addValueChangeHandler(new ValueChangeHandler<String>() {

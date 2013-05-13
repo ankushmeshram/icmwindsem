@@ -106,5 +106,32 @@ public interface OntologyProcess {
 	public OWLAxiom createDataPropertyAssertion(OWLDataProperty dataProperty,OWLIndividual instance, String value);
 		
 	public void addAxiomSet(OWLOntology ontology, Set<OWLAxiom> axiomSet);
+	
+	
+	public void setClassNameToIndividualURIMap(Map<String, String> classNameToIndividualURIMap );
+	
+	/**
+	 * Get map of Class Names to corresponding Individual URI (String) 
+	 * 
+	 * @return
+	 */
+	public Map<String, String> getClassNameToIndividualURIMap();
+	
+	/**
+	 * Get map of Parts class name to System class names used for "partOf" relation
+	 * 
+	 * @return
+	 */
+	public Map<String, String> getPartClassNameToSystemClassNameMap();
+	
+	/**
+	 * Get map of Sensor class names to Part class names used for "isSensorOf/isInstalledOn" relation
+	 * 
+	 * @return
+	 */
+	public Map<String, String> getSensorClassNameToPartClassNameMap();
 		
+	public Map<String, String> getPropertyClassNameToSensorClassNameMap();
+	
+
 }

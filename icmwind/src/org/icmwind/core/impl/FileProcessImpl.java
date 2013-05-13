@@ -36,22 +36,30 @@ import com.csvreader.CsvReader;
 public class FileProcessImpl implements FileProcess {
 
 	private static final FileProcessImpl INSTANCE = new FileProcessImpl();
-	private char separator = ';';
+	
 	private CsvReader reader = null;
-	boolean isFileOpened = false;
-	private String filepath = null;
+	
+	private char separator = ';';
+	
 	private InputStream is = null;
+	private String filepath = null;
 	
-	private Date beginPeriod = null;
-	private Date endPeriod = null;
-	private int rowNumbers = 0;
-
-	private List<String> headNamesList = new ArrayList<String>();
-	private List<String> normHeadNamesList = new ArrayList<String>();
-	private Map<String, String> normHeadNamesToHeadNames = new HashMap<String, String>();
+	boolean isFileOpened = false;
 	
+	private String dataFilePK = null; 
+	
+	private int numOfObservations = 0;
+	
+	private Date beginDate = null;
+	private Date endDate = null;
+	
+	private String fileName = null;
 
-
+	private List<String> columnNamesList = new ArrayList<String>();
+	private List<String> normColumnNamesList = new ArrayList<String>();
+	
+	private Map<String, String> normColNamesToColNames = new HashMap<String, String>();
+	
 	private FileProcessImpl() {
 	}
 
@@ -105,8 +113,8 @@ public class FileProcessImpl implements FileProcess {
 		}
 						
 		
-		this.readFileForRowNumbers();
-		
+		this.readFileForNumOfObservations();
+		this.readFileForDates();
 		
 		try {
 //			// if loaded from ClassPath with relative url
@@ -120,14 +128,16 @@ public class FileProcessImpl implements FileProcess {
 			
 			this.reader.readHeaders();
 			
-			this.readFileForPeriod();
-			
-			this.headNamesList = Arrays.asList(this.reader.getHeaders());
+//			REMOVE THIS...before running actual
+//			this.test();
+
+//			/*
+			this.columnNamesList = Arrays.asList(this.reader.getHeaders());
 			
 			Normalization normalize = new Normalization();
-			this.normHeadNamesList = normalize.normalizeListWithTranslation(headNamesList);
-			this.normHeadNamesToHeadNames = normalize.getNormalizationMap();
-
+			this.normColumnNamesList = normalize.normalizeListWithTranslation(columnNamesList);
+			this.normColNamesToColNames = normalize.getNormalizationMap();
+//			*/
 			
 			isFileOpened = true;
 			return isFileOpened;
@@ -138,72 +148,37 @@ public class FileProcessImpl implements FileProcess {
 		}
 	}
 	
-	private void readFileForRowNumbers() {
-		try {
-			byte[] c = new byte[1024];
-			int count = 0;
-			int readChars = 0;
-     
-			while ((readChars = is.read(c)) != -1) {
-			    for (int i = 0; i < readChars; ++i) {
-			        if (c[i] == '\n') {
-			            ++count;
-			        }
-			    }
-			}
-			
-			this.rowNumbers = count;
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		System.out.println("Number of rows : " + rowNumbers);
-	}
-
-	private void readFileForPeriod() {
-		try {
-			int start = 1;
-			int end = rowNumbers - 1;
-			int c = 1;
-			
-			while(reader.readRecord()) {
-				if(c != start && c != end) {
-					reader.skipLine();
-				} else if(c == start) {
-					beginPeriod = convertStringToDate(reader.get("Zeit"));
-					System.out.println("Get the begin date : " + reader.get("Zeit"));
-				} else if(c == end) {
-					endPeriod = convertStringToDate(reader.get("Zeit"));
-					System.out.println("Get the end date : " + reader.get("Zeit"));
-				}
-				
-				c++;
-			}
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.icmwind.core.FileProcess#closeFile()
-	 * 
-	 * Close the data file
+	/* (non-Javadoc)
+	 * @see org.icmwind.core.FileProcess#getDataFilePK()
 	 */
 	@Override
-	public void closeFile() {
-		try {
-			this.reader.close();
-			is.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
+	public String getDataFilePK() {
+		return dataFilePK;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.icmwind.core.FileProcess#getNumberOfObservations()
+	 */
+	@Override
+	public int getNumberOfObservations() {
+		return this.numOfObservations;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.icmwind.core.FileProcess#getBeginDate()
+	 */
+	@Override
+	public Date getBeginDate() {
+		return beginDate;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.icmwind.core.FileProcess#getEndDate()
+	 */
+	@Override
+	public Date getEndDate() {
+		return endDate;
+	}
 	
 	/* (non-Javadoc)
 	 * @see org.icmwind.core.FileProcess#getFileName()
@@ -214,9 +189,69 @@ public class FileProcessImpl implements FileProcess {
 	public String getFileName() {
 		int start = filepath.replaceAll("\\\\", "/").lastIndexOf("/");
 		int end = filepath.lastIndexOf(".");
-		return start >= 0 ? filepath.substring(start + 1, end).trim() : filepath;
+		fileName = start >= 0 ? filepath.substring(start + 1, end).trim() : filepath;
+		
+		return fileName;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.icmwind.core.FileProcess#getHeadNamesList()
+	 * 
+	 * Returns list of Header Names of Data file
+	 */
+	@Override
+	public List<String> getColumnNamesList() {
+		if (isFileOpened) {
+			return columnNamesList;
+		} else {
+			System.out.println("ERROR: File not found.");
+			return Collections.emptyList();
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see org.icmwind.core.FileProcess#getNormHeadNamesList()
+	 * 
+	 * Return list of Normalized Header Names
+	 */
+	@Override
+	public List<String> getNormColumnNamesList() {
+		if (isFileOpened) {
+			return normColumnNamesList;
+		} else {
+			System.out.println("ERROR: File not found.");
+			return Collections.emptyList();
+		}
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.icmwind.core.FileProcess#getHeadNameFor(java.lang.String)
+	 * 
+	 * Returns Header Name mapped for given Normalized Header Name
+	 */
+	@Override
+	public String getColumnNameFor(String normHeadName) {
+		if (isFileOpened) {
+			if (normColumnNamesList.contains(normHeadName)) {
+				return normColNamesToColNames.get(normHeadName);
+			} else {
+				return "normHeadName not found in system.";
+			}
+		} else {
+			return "ERROR: File not found.";
+		}
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.icmwind.core.FileProcess#getNormalizationMap()
+	 */
+	@Override
+	public Map<String, String> getNormalizationMap() {
+		if(normColNamesToColNames.isEmpty())
+			return Collections.emptyMap();
+		else
+			return normColNamesToColNames;
+	}
 	
 	/*
 	 * (non-Javadoc)
@@ -252,97 +287,30 @@ public class FileProcessImpl implements FileProcess {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see org.icmwind.core.FileProcess#getHeadNamesList()
+	/*
+	 * (non-Javadoc)
 	 * 
-	 * Returns list of Header Names of Data file
-	 */
-	@Override
-	public List<String> getHeadNamesList() {
-		if (isFileOpened) {
-			return headNamesList;
-		} else {
-			System.out.println("ERROR: File not found.");
-			return Collections.emptyList();
-		}
-	}
-
-	/* (non-Javadoc)
-	 * @see org.icmwind.core.FileProcess#getNormHeadNamesList()
+	 * @see org.icmwind.core.FileProcess#closeFile()
 	 * 
-	 * Return list of Normalized Header Names
+	 * Close the data file
 	 */
 	@Override
-	public List<String> getNormHeadNamesList() {
-		if (isFileOpened) {
-			return normHeadNamesList;
-		} else {
-			System.out.println("ERROR: File not found.");
-			return Collections.emptyList();
+	public void closeFile() {
+		try {
+			this.reader.close();
+			is.close();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-	}
 
-	/* (non-Javadoc)
-	 * @see org.icmwind.core.FileProcess#getNormalizationMap()
-	 */
-	@Override
-	public Map<String, String> getNormalizationMap() {
-		if(normHeadNamesToHeadNames.isEmpty())
-			return Collections.emptyMap();
-		else
-			return normHeadNamesToHeadNames;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.icmwind.core.FileProcess#getHeadNameFor(java.lang.String)
-	 * 
-	 * Returns Header Name mapped for given Normalized Header Name
-	 */
-	@Override
-	public String getHeadNameFor(String normHeadName) {
-		if (isFileOpened) {
-			if (normHeadNamesList.contains(normHeadName)) {
-				return normHeadNamesToHeadNames.get(normHeadName);
-			} else {
-				return "normHeadName not found in system.";
-			}
-		} else {
-			return "ERROR: File not found.";
-		}
-	}
-
-	@Override
-	public String getTimeBegin() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getTimeEnd() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public long getNumberOfRows() {
-		return this.rowNumbers;
-	}
-
-	@Override
-	public Date getBeginPeriod() {
-		return beginPeriod;
-	}
-
-	@Override
-	public Date getEndPeriod() {
-		return endPeriod;
-	}
-
 	private Date convertStringToDate(String dateString) {
 		Date date = null;
 		try {
 			SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
-			date = sdf.parse(dateString);
+			date =  sdf.parse(dateString);
+						
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -350,7 +318,89 @@ public class FileProcessImpl implements FileProcess {
 		return date;
 	}
 	
+	private void readFileForNumOfObservations() {
+		try {
+			byte[] c = new byte[1024];
+			int count = 0;
+			int readChars = 0;
+     
+			while ((readChars = is.read(c)) != -1) {
+			    for (int i = 0; i < readChars; ++i) {
+			        if (c[i] == '\n') {
+			            ++count;
+			        }
+			    }
+			}
+			
+			this.numOfObservations = count;
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("Number of rows : " + numOfObservations);
+	}
+
+	private void readFileForDates() {
+		try {
+			
+			CsvReader tempReader = new CsvReader( filepath, separator,Charset.defaultCharset());
+			
+			tempReader.readHeaders();
+			
+			int start = 1;
+			int end = numOfObservations - 1;
+			int c = 1;
+			
+			while(tempReader.readRecord()) {
+//			while(existsRecord()) {
+				if(c != start && c != end) {
+					tempReader.skipLine();
+				} else if(c == start) {
+					beginDate = convertStringToDate(tempReader.get("Zeit"));
+					System.out.println("Get the begin date : " + tempReader.get("Zeit"));
+				} else if(c == end) {
+					endDate = convertStringToDate(tempReader.get("Zeit"));
+					System.out.println("Get the end date : " + tempReader.get("Zeit"));
+				}
+				
+				c++;
+			}
+			
+			tempReader.close();
+			System.gc();System.gc();System.gc();System.gc();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
+	private void test() {
+
+		try {
+			SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+			Date test = sdf.parse("23.09.2008 13:10:00");
+			
+			
+			while(reader.readRecord()) {
+				Date temp = sdf.parse(this.reader.get(0));
+				if(temp.before(test)) {
+					System.out.println(temp.toString());
+				}
+			}
+			
+			
+			
+			
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 //	 DEBUG
 //	 public static void main(String[] args) throws IOException 

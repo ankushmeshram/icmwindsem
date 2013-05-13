@@ -21,6 +21,8 @@ public final class ICMWindConfig {
 	private static String GSE_CONFIG_PATH;
 	private static String GER2ENG_DICT_PATH;
 	
+	private static String RESOURCE_FOLDER_PATH = "C:/Users/anme05/git/icmwindsem/icmwind/res/";
+	
 	private static boolean isInitialised = false;
 
 	private static final String CONFIG_FILE_PATH = "conf/ICMWindConfig.config";
@@ -93,5 +95,11 @@ public final class ICMWindConfig {
 		return GER2ENG_DICT_PATH;
 	}
 
+	/**
+	 * @return
+	 */
+	public static String getResourceFolderPath() {
+		return RESOURCE_FOLDER_PATH;
+	}
 
 }

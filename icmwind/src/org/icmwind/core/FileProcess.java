@@ -20,12 +20,16 @@ import java.util.Map;
 public interface FileProcess {
 
 	/**
+	 * Set the delimiter used between the column names, used while reading the file
+	 * 
 	 * @param separator
 	 *            Data separator for the data file.
 	 */
 	public void setSeparator(char separator);
 
 	/**
+	 * Read the Data file from the passed location/path
+	 * 
 	 * @param filepath
 	 *            Path of Data File to process. Default data separator is ";".
 	 *            Change it via void setSeparator(char separator) before
@@ -35,14 +39,37 @@ public interface FileProcess {
 	 */
 	public boolean readFile(String filepath);
 
-	public long getNumberOfRows();
+	/**
+	 * Get Primary Key for the data file
+	 * 
+	 * @return
+	 */
+	public String getDataFilePK();
 	
 	/**
-	 * Close data file
+	 * Get number of records in the data file
+	 * 
+	 * @return
 	 */
-	public void closeFile();
-
+	public int getNumberOfObservations();
+	
 	/**
+	 * Get the begin date of observations according to data file
+	 * 
+	 * @return
+	 */
+	public Date getBeginDate();
+	
+	/**
+	 * Get the end date of observations according to data file
+	 * 
+	 * @return
+	 */
+	public Date getEndDate();
+	
+	/**
+	 * Get the name of the file
+	 * 
 	 * @return File name of the File passed for analysis.
 	 */
 	public String getFileName();
@@ -50,20 +77,20 @@ public interface FileProcess {
 	/**
 	 * @return List of Header Names
 	 */
-	public List<String> getHeadNamesList();
+	public List<String> getColumnNamesList();
 
 	/**
 	 * @return List of Normalized Header Names i.e. Header Names after applying
 	 *         void Normalize()
 	 */
-	public List<String> getNormHeadNamesList();
+	public List<String> getNormColumnNamesList();
 
 	/**
-	 * @param normHeadName
+	 * @param normColumnName
 	 *            Pass normalized header name
 	 * @return Header Name corresponding to given Normalized Header Name
 	 */
-	public String getHeadNameFor(String normHeadName);
+	public String getColumnNameFor(String normColumnName);
 	
 	/**
 	 * @return Map<String, String> containing key-value pair "normalized_head_name-head_name"
@@ -76,18 +103,16 @@ public interface FileProcess {
 	public boolean existsRecord();
 
 	/**
-	 * @param headerName
+	 * @param columnName
 	 *            Header Name for which the record is requested
 	 * @return record for the given Header Name at current row
 	 */
-	public String readRecord(String headerName);
+	public String readRecord(String columnName);
 	
-	public String getTimeBegin();
-	
-	public Date getBeginPeriod();
-	
-	public Date getEndPeriod();
+	/**
+	 * Close data file
+	 */
+	public void closeFile();	
 		
-	public String getTimeEnd();
 
 }

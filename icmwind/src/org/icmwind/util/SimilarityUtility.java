@@ -132,6 +132,24 @@ public class SimilarityUtility {
 		return sortedMap;
 	}
 
+	
+	/**
+	 * Get similar texts between two lists
+	 * 
+	 * @param queryList
+	 * @param dataList
+	 * @return
+	 */
+	public static Map<String, List<String>> getSimilarityBetweenLists(List<String> queryList, List<String> dataList) {
+		Map<String, List<String>> map = new HashMap<String, List<String>>();
+		
+		for(String query : queryList) {
+			map.put(query, getSimilarTextList(query, dataList));
+		}
+
+		return map;
+	}
+	
 //	/**
 //	 * @param similarityMap
 //	 * @return

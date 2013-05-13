@@ -1,5 +1,6 @@
 package com.icmwind.gui.web.client.components;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,6 +43,9 @@ public class E extends Composite {
 	FlexTable flexTable = new FlexTable();
 
 	private HashMap<String, String> headToClassNameMap;
+	private Date minDate = null;
+	private Date maxDate = null;
+	
 	// TODO change later
 //	private Map<String, ListBox> mapListMap;
 	
@@ -137,42 +141,42 @@ public class E extends Composite {
 		Button btnProceed = new Button("PROCEED");
 		verticalPanel_2.add(btnProceed);
 		
-		CaptionPanel cptnpnlAnalysisPeriod = new CaptionPanel("Analysis Period");
-		cptnpnlAnalysisPeriod.setStyleName("blabla");
-		verticalPanel.add(cptnpnlAnalysisPeriod);
-		cptnpnlAnalysisPeriod.setWidth("500px");
+		CaptionPanel captionPanel = new CaptionPanel("Analysis Period");
+		captionPanel.setStyleName("blabla");
+		verticalPanel.add(captionPanel);
+		captionPanel.setWidth("500px");
 		
-		VerticalPanel verticalPanel_3 = new VerticalPanel();
-		cptnpnlAnalysisPeriod.setContentWidget(verticalPanel_3);
-		verticalPanel_3.setSpacing(5);
-		verticalPanel_3.setWidth("500px");
+		VerticalPanel verPanelAnaPeriod = new VerticalPanel();
+		verPanelAnaPeriod.setSpacing(5);
+		captionPanel.setContentWidget(verPanelAnaPeriod);
+		verPanelAnaPeriod.setWidth("500px");
 		
 		HorizontalPanel horizontalPanel_1 = new HorizontalPanel();
-		horizontalPanel_1.setSpacing(5);
-		verticalPanel_3.add(horizontalPanel_1);
+		horizontalPanel_1.setSpacing(3);
+		verPanelAnaPeriod.add(horizontalPanel_1);
+		horizontalPanel_1.setWidth("500px");
 		
-		Label lblFrom = new Label("From : ");
+		Label lblSelectDatesBetween = new Label("Select dates between : ");
+		horizontalPanel_1.add(lblSelectDatesBetween);
+		
+		final Label lblFrom = new Label("");
 		horizontalPanel_1.add(lblFrom);
-		horizontalPanel_1.setCellVerticalAlignment(lblFrom, HasVerticalAlignment.ALIGN_MIDDLE);
 		
-		DateBox dateBox = new DateBox();
-		dateBox.setFormat(new DefaultFormat(DateTimeFormat.getShortDateFormat()));
-		horizontalPanel_1.add(dateBox);
-		
-		Label label = new Label("----");
-		horizontalPanel_1.add(label);
-		horizontalPanel_1.setCellVerticalAlignment(label, HasVerticalAlignment.ALIGN_MIDDLE);
-		
-		Label lblTo = new Label("To : ");
+		final Label lblTo = new Label("");
 		horizontalPanel_1.add(lblTo);
-		horizontalPanel_1.setCellVerticalAlignment(lblTo, HasVerticalAlignment.ALIGN_MIDDLE);
 		
-		DateBox dateBox_1 = new DateBox();
-		dateBox_1.setFormat(new DefaultFormat(DateTimeFormat.getShortDateFormat()));
-		horizontalPanel_1.add(dateBox_1);
+		final IntervalSelector is = new IntervalSelector(2);
 		
-		Button button = new Button("PROCEED");
-		verticalPanel_3.add(button);
+		verPanelAnaPeriod.add(is);
+		
+		Button button_1 = new Button("PROCEED");
+		verPanelAnaPeriod.add(button_1);
+		
+		final Label lblStartlabel = new Label("startLabel");
+		verPanelAnaPeriod.add(lblStartlabel);
+		
+		final Label lblEndlabel = new Label("endLabel");
+		verPanelAnaPeriod.add(lblEndlabel);
 		
 		CaptionPanel cptnpnlEncode = new CaptionPanel("Encode");
 		cptnpnlEncode.setStyleName("blabla");
@@ -187,9 +191,10 @@ public class E extends Composite {
 		Button btnEncode = new Button("Encode");
 		verticalPanel_4.add(btnEncode);
 		
-		Label lblNewLabel = new Label("Your file has been processed by the system for analysis. Click \"Analyse\" to begin the analysis or \"Home\" to go to homepage.");
-		verticalPanel_4.add(lblNewLabel);
-		lblNewLabel.setWidth("500px");
+		final Label lblNotify = new Label("Your file has been processed by the system for analysis. Click \"Analyse\" to begin the analysis or \"Home\" to go to homepage.");
+		lblNotify.setVisible(false);
+		verticalPanel_4.add(lblNotify);
+		lblNotify.setWidth("500px");
 		
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		horizontalPanel.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
@@ -223,6 +228,32 @@ public class E extends Composite {
 					@Override
 					public void onSuccess(String result) {
 						Window.alert(result);
+						
+						RDFEncoderServiceUtil.getInstance().getDataFileSummary(new AsyncCallback<Map<String,String>>() {
+														
+							@Override
+							public void onFailure(Throwable caught) {
+								// TODO Auto-generated method stub
+								
+							}
+
+							@Override
+							public void onSuccess(Map<String, String> result) {
+								minDate = DateTimeFormat.getFormat("dd.MM.yyyy HH:mm:ss").parse(result.get("begin"));
+								maxDate = DateTimeFormat.getFormat("dd.MM.yyyy HH:mm:ss").parse(result.get("end"));
+								
+								lblFrom.setText(minDate.toString());
+								lblTo.setText(maxDate.toString());
+								
+								is.setDateFormat("dd.MM.yyyy HH:mm:ss");
+								is.setStartDate(minDate);
+								is.setBeginAnalysisDate(minDate);
+								is.setEndAnalysisDate(maxDate);
+//								is.setMaxAnalysisPeriod(900);
+								
+							}
+						});
+						
 						
 						// RemoteService Call to get mapping in form of List<FoundMatch>, FoundMatch encapsulates every mapping with (String query, List<String> matches).
 						RDFEncoderServiceUtil.getInstance().getMatchOrSuggestMap(new AsyncCallback<List<FoundMatch>>() {
@@ -261,6 +292,20 @@ public class E extends Composite {
 			@Override
 			public void onClick(ClickEvent event) {
 				
+			
+				RDFEncoderServiceUtil.getInstance().encodeFile(headToClassNameMap, is.getInitDate(), is.getEndDate(),new AsyncCallback<Boolean>() {
+					
+					@Override
+					public void onFailure(Throwable caught) {
+						
+					}
+
+					@Override
+					public void onSuccess(Boolean result) {
+						if(result)
+							lblNotify.setVisible(true);
+					}
+				});
 				
 				
 				
@@ -269,6 +314,15 @@ public class E extends Composite {
 //					System.out.println(lb.getItemText(lb.getSelectedIndex()));
 //				}
 
+			}
+		});
+		
+		button_1.addClickHandler(new ClickHandler() {
+			
+			@Override
+			public void onClick(ClickEvent event) {
+				lblStartlabel.setText(is.getInitDate().toString());
+				lblEndlabel.setText(is.getEndDate().toString());
 			}
 		});
 		

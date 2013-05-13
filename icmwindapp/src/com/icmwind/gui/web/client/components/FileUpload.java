@@ -36,7 +36,7 @@ import com.icmwind.gui.web.client.services.RDFEncoderService.RDFEncoderServiceUt
  * Client-Side component providing functionality for upload the data file and RDFying it.
  */
 public class FileUpload extends Composite {
-
+/*
 	private ArrayList<ListBox> listboxes = new ArrayList<ListBox>();
 	
 	private Map<String, String> map = new HashMap<String, String>();
@@ -169,7 +169,7 @@ public class FileUpload extends Composite {
 										lb.setSelectedIndex(0);
 									}*/
 									
-										
+/*										
 									if(!fm.getMatches().isEmpty()) {
 										// Add matches found to ListBox
 										for(String match : fm.getMatches())
@@ -359,5 +359,5 @@ public class FileUpload extends Composite {
 		encodepanel.setCellHorizontalAlignment(btnEncode, HasHorizontalAlignment.ALIGN_CENTER);
 		
 	}
-
+*/
 }

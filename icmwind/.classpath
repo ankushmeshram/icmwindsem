@@ -3,59 +3,8 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="res"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JenaLibs"/>
-	<classpathentry kind="lib" path="libs/de.dfki.isreal.semantic-0.0.1.jar"/>
-	<classpathentry kind="lib" path="libs/guava-12.0.jar"/>
-	<classpathentry kind="lib" path="libs/javacsv.jar"/>
-	<classpathentry kind="lib" path="libs/lucene-core-3.6.2.jar"/>
-	<classpathentry kind="lib" path="ext-libs/allegro-3.2.jar"/>
-	<classpathentry kind="lib" path="ext-libs/arq-2.8.1.jar"/>
-	<classpathentry kind="lib" path="ext-libs/aterm-java-1.6.jar"/>
-	<classpathentry kind="lib" path="ext-libs/base64-2.3.8.jar"/>
-	<classpathentry kind="lib" path="ext-libs/com.ontotext.owlim-lite-4.1.jar"/>
-	<classpathentry kind="lib" path="ext-libs/common-2.4.0.jar"/>
-	<classpathentry kind="lib" path="ext-libs/core-2.0.0-rc7.jar"/>
-	<classpathentry kind="lib" path="ext-libs/datatypes-2.0.0-rc7.jar"/>
-	<classpathentry kind="lib" path="ext-libs/de.dfki.isreal-0.0.1.jar"/>
-	<classpathentry kind="lib" path="ext-libs/de.dfki.isreal.omsconfig-0.0.1.jar"/>
-	<classpathentry kind="lib" path="ext-libs/de.dfki.isreal.planner-0.0.1.jar"/>
-	<classpathentry kind="lib" path="ext-libs/de.dfki.isreal.setup-0.0.1.jar"/>
-	<classpathentry kind="lib" path="ext-libs/de.dfki.isreal.sparqldl-parser-0.0.1.jar"/>
-	<classpathentry kind="lib" path="ext-libs/ecore-2.4.2.jar"/>
-	<classpathentry kind="lib" path="ext-libs/ecore-xmi-2.4.1.jar"/>
-	<classpathentry kind="lib" path="ext-libs/el-2.0.0-rc7.jar"/>
-	<classpathentry kind="lib" path="ext-libs/icu4j-3.4.4.jar"/>
-	<classpathentry kind="lib" path="ext-libs/iri-0.7.jar"/>
-	<classpathentry kind="lib" path="ext-libs/jamon-2.7.jar"/>
-	<classpathentry kind="lib" path="ext-libs/javac-0.0.1.jar"/>
-	<classpathentry kind="lib" path="ext-libs/jena-2.0.0-rc7.jar"/>
-	<classpathentry kind="lib" path="ext-libs/jena-2.6.2.jar"/>
-	<classpathentry kind="lib" path="ext-libs/jetty-http-8.0.0.M0.jar"/>
-	<classpathentry kind="lib" path="ext-libs/jetty-io-8.0.0.M0.jar"/>
-	<classpathentry kind="lib" path="ext-libs/jetty-server-8.0.0.M0.jar"/>
-	<classpathentry kind="lib" path="ext-libs/jetty-util-8.0.0.M0.jar"/>
-	<classpathentry kind="lib" path="ext-libs/jetty-websocket-8.0.0.M0.jar"/>
-	<classpathentry kind="lib" path="ext-libs/jgrapht-jdk1.5-0.7.3.jar"/>
-	<classpathentry kind="lib" path="ext-libs/log4j-1.2.15.jar"/>
-	<classpathentry kind="lib" path="ext-libs/naga.steinertrees.queries-0.0.1.jar"/>
-	<classpathentry kind="lib" path="ext-libs/net.tootallnate.websocket-0.3.jar"/>
-	<classpathentry kind="lib" path="ext-libs/ordi-model-0.5.jar"/>
-	<classpathentry kind="lib" path="ext-libs/ordi-trree-3.1.jar"/>
-	<classpathentry kind="lib" path="ext-libs/owlapi-2.0.0-rc7.jar"/>
-	<classpathentry kind="lib" path="ext-libs/owlapi-2.2.0.jar"/>
-	<classpathentry kind="lib" path="ext-libs/platform-0.0.1.jar"/>
-	<classpathentry kind="lib" path="ext-libs/protobuf-java-2.0.3.jar"/>
-	<classpathentry kind="lib" path="ext-libs/query-2.0.0-rc7.jar"/>
-	<classpathentry kind="lib" path="ext-libs/relaxngDatatype-0.0.1.jar"/>
-	<classpathentry kind="lib" path="ext-libs/rules-2.0.0-rc7.jar"/>
-	<classpathentry kind="lib" path="ext-libs/servlet-api-2.3.jar"/>
-	<classpathentry kind="lib" path="ext-libs/sesame-2.2.4-onejar.jar"/>
-	<classpathentry kind="lib" path="ext-libs/sesame-2.4.2.jar"/>
-	<classpathentry kind="lib" path="ext-libs/slf4j-api-1.5.6.jar"/>
-	<classpathentry kind="lib" path="ext-libs/slf4j-log4j12-1.5.6.jar"/>
-	<classpathentry kind="lib" path="ext-libs/xercesImpl-2.7.1.jar"/>
-	<classpathentry kind="lib" path="ext-libs/xsdlip-0.0.1.jar"/>
-	<classpathentry kind="lib" path="libs/simmetrics_jar_v1_6_2_d07_02_07.jar" sourcepath="libs/srcs/simmetrics_src_v1_6_2_d07_02_07.zip"/>
-	<classpathentry kind="lib" path="libs/owlapi-bin.jar" sourcepath="libs/srcs/owlapi-src.jar"/>
+	<classpathentry kind="lib" path="/icmwindapp/war/WEB-INF/lib/javacsv.jar"/>
+	<classpathentry kind="lib" path="/icmwindapp/war/WEB-INF/lib/simmetrics_jar_v1_6_2_d07_02_07.jar"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.USER_LIBRARY/JenaLibs"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

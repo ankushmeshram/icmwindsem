@@ -22,7 +22,6 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 import com.icmwind.gui.web.client.helpers.FoundMatch;
-import com.icmwind.gui.web.client.helpers.ObservationPeriod;
 
 /**
  * @author anme05
@@ -47,17 +46,31 @@ public interface RDFEncoderService extends RemoteService {
 	}
 	
 	/**
+	 * Initialize the RDFEncoder
+	 * 
 	 * @return
 	 */
 	public String initRDFEncoder();
 	
+	
 	/**
+	 * Send information about the data source/ wind turbine
+	 * 
+	 * @param dsInfoMap
+	 */
+	public void setDataSourceInfo(Map<String, String> dsInfoMap);
+	
+	/**
+	 * Read the uploaded file, path is taken from GlobalInitliazer 
+	 * 
 	 * @param path
 	 * @return
 	 */
 	public String readUploadedFile();
 	
 	/**
+	 * Get MatchOrSuggest map as List of FoundMatch objects
+	 * 
 	 * @return
 	 * @gwt.typeArgs <client.helpers.FoundMatch>
 	 */
@@ -65,17 +78,23 @@ public interface RDFEncoderService extends RemoteService {
 	
 	
 	/**
-	 * Get Observation period of the uploaded file
+	 * Get summary of period of the uploaded file as DataFileSummary object
+	 * - number of observations
+	 * - begin and end dates in data file
 	 * 
 	 * @return
 	 */
-	public ObservationPeriod getObservationPeriod();
+	public Map<String, String> getDataFileSummary();
 	
 	/**
+	 * Encode the uploaded file with the properly mapped column names, duration of analysis 
+	 * 
 	 * @param headToClassNameMap
+	 * @param beginAnalysisPeriod TODO
+	 * @param endAnalysisPeriod TODO
 	 * @gwt.typeArgs java.util.Map<java.lang.String, java.lang.String>
 	 */
-	public boolean encodeFile(Map<String, String> headToClassNameMap);
+	public boolean encodeFile(Map<String, String> headToClassNameMap, Date beginAnalysisPeriod, Date endAnalysisPeriod);
 	
 	
 }

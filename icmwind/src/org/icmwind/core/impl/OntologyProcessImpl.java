@@ -51,9 +51,37 @@ public class OntologyProcessImpl implements OntologyProcess {
 	Map<String, OWLClass> classNameToClassURIMap = new HashMap<String, OWLClass>();
 	boolean openSuccess = false;
 
+	private Map<String, String> mapSensorClassNameToPartsClassName =  new HashMap<String, String>();
+	private Map<String, String> mapPartClassNameToSystemClassName = new HashMap<String, String>();
+	private Map<String, String> mapPropertyClassNameToSensorClassName = new HashMap<String, String>();
+	
+	private Map<String, String> mapClassNameToIndividualURI = new HashMap<String, String>();
+	
+	
 	private OntologyProcessImpl() {
+		populate();
 	}
 
+	private void populate() {
+		mapPartClassNameToSystemClassName.put("Cooler", "WindTurbine");
+		mapPartClassNameToSystemClassName.put("Gearbox", "WindTurbine" );
+		mapPartClassNameToSystemClassName.put("Oil_Pump", "WindTurbine");
+		mapPartClassNameToSystemClassName.put("Rotor_Hub", "WindTurbine");
+		mapPartClassNameToSystemClassName.put("Thermo_Bypass_Valve", "WindTurbine");
+		
+		mapSensorClassNameToPartsClassName.put("HYDAC_Lab","Gearbox");
+		mapSensorClassNameToPartsClassName.put("CS_1000","Gearbox");
+		mapSensorClassNameToPartsClassName.put("MCS_1000","Gearbox");
+		
+		mapPropertyClassNameToSensorClassName.put("CS_Drive", "CS_1000" );
+//		mapPropertyClassNameToSensorClassName.put(, );
+//		mapPropertyClassNameToSensorClassName.put(, );
+//		mapPropertyClassNameToSensorClassName.put(, );
+//		mapPropertyClassNameToSensorClassName.put(, );
+//		mapPropertyClassNameToSensorClassName.put(, );
+//		mapPropertyClassNameToSensorClassName.put(, );
+	}
+	
 	/**
 	 * @return OntologyProcessImpl Singelton instance
 	 */
@@ -387,6 +415,32 @@ public class OntologyProcessImpl implements OntologyProcess {
 			OWLIndividual instance, String value) {
 		return factory.getOWLDataPropertyAssertionAxiom(dataProperty, instance,
 				value);
+	}
+
+	@Override
+	public void setClassNameToIndividualURIMap(
+			Map<String, String> classNameToIndividualURIMap) {
+		mapClassNameToIndividualURI =  classNameToIndividualURIMap;
+	}
+
+	@Override
+	public Map<String, String> getClassNameToIndividualURIMap() {
+		return mapClassNameToIndividualURI;
+	}
+
+	@Override
+	public Map<String, String> getPartClassNameToSystemClassNameMap() {
+		return mapPartClassNameToSystemClassName;
+	}
+
+	@Override
+	public Map<String, String> getSensorClassNameToPartClassNameMap() {
+		return mapSensorClassNameToPartsClassName;
+	}
+
+	@Override
+	public Map<String, String> getPropertyClassNameToSensorClassNameMap() {
+		return mapPropertyClassNameToSensorClassName;
 	}
 
 	

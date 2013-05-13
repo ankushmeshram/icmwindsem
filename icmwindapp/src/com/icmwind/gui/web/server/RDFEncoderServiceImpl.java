@@ -17,6 +17,7 @@ package com.icmwind.gui.web.server;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -29,7 +30,6 @@ import org.icmwind.core.impl.RDFEncoderImpl;
 
 import com.icmwind.gui.web.client.helpers.FoundMatch;
 import com.icmwind.gui.web.client.helpers.GlobalInitializer;
-import com.icmwind.gui.web.client.helpers.ObservationPeriod;
 import com.icmwind.gui.web.client.services.RDFEncoderService;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
@@ -80,11 +80,14 @@ public class RDFEncoderServiceImpl extends RemoteServiceServlet implements RDFEn
 	}
 
 	@Override
-	public boolean encodeFile(Map<String, String> mapping) {
+	public boolean encodeFile(Map<String, String> mapping, Date beginAnalysisPeriod, Date endAnalysisPeriod) {
 		rdfencoder.setHeaderToClassNamesMap(mapping);
 		
 		//Set Storage Folder for encoded files
 		rdfencoder.setEncodeStorage("C:\\Users\\anme05\\git\\icmwindsem\\icmwindapp\\war\\data\\encoded");
+		
+		// Set analysis period
+		rdfencoder.setAnalysisPeriod(beginAnalysisPeriod, endAnalysisPeriod);
 		
 		return rdfencoder.encode();
 	}
@@ -115,9 +118,24 @@ public class RDFEncoderServiceImpl extends RemoteServiceServlet implements RDFEn
 
 
 	@Override
-	public ObservationPeriod getObservationPeriod() {
-		// TODO Auto-generated method stub
-		return null;
+	public Map<String, String> getDataFileSummary() {
+		return rdfencoder.getFileSummary();
+		
+/*		Map<String, String> fsMap = rdfencoder.getFileSummary();
+		
+		DataFileSummary dfs = new DataFileSummary();
+		dfs.setDataFilePrimaryKey(fsMap.get("pk").toString());
+		dfs.setNumberOfObservations(Integer.parseInt(fsMap.get("observations")));
+		dfs.setBeginDate(DateTimeFormat.getFormat("EEE MMM dd hh:mm:ss zzz yyyy").parse(fsMap.get("begin")));
+		dfs.setEndDate(DateTimeFormat.getFormat("EEE MMM dd hh:mm:ss zzz yyyy").parse(fsMap.get("end")));
+		
+		return dfs;
+*/
+	}
+
+	@Override
+	public void setDataSourceInfo(Map<String, String> dsInfoMap) {
+		rdfencoder.setDataFileSourceInfo(dsInfoMap);
 	}
 
 		

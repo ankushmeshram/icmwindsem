@@ -19,7 +19,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.icmwind.gui.web.client.helpers.FoundMatch;
-import com.icmwind.gui.web.client.helpers.ObservationPeriod;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 /**
@@ -29,25 +28,47 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
  */
 public interface RDFEncoderServiceAsync {
 	
+	/**
+	 * Initialize the RDFEncoder
+	 */
 	public void initRDFEncoder(AsyncCallback<String> callback);
 	
+	
 	/**
+	 * Send information about the data source/ wind turbine
+	 * 
+	 * @param dsInfoMap
+	 */
+	public void setDataSourceInfo(Map<String, String> dsInfoMap, AsyncCallback<Void> callback);
+	
+	/**
+	 * Read the uploaded file, path is taken from GlobalInitliazer 
+	 * 
 	 * @param path
 	 */
 	public void readUploadedFile(AsyncCallback<String> callback);
 	
+	/**
+	 * Get MatchOrSuggest map as List of FoundMatch objects
+	 */
 	public void getMatchOrSuggestMap(AsyncCallback<List<FoundMatch>> callback);
 	
 	
 	/**
-	 * Get Observation period of the uploaded file
+	 * Get summary of period of the uploaded file as DataFileSummary object
+	 * - number of observations
+	 * - begin and end dates in data file
 	 */
-	public void getObservationPeriod(AsyncCallback<ObservationPeriod> callback);
+	public void getDataFileSummary(AsyncCallback<Map<String, String>> callback);
 	
 	/**
+	 * Encode the uploaded file with the properly mapped column names, duration of analysis 
+	 * 
 	 * @param headToClassNameMap
+	 * @param beginAnalysisPeriod TODO
+	 * @param endAnalysisPeriod TODO
 	 */
-	public void encodeFile(Map<String, String> headToClassNameMap, AsyncCallback<Boolean> callback);
+	public void encodeFile(Map<String, String> headToClassNameMap, Date beginAnalysisPeriod, Date endAnalysisPeriod, AsyncCallback<Boolean> callback);
 	
 	
 }

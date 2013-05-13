@@ -22,6 +22,7 @@ import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.icmwind.gui.web.client.services.GlobalInitializerService;
+import com.icmwind.gui.web.client.services.RDFEncoderService.RDFEncoderServiceUtil;
 
 public class D extends Composite {
 	
@@ -60,17 +61,22 @@ public class D extends Composite {
 	Label lblMcs = new Label("MCS 1000");Label label_29 = new Label(" : ");Label mcs1000 = new Label("");
 	HorizontalPanel horPanHLB = new HorizontalPanel();
 	Label lblHydacLab_1 = new Label("HYDAC Lab");Label label_32 = new Label(" : ");Label hlb = new Label("");
+	HorizontalPanel horPanDPS = new HorizontalPanel();
+	Label lblDps = new Label("Differential Pressure Sensor");Label label_33 = new Label(" : ");Label dps = new Label("");
+	HorizontalPanel horPanPS = new HorizontalPanel();
+	Label lblPs = new Label("Pressure Sensor");Label label_3 = new Label(" : ");Label ps = new Label("");
 	HorizontalPanel horPanButtons = new HorizontalPanel();
 	Button btnProceed = new Button("PROCEED");Button btnReset = new Button("RESET");
 	
 	HashMap<String, Label> mapLabelObjects = new HashMap<String, Label>();
+	HashMap<String, String> mapDataSourceInfo = null;
+	
+	
 	
 	public D() {
 
 		// Fill up the map of Label objects
 		fillMapLabelObjects();
-		
-
 		
 		verPanMain.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		verPanMain.setSpacing(10);
@@ -90,59 +96,29 @@ public class D extends Composite {
 			
 		verPanSource.add(lblEnterSource);
 
+		listWindTurbines();
 	
-		GlobalInitializerService.Util.getInstance().listWindTurbines(new AsyncCallback<List<String>>() {
-			
-			@Override
-			public void onSuccess(List<String> result) {
-				for( String wt : result) {
-					listBox.addItem(wt);
-				}
-				
-				listBox.setSelectedIndex(-1);
-			}
-			
-			@Override
-			public void onFailure(Throwable caught) {
-				// TODO Auto-generated method stub
-				Window.alert("Error in D.listWindTurbines");
-			}
-		});
+//		GlobalInitializerService.Util.getInstance().listWindTurbines(new AsyncCallback<List<String>>() {
+//			
+//			@Override
+//			public void onSuccess(List<String> result) {
+//				for( String wt : result) {
+//					listBox.addItem(wt);
+//				}
+//				
+//				listBox.setSelectedIndex(-1);
+//			}
+//			
+//			@Override
+//			public void onFailure(Throwable caught) {
+//				// TODO Auto-generated method stub
+//				Window.alert("Error in D.listWindTurbines");
+//			}
+//		});
 
 		listBox.setVisibleItemCount(1);
 		verPanSource.add(listBox);
-		
-		final AsyncCallback<Map<String,String>> callback = new AsyncCallback<Map<String,String>>() {
-
-			@Override
-			public void onFailure(Throwable caught) {
-				Window.alert("D.callback()");
-			}
-
-			@Override
-			public void onSuccess(Map<String, String> result) {
 				
-				if(!result.isEmpty()) {
-					for(Entry<String, String> entry : result.entrySet()) {
-//						System.out.println("Callback result : " + entry.getKey() + " -- " + entry.getValue());
-						
-						String key = entry.getKey().toString().toLowerCase();
-						String value = entry.getValue().toString();
-						
-//						System.out.println("Setting Labels in GUI for key" + key);
-		
-						Label temp = mapLabelObjects.get(key);
-						temp.setText(value);
-					}
-
-					capPanelWTInfo.setVisible(true);
-					horPanButtons.setVisible(true);
-				} else {
-					Window.alert("Selection not available.");
-				}
-			}
-		};
-		
 		listBox.addChangeHandler(new ChangeHandler() {
 			
 			@Override
@@ -151,8 +127,40 @@ public class D extends Composite {
 				horPanButtons.setVisible(false);
 				
 				String wtSelected = listBox.getItemText( listBox.getSelectedIndex() );
-	
-				GlobalInitializerService.Util.getInstance().getInfoFor(wtSelected, callback);
+				
+				getDataSourceInfoFor(wtSelected);
+				
+				
+				
+//				GlobalInitializerService.Util.getInstance().getInfoFor(wtSelected, new AsyncCallback<Map<String,String>>() {
+//					@Override
+//					public void onFailure(Throwable caught) {
+//						Window.alert("D.callback()");
+//					}
+//
+//					@Override
+//					public void onSuccess(Map<String, String> result) {
+//						
+//						if(!result.isEmpty()) {
+//							for(Entry<String, String> entry : result.entrySet()) {
+////								System.out.println("Callback result : " + entry.getKey() + " -- " + entry.getValue());
+//								
+//								String key = entry.getKey().toString().toLowerCase();
+//								String value = entry.getValue().toString();
+//								
+////								System.out.println("Setting Labels in GUI for key" + key);
+//				
+//								Label temp = mapLabelObjects.get(key);
+//								temp.setText(value);
+//							}
+//
+//							capPanelWTInfo.setVisible(true);
+//							horPanButtons.setVisible(true);
+//						} else {
+//							Window.alert("Selection not available.");
+//						}
+//					}
+//				});
 							
 			}
 		});
@@ -377,6 +385,21 @@ public class D extends Composite {
 		
 		horPanHLB.add(hlb);
 		hlb.setWidth("100px");
+		horPanPS.setSpacing(5);
+		
+		verPanSensors.add(horPanPS);
+		horPanPS.setWidth("300px");
+		lblPs.setStyleName("gwt-Label-Bold");
+		
+		horPanPS.add(lblPs);
+		lblPs.setWidth("130px");
+		label_3.setStyleName("gwt-Label-Bold");
+		
+		horPanPS.add(label_3);
+		label_3.setWidth("10px");
+		
+		horPanPS.add(ps);
+		ps.setWidth("100px");
 		
 		horPanButtons.setVisible(false);
 		horPanButtons.setSpacing(5);
@@ -393,14 +416,22 @@ public class D extends Composite {
 			
 			@Override
 			public void onClick(ClickEvent event) {
+				
+				sendDataSourceInfo();
+				
 				RootPanel.get("contentContainer").clear();
-				RootPanel.get("contentContainer").add(new E1());
+				RootPanel.get("contentContainer").add(new E());
 			}
 		});
-		
-
 	}
 	
+	
+	/**
+	 *  Fill the map with <String key, Label label> 
+	 *  String key corresponds to Key in Information file
+	 *  Label label corresponds to Place where the Value will be displayed in GUI 
+	 * 
+	 */
 	private void fillMapLabelObjects() {
 		mapLabelObjects.put("name", name);
 		mapLabelObjects.put("location", location);
@@ -415,8 +446,76 @@ public class D extends Composite {
 		mapLabelObjects.put("cs 1000", cs1000);
 		mapLabelObjects.put("mcs 1000", mcs1000);
 		mapLabelObjects.put("hydac lab", hlb);
+		mapLabelObjects.put("differential pressure sensor", dps);
+		mapLabelObjects.put("pressure sensor", ps);
+	}
+	
+	private void listWindTurbines() {
+		GlobalInitializerService.Util.getInstance().listWindTurbines(new AsyncCallback<List<String>>() {
+					@Override
+			public void onSuccess(List<String> result) {
+				for( String wt : result) {
+					listBox.addItem(wt);
+				}
+				listBox.setSelectedIndex(-1);
+			}
+			
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Error in D.listWindTurbines");
+			}
+		});
+	}
+	
+	private void getDataSourceInfoFor(String wtName) {
+		
+		GlobalInitializerService.Util.getInstance().getInfoFor(wtName, new AsyncCallback<Map<String,String>>() {
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("D.callback()");
+			}
+
+			@Override
+			public void onSuccess(Map<String, String> result) {
+				
+				if(!result.isEmpty()) {
+					mapDataSourceInfo = (HashMap<String, String>) result;
+				
+					for(Entry<String, String> entry : result.entrySet()) {
+//						System.out.println("Callback result : " + entry.getKey() + " -- " + entry.getValue());
+						
+						String key = entry.getKey().toString().toLowerCase();
+						String value = entry.getValue().toString();
+						
+//						System.out.println("Setting Labels in GUI for key" + key);
+		
+						Label temp = mapLabelObjects.get(key);
+						temp.setText(value);
+					}
+
+					capPanelWTInfo.setVisible(true);
+					horPanButtons.setVisible(true);
+					
+					
+				} else {
+					Window.alert("Selection not available.");
+				}
+			}
+		});
 	}
 
+	private void sendDataSourceInfo() {
+		RDFEncoderServiceUtil.getInstance().setDataSourceInfo(mapDataSourceInfo, new AsyncCallback<Void>() {
+			@Override
+			public void onSuccess(Void result) {
+				Window.alert("Abox File saved to provided location");
+			}
+			
+			@Override
+			public void onFailure(Throwable caught) {
+			}
+		});
+	}
 }
 
 
