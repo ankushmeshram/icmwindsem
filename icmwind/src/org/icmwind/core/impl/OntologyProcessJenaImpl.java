@@ -1,6 +1,8 @@
 package org.icmwind.core.impl;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -9,8 +11,10 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 import org.apache.log4j.Logger;
+import org.apache.log4j.pattern.LogEvent;
 import org.icmwind.util.ICMWindConfig;
 import org.icmwind.util.Normalization;
 
@@ -22,7 +26,10 @@ import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.Literal;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.RDFWriter;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
+import com.hp.hpl.jena.vocabulary.OWL;
+import com.hp.hpl.jena.vocabulary.RDF;
 
 
 
@@ -43,13 +50,15 @@ public class OntologyProcessJenaImpl {
 	private Map<String, String> mapPropertyClassNameToSensorClassName = new HashMap<String, String>();
 	private Map<String, String> mapClassNameToIndividualURI = new HashMap<String, String>();
 	
-	final String tboxUri = "http://www.icmwind.com/WindTurbineOnto.owl";
+	final String tboxUri = ICMWindConfig.getOntologyURI();
 	static String tboxFile = null; //"file:" + ICMWindConfig.getResourceFolderPath() + ICMWindConfig.getCoreOntologyPath();
 	
 	final String NS = tboxUri + "#";
 	
-	Logger logger = Logger.getLogger(OntologyProcessJenaImpl.class); 
+	private Logger logger = Logger.getLogger(OntologyProcessJenaImpl.class); 
 	
+	private static Properties prop = new Properties();
+		
 	private OntologyProcessJenaImpl() {
 	}
 	
@@ -63,54 +72,51 @@ public class OntologyProcessJenaImpl {
 		return instance;
 	}
 	
-	private void populate() {
-		System.out.println("OntologyProcessJenaImpl.populate()");
-		
-		//TODO use   
-		mapPartClassNameToSystemClassName.put("Cooler", "Wind_Turbine");
-		mapPartClassNameToSystemClassName.put("Gearbox", "Wind_Turbine" );
-		mapPartClassNameToSystemClassName.put("Oil_Pump", "Wind_Turbine");
-		mapPartClassNameToSystemClassName.put("Rotor_Hub", "Wind_Turbine");
-		mapPartClassNameToSystemClassName.put("Thermo_Bypass_Valve", "Wind_Turbine");
-
-		//TODO use sensor2system.config to populate mapSensorClassNameToPartsClassName
-		mapSensorClassNameToPartsClassName.put("HYDAC_Lab","Gearbox");
-		mapSensorClassNameToPartsClassName.put("CS_1000","Gearbox");
-		mapSensorClassNameToPartsClassName.put("MCS_1000","Gearbox");
-		mapSensorClassNameToPartsClassName.put("Pressure_Sensor","Gearbox");
-
-		//TODO use property2sensor.config to populate mapPropertyClassNameToSensorClassName
-		mapPropertyClassNameToSensorClassName.put("CS_Drive", "CS_1000" );
-		mapPropertyClassNameToSensorClassName.put("CS_Flow", "CS_1000" );
-		mapPropertyClassNameToSensorClassName.put("CSM_ON", "CS_1000" );
-		mapPropertyClassNameToSensorClassName.put("ISO_14", "CS_1000" );
-		mapPropertyClassNameToSensorClassName.put("ISO_6", "CS_1000" );
-		mapPropertyClassNameToSensorClassName.put("ISO_4", "CS_1000" );
-		mapPropertyClassNameToSensorClassName.put("MCS_Temp", "MCS_1000" );
-		mapPropertyClassNameToSensorClassName.put("MCS_A", "MCS_1000" );
-		mapPropertyClassNameToSensorClassName.put("MCS_B", "MCS_1000" );
-		mapPropertyClassNameToSensorClassName.put("MCS_C", "MCS_1000" );
-		mapPropertyClassNameToSensorClassName.put("MCS_D", "MCS_1000" );
-		mapPropertyClassNameToSensorClassName.put("MCS_E", "MCS_1000" );
-		mapPropertyClassNameToSensorClassName.put("MCS_F", "MCS_1000" );
-		mapPropertyClassNameToSensorClassName.put("P_In", "Pressure_Sensor" );
-		mapPropertyClassNameToSensorClassName.put("HLB_DK", "HYDAC_Lab");
-		mapPropertyClassNameToSensorClassName.put("HLB_S", "HYDAC_Lab");
-		mapPropertyClassNameToSensorClassName.put("HLB_Temp", "HYDAC_Lab");
-
-	}
-	
-	
 	public void init() {
-		System.out.println("OntologyProcessJenaImpl.init()");
-		
+		System.out.println("**OntologyProcessJenaImpl.init() : Initializing ");
+				
 		loadTbox();
 		normalizeClassNames();
 		populate();
 	}
 	
+	private void populate() {
+		System.out.println("**OntologyProcessJenaImpl.populate() : Populating concept name mappings maps.");
+									
+		// adding Sub_System Name - System Name mappings to Map mapPartClassNameToSystemClassName
+		mapPartClassNameToSystemClassName.put("Cooler", "Wind_Turbine");
+		mapPartClassNameToSystemClassName.put("Gearbox", "Wind_Turbine" );
+		mapPartClassNameToSystemClassName.put("Oil_Pump", "Wind_Turbine");
+		mapPartClassNameToSystemClassName.put("Rotor_Hub", "Wind_Turbine");
+		mapPartClassNameToSystemClassName.put("Thermo_Bypass_Valve", "Wind_Turbine");
+		
+		// reading Sensor Name - Sub_System Name mapping from given config file path in ICMWindConfig
+		// adding the mappings to Map mapSensorClassNameToPartsClassName 
+		try {
+			prop.load(new FileInputStream(ICMWindConfig.getResourceFolderPath() + ICMWindConfig.getSen2SysConfigFilePath()));
+			for(Map.Entry<Object, Object> entry : prop.entrySet()) {
+				mapSensorClassNameToPartsClassName.put( (String)entry.getKey(), (String)entry.getValue() );
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+		// reading Property Name - Sensor Name mapping from given config file path in ICMWindConfig
+		// adding the mappings to Map mapPropertyClassNameToSensorClassName
+		try {
+			prop.load(new FileInputStream(ICMWindConfig.getResourceFolderPath() + ICMWindConfig.getProp2SenConfigFilePath()));
+			for(Map.Entry<Object, Object> entry : prop.entrySet()) {
+				mapPropertyClassNameToSensorClassName.put( (String)entry.getKey(), (String)entry.getValue() );
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+		
 	private void loadTbox() {
-		System.out.println("OntologyProcessJenaImpl.loadTbox()");
+		System.out.println("**OntologyProcessJenaImpl.loadTbox() : Loading TBox.");
 				
 		tboxModel.getDocumentManager().addAltEntry(tboxUri, tboxFile);
 		tboxModel.read(tboxUri);
@@ -119,6 +125,8 @@ public class OntologyProcessJenaImpl {
 		while(extIt.hasNext()) {
 			String classUri = extIt.next().getURI();
 			String className = classUri.substring( classUri.indexOf("#") + 1 );
+			
+			//System.out.println(classUri);
 			
 			listClassNames.add(className);
 			mapClassNameToURI.put(className, classUri);
@@ -137,6 +145,8 @@ public class OntologyProcessJenaImpl {
 //	}
 	
 	public void createAbox() {
+		System.out.println("**OntologyProcessJenaImpl.createAbox() : Creating new ABox.");
+		
 		if(aboxModel != null)
 			aboxModel.reset();
 //			aboxModel.close();
@@ -147,13 +157,18 @@ public class OntologyProcessJenaImpl {
 	}
 	
 	public boolean saveAboxToFile(String aboxUri, String aboxFile) {
+		System.out.println("**OntologyProcessJenaImpl.saveAboxToFile() : Saving ABox.");
+		
 		if(aboxModel == null) {
 			return false;
 		} else{
 			PrintWriter writer;
+//			RDFWriter writer = aboxModel.getWriter("RDF/XML");
+//			writer.setProperty("xmlbase", ICMWindConfig.getOntologyURI());
 			try {
 				writer = new PrintWriter(aboxFile);
-				aboxModel.write(writer, "RDF/XML", aboxUri);
+//				aboxModel.write(writer, "RDF/XML", aboxUri);
+				aboxModel.write(writer, "RDF/XML-ABBREV", null);
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 				return false;
@@ -234,8 +249,13 @@ public class OntologyProcessJenaImpl {
 		return tempOntClass;
 	}
 	
+	
+	
 	public Individual createInstance(OntClass clas, String instanceUri) {
-		return aboxModel.createIndividual(instanceUri, clas);
+		Individual individual = aboxModel.createIndividual(instanceUri, clas);
+		individual.addProperty(RDF.type, OWL.NS + "NamedIndividual");
+		return individual;
+
 	}
 	
 	public Individual getInstanceForURI(String instanceUri) {
@@ -249,10 +269,19 @@ public class OntologyProcessJenaImpl {
 		return tboxModel.getObjectProperty(objectPropertyUri);
 	}
 	
+	public ObjectProperty createObjectPropertyForURI(String objectPropertyUri) {
+		return aboxModel.createObjectProperty(objectPropertyUri);
+	}
+	
 	public DatatypeProperty getDataPropertyForURI(String dataPropertyUri) {
 //		return aboxModel.getDatatypeProperty(dataPropertyUri);
 		return tboxModel.getDatatypeProperty(dataPropertyUri);
 	}
+	
+	public DatatypeProperty createDataPropertyForURI(String dataPropertyUri) {
+		return aboxModel.createDatatypeProperty(dataPropertyUri);
+	}
+	
 	
 	public Literal createTimeLiteral(Date d) {
 		Calendar cal = GregorianCalendar.getInstance();

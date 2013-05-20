@@ -5,6 +5,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="/icmwindapp/war/WEB-INF/lib/javacsv.jar"/>
 	<classpathentry kind="lib" path="/icmwindapp/war/WEB-INF/lib/simmetrics_jar_v1_6_2_d07_02_07.jar"/>
+	<classpathentry kind="lib" path="libs/owlapi-distribution-3.4.4-bin.jar"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.USER_LIBRARY/JenaLibs"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

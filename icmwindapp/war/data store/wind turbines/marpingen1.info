@@ -17,7 +17,11 @@ Cooler = cool_marpI
 CS\ 1000 = cs_marpI
 MCS\ 1000 = mcs_marpI
 HYDAC\ Lab = hlb_marpI
-Pressure\ Sensor = p_marpI
-Differential\ Pressure\ Sensor = dps_marpI
-
+Pulsotronic\ 9000 = speed_marpI
+VL\ GW = vl_marpI
+HDA\ In = hda_in_marpI
+HDA\ Saug = saug_marpI
+ETS\ Out = ets_out_marpI
+ETS\ In = ets_in_marpI
+TOSS\ Temperature\ Sensor = toss_marpI
   

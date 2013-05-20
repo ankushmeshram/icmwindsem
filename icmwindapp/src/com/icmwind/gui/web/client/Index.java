@@ -15,6 +15,7 @@
 package com.icmwind.gui.web.client;
 
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.dev.asm.tree.IntInsnNode;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.History;
@@ -37,7 +38,9 @@ import com.icmwind.gui.web.client.components.Report;
 import com.icmwind.gui.web.client.components.Settings;
 import com.icmwind.gui.web.client.components.T;
 import com.icmwind.gui.web.client.components.TestSelector;
+import com.icmwind.gui.web.client.services.GlobalInitializerService;
 import com.icmwind.gui.web.client.services.RDFEncoderService.RDFEncoderServiceUtil;
+import com.icmwind.gui.web.server.services.GlobalInitializerServiceImpl;
 
 
 /**
@@ -47,29 +50,15 @@ public class Index implements EntryPoint {
 	
 	public void onModuleLoad() {
 		
-		
+		// Initialise Everything
+		initialise();
+
 		/*
 		RootPanel.get("contentContainer").add(new Home());
 		RootPanel.get("navBarContainer").add(new Navigation());
 		RootPanel.get("footerContainer").add(new Footer());
 		*/
 		
-		// RemoteService Call to initialize RDF Encoding
-		// TODO ADD this after Wind Turbine
-///* TESTING - REMOVE these		
-		RDFEncoderServiceUtil.getInstance().initRDFEncoder(new AsyncCallback<String>() {
-			
-			@Override
-			public void onSuccess(String result) {
-				Window.alert((String)result);
-			}
-			
-			@Override
-			public void onFailure(Throwable caught) {
-				Window.alert("Failure");
-			}
-		});
-//*/
 		RootPanel.get("contentContainer").add(new D());
 		/*
 		// For History Tokens
@@ -112,6 +101,24 @@ public class Index implements EntryPoint {
 		
 		History.fireCurrentHistoryState();
 		*/
+	}
+	
+	private void initialise() {
+		System.out.println("**Index.initialise() : Service call to Initialise GI.");
+		
+		// RemoteService Call to initialize RDF Encoding
+		GlobalInitializerService.Util.getInstance().initGlobalInitializer(new AsyncCallback<Void>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Error intialising GI.");			
+			}
+
+			@Override
+			public void onSuccess(Void result) {
+				Window.alert("GI initialised.");
+			}
+		});
 	}
 
 

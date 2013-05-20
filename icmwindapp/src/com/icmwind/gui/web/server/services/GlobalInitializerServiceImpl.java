@@ -14,15 +14,14 @@
  *******************************************************************************/
 package com.icmwind.gui.web.server.services;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.icmwind.gui.web.client.helpers.GlobalInitializer;
 import com.icmwind.gui.web.client.helpers.WindTurbine;
 import com.icmwind.gui.web.client.services.GlobalInitializerService;
-import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 public class GlobalInitializerServiceImpl extends RemoteServiceServlet implements GlobalInitializerService {
 
@@ -38,7 +37,7 @@ public class GlobalInitializerServiceImpl extends RemoteServiceServlet implement
 
 	@Override
 	public Map<String, String> getInfoFor(String wind_turbine) {
-		System.out.println("GlobalInitializerServiceImpl.getInfoFor()");
+		System.out.println("**GlobalInitializerServiceImpl.getInfoFor(name) : Service call to get info given WT.");
 		
 		WindTurbine WT = new WindTurbine();
 		WT.readWindTurbineInfo(wind_turbine);
@@ -49,5 +48,14 @@ public class GlobalInitializerServiceImpl extends RemoteServiceServlet implement
 			return WT.getWindTurbineInfo();
 		}
 	}
+
+	@Override
+	public void initGlobalInitializer() {
+		System.out.println("**GlobalInitializerServiceImpl.initGlobalInitializer() : Initialize GI internally others too.");
+		
+		GlobalInitializer.get().init();
+	}
+	
+	
 
 }

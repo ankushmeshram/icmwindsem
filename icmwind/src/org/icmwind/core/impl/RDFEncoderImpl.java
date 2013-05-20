@@ -11,9 +11,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.sound.midi.SysexMessage;
+
 import org.apache.log4j.Logger;
 import org.icmwind.core.FileProcess;
-import org.icmwind.core.RDFEncoder;
 import org.icmwind.util.ICMWindConfig;
 import org.icmwind.util.Normalization;
 import org.icmwind.util.SimilarityUtility;
@@ -28,7 +29,7 @@ import com.hp.hpl.jena.rdf.model.Literal;
 
 
 
-public class RDFEncoderImpl implements RDFEncoder {
+public class RDFEncoderImpl {
 
 	// Single instance for RDFENcoder Interface
 	private static RDFEncoderImpl INSTANCE = new RDFEncoderImpl();
@@ -40,8 +41,8 @@ public class RDFEncoderImpl implements RDFEncoder {
 	
 	// Lists to store Class names and normalized Class names too
 	@SuppressWarnings("unused")
-	private static List<String> classeslist; //TODO Check this.
-	private static List<String> normclasseslist;
+	private static List<String> ontoclasseslist; //TODO Check this.
+	private static List<String> normontoclasseslist;
 	
 	// Lists to store Header names and normalized Header names too
 	private static List<String> headerslist;
@@ -55,7 +56,7 @@ public class RDFEncoderImpl implements RDFEncoder {
 	private static Map<String, List<String>> matchOrSuggestMap = new HashMap<String, List<String>>();
 	
 	// Map to store exact mapping of Header Name to Class Name
-	private static Map<String, String> headerToClassNameMap = new HashMap<String, String>();
+	private static Map<String, String> headerToOntoClassNameMap = new HashMap<String, String>();
 	
 	
 	// Boolean to check whether file process started successfully and mapping is completed or not
@@ -68,7 +69,7 @@ public class RDFEncoderImpl implements RDFEncoder {
 	private static String storeEncodedDataAt;
 	
 	// URI of core Ontology
-	private static final String coreOntologyIri = "http://www.icmwind.com/WindTurbineOnto.owl";
+	private static final String coreOntologyIri = ICMWindConfig.getOntologyURI();
 	
 	// Namespace of ontology
 	private static final String NS = coreOntologyIri + "#";
@@ -77,21 +78,22 @@ public class RDFEncoderImpl implements RDFEncoder {
 	
 	Logger logger = Logger.getLogger(RDFEncoderImpl.class);
 	
+	private double triple = 0;
+	
 //	private static AbstractStringMetric similaritymetric = new CosineSimilarity();
 	
 	private RDFEncoderImpl()
-	{ 
+	{
+		System.out.println("**RDFEncoderImpl() : RDFEncoder Instance");
 		// Get resource paths from the ICMWindConfig.config 
 		ICMWindConfig.init();
 
 	}
 	
 	public static RDFEncoderImpl getInstance() {
-		System.out.println("RDFEncoderImpl.getInstance()");
 		return INSTANCE;
 	}
 	
-	@Override
 	public void initOntologyProcess()
 	{
 		// Open  core Ontology from from Core Ontology resource path 
@@ -100,10 +102,9 @@ public class RDFEncoderImpl implements RDFEncoder {
 		
 		// get List of normalized class names of Core Ontology
 //		normclasseslist = ontoproc.getNormClassNamesList();
-		normclasseslist = op.getNormClassNamesList();
+		normontoclasseslist = op.getNormClassNamesList();
 	}
 
-	@Override
 	public void initFileProcess(String filepath)
 	{
 		// Open file from the passed file path
@@ -121,7 +122,7 @@ public class RDFEncoderImpl implements RDFEncoder {
 //		Utility.setSimilarityMetric(similaritymetric);
 		for(String normheader : normheaderslist) {
 			List<String> templist = new ArrayList<String>(); 
-			for(String normclass : SimilarityUtility.getSimilarTextList(normheader, normclasseslist)) {
+			for(String normclass : SimilarityUtility.getSimilarTextList(normheader, normontoclasseslist)) {
 //				templist.add(ontoproc.getClassNameFor(normclass));
 				templist.add(op.getClassNameFor(normclass));
 			}
@@ -133,7 +134,6 @@ public class RDFEncoderImpl implements RDFEncoder {
 	
 	
 	// Get MatchOrSuggest Map
-	@Override
 	public Map<String, List<String>> getMoSMap() {
 		if(isInitialised)
 			return matchOrSuggestMap;
@@ -143,14 +143,12 @@ public class RDFEncoderImpl implements RDFEncoder {
 
 	
 	// Set HeaderToClass Map
-	@Override
 	public boolean setHeaderToClassNamesMap(Map<String, String> head2ClassNameMap) {
-		headerToClassNameMap = head2ClassNameMap;
+		headerToOntoClassNameMap = head2ClassNameMap;
 		return true;
 	}
 	
 	// Set the location to store the encoded files
-	@Override
 	public void setEncodeStorage(String folderPath) {
 		File encodeStorageFolder = new File(folderPath);
 
@@ -163,7 +161,6 @@ public class RDFEncoderImpl implements RDFEncoder {
 		existsStorageFolder = true;
 	}
 
-	@Override
 	public boolean encode() {
 		/*
 		 * createTBoxInstancesAndRelations();
@@ -246,6 +243,10 @@ public class RDFEncoderImpl implements RDFEncoder {
 		//counter for records read
 		int i = 1;
 */		
+		
+		TimeManagement.get().startTime();
+		
+		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
 		
 		Calendar c = Calendar.getInstance();
@@ -278,18 +279,18 @@ public class RDFEncoderImpl implements RDFEncoder {
 						reset = false;
 						beginDate = fileproc.readRecord("Zeit").substring(0, 10);
 //						abox =
-//						op.createAbox();
+						op.createAbox();
 						System.out.println("ABox Created.");
 					}
 ///*
 //					OntClass tempObservationClass = op.getClass("Observation");
-					OntClass tempObservationClass = op.getClassForURI(op.getNS() + "Observation");
+					OntClass tempObservationClass = op.getClassForURI(op.getNS() + "Observation"); triple++;
 //					OntClass tempObservationClass = abox.getOntClass(op.getNS() + "Observation");
-					Individual tempObservationInstance = op.createInstance(tempObservationClass, op.getNS() + "Observation_" + rowsRead);
+					Individual tempObservationInstance = op.createInstance(tempObservationClass, op.getNS() + "Observation_" + rowsRead); triple++;
 					
 					
 					// Read headers acc to final headerToClassNameMap
-					for(Map.Entry<String, String> entry :  headerToClassNameMap.entrySet()) {
+					for(Map.Entry<String, String> entry :  headerToOntoClassNameMap.entrySet()) {
 						
 						String headerName = entry.getKey();
 						String propertyName = entry.getValue();
@@ -300,38 +301,48 @@ public class RDFEncoderImpl implements RDFEncoder {
 						if(checkSensorAvailabilityFor(propertyName)) {
 							
 							// Get mapped Class for Header and create its instance 
-							OntClass tempClass = op.getClassForURI(op.getClassURIFor(propertyName));
-							Individual tempInstance = op.createInstance(tempClass, op.getNS() + propertyName + "_" + rowsRead);
+							OntClass tempClass = op.getClassForURI(op.getClassURIFor(propertyName)); triple++;
+							
+							Individual tempInstance = op.createInstance(tempClass, op.getNS() + propertyName + "_" + rowsRead); triple++;
+							
+							// Define Cooler_Temperature_Difference and its hasObservation Observation
+							Individual tempCTDInstance = op.createInstance(op.getClass("Cooler_Temperature_Difference"), op.getNS() + "CTD_" + rowsRead); triple++;
 							
 							if(headerName.equals("Zeit")) {
 								
+								System.out.println("This is ZEIt.......................................................................................");
+								
 								// Time--observedTime--""^^xsd:dateTime
-								DatatypeProperty observedTimeDataProperty = op.getDataPropertyForURI(op.getNS() + "observedTime");
-								Literal tempTimeLiteral = op.createTimeLiteral(temp);
-								tempInstance.addProperty(observedTimeDataProperty, tempTimeLiteral);
+								DatatypeProperty observedTimeDataProperty = op.createDataPropertyForURI(op.getNS() + "observedTime"); triple++; //op.getDataPropertyForURI(op.getNS() + "observedTime");
+								Literal tempTimeLiteral = op.createTimeLiteral(temp); triple++;
+								tempInstance.addProperty(observedTimeDataProperty, tempTimeLiteral);triple++;
 								
 								// Observation--hasSamplingTime--Time
-								ObjectProperty hasSamplingTimeObjectProperty = op.getObjectPropertyForURI(op.getNS() + "hasSamplingTime");
-								tempObservationInstance.addProperty(hasSamplingTimeObjectProperty, tempInstance);
+								ObjectProperty hasSamplingTimeObjectProperty = op.createObjectPropertyForURI(op.getNS() + "hasSamplingTime"); triple++; //op.getObjectPropertyForURI(op.getNS() + "hasSamplingTime");
+								tempObservationInstance.addProperty(hasSamplingTimeObjectProperty, tempInstance); triple++;
 							} else {
 															
 								// Property--hasValue--""^^xsd:Float
-								DatatypeProperty hasValueDataProperty = op.getDataPropertyForURI(op.getNS() + "hasValue");
+								DatatypeProperty hasValueDataProperty = op.createDataPropertyForURI(op.getNS() + "hasValue");  triple++; //op.getDataPropertyForURI(op.getNS() + "hasValue");
 								String value = fileproc.readRecord(headerName);
 								System.out.println("record value : " + value);
-								Literal tempValueLiteral = op.createValueLiteral(Float.parseFloat(value));
-								tempInstance.addProperty(hasValueDataProperty, tempValueLiteral);
+								Literal tempValueLiteral = op.createValueLiteral(Float.parseFloat(value)); triple++;
+								System.out.println("Property - hasValue : " + tempInstance.getURI() + " -" + hasValueDataProperty.getURI() + "-" + tempValueLiteral.getFloat());
+								tempInstance.addProperty(hasValueDataProperty, tempValueLiteral); triple++;
 								
 								// Property--hasObservation--Observation
-								ObjectProperty hasObservationObjectProperty = op.getObjectPropertyForURI(op.getNS() + "hasObservation");
-								tempInstance.addProperty(hasObservationObjectProperty, tempObservationInstance);
+								ObjectProperty hasObservationObjectProperty = op.createObjectPropertyForURI(op.getNS() + "hasObservation"); triple++; //op.getObjectPropertyForURI(op.getNS() + "hasObservation");
+								tempInstance.addProperty(hasObservationObjectProperty, tempObservationInstance); triple++;
 							
+								// Cooler_Temperature_Difference--hasObservation--Observation
+								tempCTDInstance.addProperty(hasObservationObjectProperty, tempObservationInstance); triple++;
+																
 								// Sensor--measuresProperty--Property
 								String sensorClassName = op.getPropertyClassNameToSensorClassNameMap().get(propertyName);
 								String sensorInstanceURI = op.getTBoxClassNameToIndividualURIMap().get(sensorClassName);
-								Individual tempSensorInstance = op.getInstanceForURI(sensorInstanceURI);
-								ObjectProperty measuresPropertyObjectProperty = op.getObjectPropertyForURI(op.getNS() + "measuresProperty");
-								tempSensorInstance.addProperty(measuresPropertyObjectProperty, tempInstance);
+								Individual tempSensorInstance = op.createInstance(op.getClass(sensorClassName), sensorInstanceURI); triple++; //op.getInstanceForURI(sensorInstanceURI);
+								ObjectProperty measuresPropertyObjectProperty = op.createObjectPropertyForURI(op.getNS() + "measuresProperty"); triple++; //op.getObjectPropertyForURI(op.getNS() + "measuresProperty");
+								tempSensorInstance.addProperty(measuresPropertyObjectProperty, tempInstance); triple++;
 							}
 						} // close checkSensorAvailabilityFor()
 					}// finish reading a row
@@ -346,13 +357,17 @@ public class RDFEncoderImpl implements RDFEncoder {
 
 					String timestamp = beginDate + "-" + endDate; 
 					
-					String aboxUri = "http://www.icmwind.com/instances/WTO" + "-" + timestamp + ".owl";
-					String aboxFile = DATASTORE_FOLDER + "ontologies/wto-abox-" + timestamp + ".owl";
+					String aboxUri = "http://www.icmwind.com/instances/IWO" + "-" + timestamp + ".owl";
+					String aboxFile = DATASTORE_FOLDER + "ontologies/iwo-abox-" + timestamp + ".owl";
+					
+					System.out.println("** Saving file please wait......");
 					
 					if(op.saveAboxToFile(aboxUri, aboxFile))
 						System.out.println("File saved at " + aboxFile);
 					else
 						System.out.println("Error in saving file " + aboxFile);
+					
+					System.out.println("** End of Records.");
 				}
 				
 				
@@ -362,15 +377,17 @@ public class RDFEncoderImpl implements RDFEncoder {
 
 					String timestamp = beginDate + "-" + endDate; 
 					
-					String aboxUri = "http://www.icmwind.com/instances/WTO" + "-" + timestamp + ".owl";
-					String aboxFile = DATASTORE_FOLDER + "ontologies/wto-abox-" + timestamp + ".owl";
+					String aboxUri = "http://www.icmwind.com/instances/IWO" + "-" + timestamp + ".owl";
+					String aboxFile = DATASTORE_FOLDER + "ontologies/iwo-abox-" + timestamp + ".owl";
+					
+					System.out.println("** Saving file please wait......");
 					
 					if(op.saveAboxToFile(aboxUri, aboxFile))
 						System.out.println("File saved at " + aboxFile);
 					else
 						System.out.println("Error in saving file " + aboxFile);
 					
-					
+					System.out.println("** More records...");
 					reset = true;
 				}
 					
@@ -465,13 +482,15 @@ public class RDFEncoderImpl implements RDFEncoder {
 		} // all the rows have been read
 	
 		fileproc.closeFile();
-		//TODO Add FileName to store ABox
-//		ontoproc.saveOntologyRDFXML(abox, aboxFile.getPath());
+		
+		// TODO Get AboxURI-FileLoc Map 
+		System.out.println("@@@ABox URI - File Path : " + op.getABoxURIToFilePathMap().toString());
+		System.out.println("Totals number of assertions for the seleceted time period : " + triple);
+		System.out.println("Total time taken for RDFication : " + TimeManagement.get().elapsedTime() / 1000000 + " millis" );
 		
 		return true;
 	}
 
-	@Override
 	public Map<String, String> getFileSummary() {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
@@ -484,35 +503,34 @@ public class RDFEncoderImpl implements RDFEncoder {
 		return map;
 	}
 
-	@Override
 	public void setAnalysisPeriod(Date beginAnalysisPeriod, Date endAnalysisPeriod) {
 		RDFEncoderImpl.startAnalysisPeriod = beginAnalysisPeriod;
 		RDFEncoderImpl.endAnalysisPeriod = endAnalysisPeriod;
 	}
 
-	@Override
 	public void setDataFileSourceInfo(Map<String, String> infoMap) {
-		System.out.println("RDFEncoderImpl.setFileSourceInfo(infoMap)");
+		System.out.println("**RDFEncoderImpl.setFileSourceInfo(info_map) : info_map contains info for creating Conceptual ABox.");
 		
 		// Create ABox Model
 		op.createAbox();
-		String aboxUri = "http://www.icmwind.com/instance/wto_abox.owl";
-		String aboxFile = "C:/Users/anme05/Desktop/wto_abox.owl";
+		
+		String aboxUri = "http://www.icmwind.com/instance/iwo_abox.owl";
+		String aboxFile = "C:/Users/anme05/git/icmwindsem/icmwindapp/war/data store/ontologies/iwo_abox.owl";
 		
 		Normalization normalization = new Normalization();
 		
 		// map to store classname-individual mappings
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, String> mapClassToIndividualName = new HashMap<String, String>();
 		
 		// convert key set to key list, normalise key list, get normKeyMap
 		List<String> normKeyList = normalization.normalizeList(new ArrayList<>(infoMap.keySet()));
 		Map<String,String> mapNormKeyToKey = normalization.getNormalizationMap();
 				
 		// get normalised class names list i.e. normclasseslist
-		System.out.println("\n" + normclasseslist.toString());
+		System.out.println("Normalized Class Names list : " + normontoclasseslist.toString());
 				
 		// get similarity of normCNL, normKL as mapResult
-		Map<String, List<String>> simMap = SimilarityUtility.getSimilarityBetweenLists(normKeyList, normclasseslist);
+		Map<String, List<String>> simMap = SimilarityUtility.getSimilarityBetweenLists(normKeyList, normontoclasseslist);
 		
 		for(Map.Entry<String, List<String>> entry : simMap.entrySet()) {
 			
@@ -520,23 +538,25 @@ public class RDFEncoderImpl implements RDFEncoder {
 				// create Wind Turbine instance from the value of the key
 				String tempClassName = "Wind_Turbine";
 				// Get OntClass from URI
-				String tempClassURI = op.getClassURIFor(tempClassName);
-				OntClass tempClass = op.getClassForURI(tempClassURI);
+//				String tempClassURI = op.getClassURIFor(tempClassName);
+//				OntClass tempClass = op.getClassForURI(tempClassURI);
+				OntClass tempClass = op.getClass(tempClassName);
+				triple++;
 				
 				// Get OWL Class from class name
 //				System.out.println("^ " + ontoproc.getClassURIFor(tempClassName).toStringID());
 				
-				String tempKeyName = mapNormKeyToKey.get(entry.getKey());
+				String tempKeyName = mapNormKeyToKey.get(entry.getKey().trim());
 				String tempInstncName = infoMap.get(tempKeyName);
-				String tempInstncURI = NS + tempInstncName;
+				String tempInstncURI = NS + tempInstncName.trim();
 				// Individual URI
 				System.out.println("@ " + tempInstncURI);
 				
 				// add to ClassName-IndividualURI map
-				map.put(tempClassName, tempInstncURI);
+				mapClassToIndividualName.put(tempClassName, tempInstncURI);
 				
 				// Create OWL Individual using OWL Class & Individual URI
-				op.createInstance(tempClass, tempInstncURI);
+				op.createInstance(tempClass, tempInstncURI); triple++;
 			}
 			
 			// if no matching found
@@ -548,8 +568,11 @@ public class RDFEncoderImpl implements RDFEncoder {
 //					String tempClassName =  ontoproc.getClassNameFor(entry.getValue().get(0));
 					String tempClassName =  op.getClassNameFor(entry.getValue().get(0));
 					// Get OntClass from URI
-					String tempClassURI = op.getClassURIFor(tempClassName);
-					OntClass tempClass = op.getClassForURI(tempClassURI);
+//					String tempClassURI = op.getClassURIFor(tempClassName);
+//					OntClass tempClass = op.getClassForURI(tempClassURI);
+					OntClass tempClass = op.getClass(tempClassName);
+					
+					triple++;
 					
 					// Get OWL Class from class name
 //					System.out.println("^ " + ontoproc.getClassURIFor(tempClassName).toStringID());
@@ -562,11 +585,12 @@ public class RDFEncoderImpl implements RDFEncoder {
 					System.out.println("@ " + tempInstncURI);
 					
 					// add to ClassName-IndividualURI map
-					map.put(tempClassName, tempInstncURI);
+					mapClassToIndividualName.put(tempClassName, tempInstncURI);
 					
 					// Create OWL Individual using OWL Class & Individual URI
-					op.createInstance(tempClass, tempInstncURI);
-				}
+					op.createInstance(tempClass, tempInstncURI); triple++;
+				} 
+				
 			}
 		}
 		
@@ -574,19 +598,19 @@ public class RDFEncoderImpl implements RDFEncoder {
 		
 		// set the classname-inidividual mappings
 //		ontoproc.setClassNameToIndividualURIMap(map);
-		op.setTBoxClassNameToIndividualURIMap(map);
+		op.setTBoxClassNameToIndividualURIMap(mapClassToIndividualName);
 		
 		// start "partOf" relations creation
 		isPartOfRelationEncoding();
 		
 		// start "isSensorOf" relations creation
 		isSensorOfRelationEncoding();
-		
+				
 		op.saveAboxToFile(aboxUri, aboxFile);
 	}
 
-	@Override
 	public void isPartOfRelationEncoding() {
+		System.out.println("**RDFEncoderImpl.isPartOfRelationEncoding() : encode SubSystem-isPartOf-System relation");
 		
 //		for(Map.Entry<String, String> entry : ontoproc.getPartClassNameToSystemClassNameMap().entrySet()) {
 //			String tempSubSystemClassURI = ontoproc.getClassNameToIndividualURIMap().get(entry.getKey());
@@ -598,24 +622,38 @@ public class RDFEncoderImpl implements RDFEncoder {
 		
 		for(Map.Entry<String, String> entry : op.getPartClassNameToSystemClassNameMap().entrySet()) {
 			System.out.println("Part - " + entry.getKey().toString() + " : System - " + entry.getValue().toString());
-			
-			String tempSubSystemInstanceURI = op.getTBoxClassNameToIndividualURIMap().get(entry.getKey());
-			String tempSystemInstanceURI = op.getTBoxClassNameToIndividualURIMap().get(entry.getValue());
-			String isPartOfPropertyURI = NS + "isPartOf";
-			
-			// use these URIs for assertions :	(tempSubSystemClassURI,isPartOfPropertyURI,tempSystemClassURI)
-			Individual subSysInstance = op.getInstanceForURI(tempSubSystemInstanceURI);
-			Individual sysInstance = op.getInstanceForURI(tempSystemInstanceURI);
-			ObjectProperty isPartOfObjectProperty = op.getObjectPropertyForURI(isPartOfPropertyURI);
-			
-			subSysInstance.addProperty(isPartOfObjectProperty, sysInstance);
-			
+//			
+//			System.out.println( "SubSystem class : " + op.getClass(entry.getKey().toString()).getURI());
+//			System.out.println( "System class : " + op.getClass(entry.getValue().toString()).getURI());
+
+				String tempSubSystemInstanceURI = op.getTBoxClassNameToIndividualURIMap().get(entry.getKey().trim());
+				String tempSystemInstanceURI = op.getTBoxClassNameToIndividualURIMap().get(entry.getValue().trim());
+				String isPartOfPropertyURI = NS + "isPartOf";
+				
+				// Check whether there exists Instance for it in Map getTBoxClassNameToIndividualURIMap().
+				// if not, alert user about it : else, encode
+				if(tempSubSystemInstanceURI != null && tempSystemInstanceURI != null) {
+					
+					// use these URIs for assertions :	(tempSubSystemClassURI,isPartOfPropertyURI,tempSystemClassURI)
+					Individual subSysInstance = op.createInstance(op.getClass(entry.getKey().toString().trim()), tempSubSystemInstanceURI); triple++; // op.getInstanceForURI(tempSubSystemInstanceURI);
+					Individual sysInstance = op.createInstance(op.getClass(entry.getValue().toString().trim()), tempSystemInstanceURI); triple++;
+					ObjectProperty isPartOfObjectProperty = op.createObjectPropertyForURI(isPartOfPropertyURI); triple++;  //op.getObjectPropertyForURI(isPartOfPropertyURI);
+				
+					System.out.println(subSysInstance.getURI() + "--" +sysInstance );
+					
+					subSysInstance.addProperty(isPartOfObjectProperty, sysInstance); triple++;
+					
+				} else {
+					if(tempSubSystemInstanceURI == null)
+						System.out.println("**ERROR : Info file doesn't have information about Sub System - " + entry.getKey().toString());
+					else
+						System.out.println("**ERROR : Info file doesn't have information about System - " + entry.getValue().toString());
+				}
 		}
 	}
 
-	@Override
 	public void isSensorOfRelationEncoding() {
-		
+		System.out.println("**RDFEncoderImpl.isPartOfRelationEncoding() : encode Sensor-isSensorOf-Sub_System relation");
 //		for(Map.Entry<String, String> entry : ontoproc.getSensorClassNameToPartClassNameMap().entrySet()) {
 //			String tempSubSystemClassURI = ontoproc.getClassNameToIndividualURIMap().get(entry.getKey());
 //			String tempSystemClassURI = ontoproc.getClassNameToIndividualURIMap().get(entry.getValue());
@@ -624,48 +662,40 @@ public class RDFEncoderImpl implements RDFEncoder {
 //			// use these URIs for assertions :	(tempSubSystemClassURI,isSensorOfPropertyURI,tempSystemClassURI)
 //		}
 		for(Map.Entry<String, String> entry : op.getSensorClassNameToPartClassNameMap().entrySet()) {
-			System.out.println("Sensor - " + entry.getKey().toString() + " : Part - " + entry.getValue().toString());
-			
-			String tempSensorInstanceURI = op.getTBoxClassNameToIndividualURIMap().get(entry.getKey());
-			String tempPartInstanceURI = op.getTBoxClassNameToIndividualURIMap().get(entry.getValue());
-			String isSensorOfPropertyURI = NS + "isSensorOf";
-			
-			// use these URIs for assertions :	(tempSubSystemClassURI,isSensorOfPropertyURI,tempSystemClassURI)
-			Individual sensInstance = op.getInstanceForURI(tempSensorInstanceURI);
-			Individual partInstance = op.getInstanceForURI(tempPartInstanceURI);
-			ObjectProperty isSensorOfObjectProperty = op.getObjectPropertyForURI(isSensorOfPropertyURI);
-			
-			sensInstance.addProperty(isSensorOfObjectProperty, partInstance);
-			
+				System.out.println("Sensor - " + entry.getKey().toString() + " : Part - " + entry.getValue().toString());
+				
+				String tempSensorInstanceURI = op.getTBoxClassNameToIndividualURIMap().get(entry.getKey());
+				String tempPartInstanceURI = op.getTBoxClassNameToIndividualURIMap().get(entry.getValue());
+				String isSensorOfPropertyURI = NS + "isSensorOf";
+				
+				// Check whether there exists Instance for it in Map getTBoxClassNameToIndividualURIMap().
+				// if not, alert user about it : else, encode
+				if(tempSensorInstanceURI != null && tempPartInstanceURI != null) {
+					
+					// use these URIs for assertions :	(tempSubSystemClassURI,isSensorOfPropertyURI,tempSystemClassURI)
+					Individual sensInstance = op.createInstance(op.getClass(entry.getKey().toString()), tempSensorInstanceURI); triple++; // op.getInstanceForURI(tempSensorInstanceURI);
+					Individual partInstance = op.createInstance(op.getClass(entry.getValue().toString()), tempPartInstanceURI); triple++; // op.getInstanceForURI(tempPartInstanceURI);
+					ObjectProperty isSensorOfObjectProperty = op.createObjectPropertyForURI(isSensorOfPropertyURI); triple++; // op.getObjectPropertyForURI(isSensorOfPropertyURI);
+					
+					sensInstance.addProperty(isSensorOfObjectProperty, partInstance); triple++;
+					
+				} else {
+					if(tempSensorInstanceURI == null)
+						System.out.println("**ERROR : Info file doesn't have information about Sensor - " + entry.getKey().toString());
+					else
+						System.out.println("**ERROR : Info file doesn't have information about Sub System - " + entry.getValue().toString());
+				}
 		}
-		
-	}
-
-	@Override
-	public void propertyMeasuredByRelationEncoding() {
-
-//		for(Map.Entry<String, String> entry : ontoproc.getPropertyClassNameToSensorClassNameMap().entrySet()) {
-//			String tempSubSystemClassURI = ontoproc.getClassNameToIndividualURIMap().get(entry.getKey());
-//			String tempSystemClassURI = ontoproc.getClassNameToIndividualURIMap().get(entry.getValue());
-//			String propertyMeasuredByPropertyURI = "";
-//			
-//			// use these URIs for assertions :	(tempSubSystemClassURI,propertyMeasuredByPropertyURI,tempSystemClassURI)
-//		}
-		for(Map.Entry<String, String> entry : op.getPropertyClassNameToSensorClassNameMap().entrySet()) {
-			String tempSubSystemClassURI = op.getTBoxClassNameToIndividualURIMap().get(entry.getKey());
-			String tempSystemClassURI = op.getTBoxClassNameToIndividualURIMap().get(entry.getValue());
-			String propertyMeasuredByPropertyURI = "";
-			
-			// use these URIs for assertions :	(tempSubSystemClassURI,propertyMeasuredByPropertyURI,tempSystemClassURI)
-		}
-		
 	}
 	
 	private boolean checkSensorAvailabilityFor(String propertyName) {
+		if(propertyName.equals("Time"))
+			return true;
+		
 		String measuringSensor = op.getPropertyClassNameToSensorClassNameMap().get(propertyName);
 		String installedSensor = op.getTBoxClassNameToIndividualURIMap().get(measuringSensor);
 		
-		if(installedSensor == null) {
+		if(installedSensor == null ) {
 			System.out.println("Sensor Information not available for property" + propertyName);
 			return false;
 		}
@@ -674,10 +704,79 @@ public class RDFEncoderImpl implements RDFEncoder {
 		}
 	}
 
+	// TODO REMOVE because it is UNUSED
+//	public void propertyMeasuredByRelationEncoding() {
+//		System.out.println("**RDFEncoderImpl.isPartOfRelationEncoding() : encode Property-propertyMeasuredBy-Sensor relation");
+//
+////		for(Map.Entry<String, String> entry : ontoproc.getPropertyClassNameToSensorClassNameMap().entrySet()) {
+////			String tempSubSystemClassURI = ontoproc.getClassNameToIndividualURIMap().get(entry.getKey());
+////			String tempSystemClassURI = ontoproc.getClassNameToIndividualURIMap().get(entry.getValue());
+////			String propertyMeasuredByPropertyURI = "";
+////			
+////			// use these URIs for assertions :	(tempSubSystemClassURI,propertyMeasuredByPropertyURI,tempSystemClassURI)
+////		}
+//		for(Map.Entry<String, String> entry : op.getPropertyClassNameToSensorClassNameMap().entrySet()) {
+//			String tempPropertyInstanceURI = op.getTBoxClassNameToIndividualURIMap().get(entry.getKey());
+//			String tempSensorInstanceURI = op.getTBoxClassNameToIndividualURIMap().get(entry.getValue());
+//			String propertyMeasuredByPropertyURI = NS + "propertyMeasuredBy";
+//			
+//			// Check whether there exists Instance for it in Map getTBoxClassNameToIndividualURIMap().
+//			// if not, alert user about it : else, encode
+//			if(tempPropertyInstanceURI != null && tempSensorInstanceURI != null) {
+//				
+//				// use these URIs for assertions :	(tempPropertyInstanceURI,propertyMeasuredByPropertyURI,tempSensorInstanceURI)
+//				Individual propInstance = op.createInstance(op.getClass(entry.getKey().toString()), tempPropertyInstanceURI); // op.getInstanceForURI(tempSensorInstanceURI);
+//				Individual sensInstance = op.createInstance(op.getClass(entry.getValue().toString()), tempSensorInstanceURI); // op.getInstanceForURI(tempPartInstanceURI);
+//				ObjectProperty proertyMeasuredByObjectProperty = op.createObjectPropertyForURI(propertyMeasuredByPropertyURI); // op.getObjectPropertyForURI(isSensorOfPropertyURI);
+//										
+//				propInstance.addProperty(proertyMeasuredByObjectProperty, sensInstance);
+//				
+//			} else {
+//				if(tempPropertyInstanceURI == null)
+//					System.out.println("**ERROR : Info file doesn't have information about Property - " + entry.getKey().toString());
+//				else
+//					System.out.println("**ERROR : Info file doesn't have information about Sensor - " + entry.getValue().toString());
+//			}
+//		}
+//	}
+	
+	
+
 	
 //	public static void main(String args[]) {
 //		RDFEncoderImpl re = RDFEncoderImpl.getInstance();
 //		re.initOntologyProcess();
 //		re.initFileProcess(filepath);
 //	}
+	
+	static class TimeManagement {
+		
+		private long startTime = 0;
+		private long elapsedTime = 0;
+		
+		static TimeManagement tm = new TimeManagement();
+		
+		public TimeManagement() {
+			startTime();
+		}
+		public static TimeManagement get() {
+			return tm;
+		}
+		
+		public void startTime() {
+			startTime = System.nanoTime();
+			System.out.println("**------------------TimeManagement.startTime() : Timer has start. ");
+		}
+		
+		public long elapsedTime() {
+			elapsedTime = System.nanoTime() - startTime;
+			startTime = 0;
+			System.out.println("**------------------TimeManagement.startTime() : Timer has stopped and reset. ");
+			return elapsedTime;
+		}
+		
+	}
 }
+
+
+

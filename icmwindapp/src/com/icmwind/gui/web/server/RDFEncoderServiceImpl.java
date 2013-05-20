@@ -24,14 +24,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.icmwind.core.RDFEncoder;
 import org.icmwind.core.impl.RDFEncoderImpl;
 
-
+import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.icmwind.gui.web.client.helpers.FoundMatch;
 import com.icmwind.gui.web.client.helpers.GlobalInitializer;
 import com.icmwind.gui.web.client.services.RDFEncoderService;
-import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 /**
  * @author anme05
@@ -42,7 +40,7 @@ public class RDFEncoderServiceImpl extends RemoteServiceServlet implements RDFEn
 
 	private static final long serialVersionUID = 1L;
 	
-	private RDFEncoder rdfencoder = RDFEncoderImpl.getInstance();
+	private RDFEncoderImpl rdfencoder = RDFEncoderImpl.getInstance();
 
 	// Initialize encoding environment 
 	@Override

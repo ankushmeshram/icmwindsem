@@ -10,9 +10,10 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/gwtchismes-0.9.7.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/log4j-1.2.16.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/slf4j-api-1.6.4.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/slf4j-log4j12-1.6.4.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/icmwind"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/jena-arq-2.10.0.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/jena-iri-0.9.5.jar"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/icmwind"/>
 	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JenaLibs"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.USER_LIBRARY/JenaLibs"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

@@ -36,6 +36,8 @@ public interface GlobalInitializerService extends RemoteService {
 		}
 	}
 	
+	public void initGlobalInitializer();
+	
 	public List<String> listWindTurbines();
 	
 	public Map<String,String> getInfoFor(String wind_turbine);

@@ -9,6 +9,9 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
 
+import org.icmwind.core.impl.RDFEncoderImpl;
+import org.icmwind.util.ICMWindConfig;
+
 public class GlobalInitializer {
 	
 	// CONSTANTS
@@ -32,6 +35,7 @@ public class GlobalInitializer {
 	private static GlobalInitializer INSTANCE;
 	
 	private GlobalInitializer() {
+		System.out.println("**GlobalIntializer() : GlobalInitializer Instance. Load WT Src file to get WT name and src path. ");
 		
 		try {
 			prop.load(new FileInputStream(WIND_TURBINES_SOURCE));
@@ -42,8 +46,8 @@ public class GlobalInitializer {
 		// Since the prop file has standard structure, no need to manipulate it
 		// TODO when the rows are empty 
 		for(Entry<Object, Object> entry : prop.entrySet()) {
-			System.out.println("GlobalIntializer()..");
-			System.out.println(entry.getKey().toString() +  "--" + entry.getValue().toString());
+			// DEBUG
+			// System.out.println(entry.getKey().toString() +  "--" + entry.getValue().toString());
 			mapWT2Source.put(entry.getKey().toString(), entry.getValue().toString());
 		}
 	}
@@ -54,25 +58,45 @@ public class GlobalInitializer {
 		return INSTANCE;
 	}
 	
+	
+	/**
+	 *	Initialization Module. Initialize all the required Pre-Run Application System Settings.   
+	 */
+	public void init() {
+		// initialise ICMWindConfig
+		ICMWindConfig.init();
+		
+		// Initialise Ontology Processing
+		RDFEncoderImpl.getInstance().initOntologyProcess();
+		
+		// Set Path to store encoded triples
+		RDFEncoderImpl.getInstance().setEncodeStorage(GlobalInitializer.get().ONTOLOGIES_LOCATION);
+	}
+	
 	public List<String> listWindTurbines() {
+		System.out.println("**GlobalIntializer.listWT() : Lists Wind Turbine names.");
+		
 		List<String> listWT = new ArrayList<String>();
 		
 		for(Object wt : prop.keySet()) {
 			listWT.add(wt.toString());
 		}
-		
-		System.out.println("GlobalIntializer.listWT()");
+				
 		System.out.println(listWT.toString());
 		
 		return listWT;
 	}
 	
 	public String getSourceForWindTurbine(String wt_name) {
+		System.out.println("**GlobalIntializer.getSourceForWindTurbine(name) : Retruns WT src path.");
+		
 		System.out.println(wt_name + " has path " + mapWT2Source.get(wt_name));
 		return mapWT2Source.get(wt_name);
 	}
 
 	public String getUploadedFilePath() {
+		System.out.println("**GlobalIntializer.getUploadedFilePath() : Retruns uplaod file path.");
+		
 		if(UPLOADED_FILE_PATH.equals(null)) {
 			return "";
 		} else {

@@ -61,15 +61,38 @@ public class D extends Composite {
 	Label lblMcs = new Label("MCS 1000");Label label_29 = new Label(" : ");Label mcs1000 = new Label("");
 	HorizontalPanel horPanHLB = new HorizontalPanel();
 	Label lblHydacLab_1 = new Label("HYDAC Lab");Label label_32 = new Label(" : ");Label hlb = new Label("");
-	HorizontalPanel horPanDPS = new HorizontalPanel();
-	Label lblDps = new Label("Differential Pressure Sensor");Label label_33 = new Label(" : ");Label dps = new Label("");
-	HorizontalPanel horPanPS = new HorizontalPanel();
-	Label lblPs = new Label("Pressure Sensor");Label label_3 = new Label(" : ");Label ps = new Label("");
+	HorizontalPanel horPanSaug = new HorizontalPanel();
+	Label lblPs = new Label("HDA Saug");Label label_3 = new Label(" : ");Label saug = new Label("");
 	HorizontalPanel horPanButtons = new HorizontalPanel();
 	Button btnProceed = new Button("PROCEED");Button btnReset = new Button("RESET");
 	
 	HashMap<String, Label> mapLabelObjects = new HashMap<String, Label>();
-	HashMap<String, String> mapDataSourceInfo = null;
+	HashMap<String, String> mapDataSourceInfo = new HashMap<String, String>();
+	
+	private final HorizontalPanel horPanTOSS = new HorizontalPanel();
+	private final Label lblDps = new Label("TOSS Sensor");
+	private final Label label_4 = new Label(" : ");
+	private final Label toss = new Label("");
+	private final HorizontalPanel horPanVL = new HorizontalPanel();
+	private final Label lblVlGw = new Label("VL GW");
+	private final Label label_6 = new Label(" : ");
+	private final Label vlgw = new Label("");
+	private final HorizontalPanel horPanSpeed = new HorizontalPanel();
+	private final Label lblSpeedSensor = new Label("Speed Sensor");
+	private final Label label_10 = new Label(" : ");
+	private final Label speed = new Label("");
+	private final HorizontalPanel horPanHDAIn = new HorizontalPanel();
+	private final Label lblHdaIn = new Label("HDA In");
+	private final Label label_13 = new Label(" : ");
+	private final Label hdain = new Label("");
+	private final HorizontalPanel horPanEOut = new HorizontalPanel();
+	private final Label lblEtsOut = new Label("ETS Out");
+	private final Label label_17 = new Label(" : ");
+	private final Label eout = new Label("");
+	private final HorizontalPanel horPanEin = new HorizontalPanel();
+	private final Label lblEtsIn = new Label("ETS In");
+	private final Label label_22 = new Label(" : ");
+	private final Label ein = new Label("");
 	
 	
 	
@@ -85,6 +108,7 @@ public class D extends Composite {
 		// Initialise Composite widget
 		initWidget(verPanMain);
 		setWidth("600px");		
+		capPanSource.setVisible(false);
 		
 		capPanSource.setStyleName("blabla");
 		verPanMain.add(capPanSource);
@@ -96,74 +120,57 @@ public class D extends Composite {
 			
 		verPanSource.add(lblEnterSource);
 
-		listWindTurbines();
-	
-//		GlobalInitializerService.Util.getInstance().listWindTurbines(new AsyncCallback<List<String>>() {
-//			
-//			@Override
-//			public void onSuccess(List<String> result) {
-//				for( String wt : result) {
-//					listBox.addItem(wt);
-//				}
-//				
-//				listBox.setSelectedIndex(-1);
-//			}
-//			
-//			@Override
-//			public void onFailure(Throwable caught) {
-//				// TODO Auto-generated method stub
-//				Window.alert("Error in D.listWindTurbines");
-//			}
-//		});
+		loadWindTurbineList();
 
 		listBox.setVisibleItemCount(1);
 		verPanSource.add(listBox);
 				
-		listBox.addChangeHandler(new ChangeHandler() {
-			
-			@Override
-			public void onChange(ChangeEvent event) {
-				capPanelWTInfo.setVisible(false);
-				horPanButtons.setVisible(false);
-				
-				String wtSelected = listBox.getItemText( listBox.getSelectedIndex() );
-				
-				getDataSourceInfoFor(wtSelected);
-				
-				
-				
-//				GlobalInitializerService.Util.getInstance().getInfoFor(wtSelected, new AsyncCallback<Map<String,String>>() {
-//					@Override
-//					public void onFailure(Throwable caught) {
-//						Window.alert("D.callback()");
-//					}
-//
-//					@Override
-//					public void onSuccess(Map<String, String> result) {
-//						
-//						if(!result.isEmpty()) {
-//							for(Entry<String, String> entry : result.entrySet()) {
-////								System.out.println("Callback result : " + entry.getKey() + " -- " + entry.getValue());
-//								
-//								String key = entry.getKey().toString().toLowerCase();
-//								String value = entry.getValue().toString();
-//								
-////								System.out.println("Setting Labels in GUI for key" + key);
+		listBox.addChangeHandler(new ListBoxHandler());
+//		listBox.addChangeHandler(new ChangeHandler() {
+//			
+//			@Override
+//			public void onChange(ChangeEvent event) {
+//				capPanelWTInfo.setVisible(false);
+//				horPanButtons.setVisible(false);
 //				
-//								Label temp = mapLabelObjects.get(key);
-//								temp.setText(value);
-//							}
-//
-//							capPanelWTInfo.setVisible(true);
-//							horPanButtons.setVisible(true);
-//						} else {
-//							Window.alert("Selection not available.");
-//						}
-//					}
-//				});
-							
-			}
-		});
+//				String wtSelected = listBox.getItemText( listBox.getSelectedIndex() );
+//				
+//				getDataSourceInfoFor(wtSelected);
+//				
+//				
+//				
+////				GlobalInitializerService.Util.getInstance().getInfoFor(wtSelected, new AsyncCallback<Map<String,String>>() {
+////					@Override
+////					public void onFailure(Throwable caught) {
+////						Window.alert("D.callback()");
+////					}
+////
+////					@Override
+////					public void onSuccess(Map<String, String> result) {
+////						
+////						if(!result.isEmpty()) {
+////							for(Entry<String, String> entry : result.entrySet()) {
+//////								System.out.println("Callback result : " + entry.getKey() + " -- " + entry.getValue());
+////								
+////								String key = entry.getKey().toString().toLowerCase();
+////								String value = entry.getValue().toString();
+////								
+//////								System.out.println("Setting Labels in GUI for key" + key);
+////				
+////								Label temp = mapLabelObjects.get(key);
+////								temp.setText(value);
+////							}
+////
+////							capPanelWTInfo.setVisible(true);
+////							horPanButtons.setVisible(true);
+////						} else {
+////							Window.alert("Selection not available.");
+////						}
+////					}
+////				});
+//							
+//			}
+//		});
 		
 		capPanelWTInfo.setVisible(false);
 		capPanelWTInfo.setStyleName("blabla");
@@ -347,6 +354,21 @@ public class D extends Composite {
 		
 		horPanCS.add(cs1000);
 		cs1000.setWidth("100px");
+		horPanVL.setSpacing(5);
+		
+		verPanSensors.add(horPanVL);
+		horPanVL.setWidth("300px");
+		lblVlGw.setStyleName("gwt-Label-Bold");
+		
+		horPanVL.add(lblVlGw);
+		lblVlGw.setWidth("130px");
+		label_6.setStyleName("gwt-Label-Bold");
+		
+		horPanVL.add(label_6);
+		label_6.setWidth("10px");
+		
+		horPanVL.add(vlgw);
+		vlgw.setWidth("100px");
 		
 		
 		horPanMCS.setSpacing(5);
@@ -366,6 +388,21 @@ public class D extends Composite {
 		
 		horPanMCS.add(mcs1000);
 		mcs1000.setWidth("100px");
+		horPanSpeed.setSpacing(5);
+		
+		verPanSensors.add(horPanSpeed);
+		horPanSpeed.setWidth("300px");
+		lblSpeedSensor.setStyleName("gwt-Label-Bold");
+		
+		horPanSpeed.add(lblSpeedSensor);
+		lblSpeedSensor.setWidth("130px");
+		label_10.setStyleName("gwt-Label-Bold");
+		
+		horPanSpeed.add(label_10);
+		label_10.setWidth("10px");
+		
+		horPanSpeed.add(speed);
+		speed.setWidth("100px");
 		
 		
 		horPanHLB.setSpacing(5);
@@ -385,21 +422,81 @@ public class D extends Composite {
 		
 		horPanHLB.add(hlb);
 		hlb.setWidth("100px");
-		horPanPS.setSpacing(5);
+		horPanHDAIn.setSpacing(5);
 		
-		verPanSensors.add(horPanPS);
-		horPanPS.setWidth("300px");
+		verPanSensors.add(horPanHDAIn);
+		horPanHDAIn.setWidth("300px");
+		lblHdaIn.setStyleName("gwt-Label-Bold");
+		
+		horPanHDAIn.add(lblHdaIn);
+		lblHdaIn.setWidth("130px");
+		label_13.setStyleName("gwt-Label-Bold");
+		
+		horPanHDAIn.add(label_13);
+		label_13.setWidth("10px");
+		
+		horPanHDAIn.add(hdain);
+		hdain.setWidth("100px");
+		horPanEin.setSpacing(5);
+		
+		verPanSensors.add(horPanEin);
+		horPanEin.setWidth("300px");
+		lblEtsIn.setStyleName("gwt-Label-Bold");
+		
+		horPanEin.add(lblEtsIn);
+		lblEtsIn.setWidth("130px");
+		label_22.setStyleName("gwt-Label-Bold");
+		
+		horPanEin.add(label_22);
+		label_22.setWidth("10px");
+		
+		horPanEin.add(ein);
+		ein.setWidth("100px");
+		horPanTOSS.setSpacing(5);
+		
+		verPanSensors.add(horPanTOSS);
+		horPanTOSS.setWidth("300px");
+		lblDps.setStyleName("gwt-Label-Bold");
+		
+		horPanTOSS.add(lblDps);
+		lblDps.setWidth("130px");
+		label_4.setStyleName("gwt-Label-Bold");
+		
+		horPanTOSS.add(label_4);
+		label_4.setWidth("10px");
+		
+		horPanTOSS.add(toss);
+		toss.setWidth("100px");
+		horPanEOut.setSpacing(5);
+		
+		verPanSensors.add(horPanEOut);
+		horPanEOut.setWidth("300px");
+		lblEtsOut.setStyleName("gwt-Label-Bold");
+		
+		horPanEOut.add(lblEtsOut);
+		lblEtsOut.setWidth("130px");
+		label_17.setStyleName("gwt-Label-Bold");
+		
+		horPanEOut.add(label_17);
+		label_17.setWidth("10px");
+		
+		horPanEOut.add(eout);
+		eout.setWidth("100px");
+		horPanSaug.setSpacing(5);
+		
+		verPanSensors.add(horPanSaug);
+		horPanSaug.setWidth("300px");
 		lblPs.setStyleName("gwt-Label-Bold");
 		
-		horPanPS.add(lblPs);
+		horPanSaug.add(lblPs);
 		lblPs.setWidth("130px");
 		label_3.setStyleName("gwt-Label-Bold");
 		
-		horPanPS.add(label_3);
+		horPanSaug.add(label_3);
 		label_3.setWidth("10px");
 		
-		horPanPS.add(ps);
-		ps.setWidth("100px");
+		horPanSaug.add(saug);
+		saug.setWidth("100px");
 		
 		horPanButtons.setVisible(false);
 		horPanButtons.setSpacing(5);
@@ -412,19 +509,48 @@ public class D extends Composite {
 		horPanButtons.add(btnProceed);
 		horPanButtons.add(btnReset);
 		
-		btnProceed.addClickHandler(new ClickHandler() {
-			
-			@Override
-			public void onClick(ClickEvent event) {
-				
-				sendDataSourceInfo();
-				
-				RootPanel.get("contentContainer").clear();
-				RootPanel.get("contentContainer").add(new E());
-			}
-		});
+		btnProceed.addClickHandler(new ButtonHandler());
+//		btnProceed.addClickHandler(new ClickHandler() {
+//			
+//			@Override
+//			public void onClick(ClickEvent event) {
+//				
+//				sendWindTurbineInfo();
+//				
+//				RootPanel.get("contentContainer").clear();
+//				RootPanel.get("contentContainer").add(new E());
+//			}
+//		});
 	}
 	
+	/**
+	 * @author anme05
+	 * 
+	 * Change Handler for ListBox
+	 *
+	 */
+	class ListBoxHandler implements ChangeHandler {
+		@Override
+		public void onChange(ChangeEvent event) {
+			capPanelWTInfo.setVisible(false);
+			horPanButtons.setVisible(false);
+			
+			String wtSelected = listBox.getItemText( listBox.getSelectedIndex() );
+			
+			// Display information about selected Wind Turbine 
+			loadWindTurbineInfoFor(wtSelected);
+		}
+	}
+	
+	class ButtonHandler implements ClickHandler {
+		@Override
+		public void onClick(ClickEvent event) {
+			sendWindTurbineInfo();
+			
+			RootPanel.get("contentContainer").clear();
+			RootPanel.get("contentContainer").add(new E());
+		}
+	}
 	
 	/**
 	 *  Fill the map with <String key, Label label> 
@@ -446,28 +572,45 @@ public class D extends Composite {
 		mapLabelObjects.put("cs 1000", cs1000);
 		mapLabelObjects.put("mcs 1000", mcs1000);
 		mapLabelObjects.put("hydac lab", hlb);
-		mapLabelObjects.put("differential pressure sensor", dps);
-		mapLabelObjects.put("pressure sensor", ps);
+		mapLabelObjects.put("vl gw", vlgw);
+		mapLabelObjects.put("pulsotronic 9000", speed);
+		mapLabelObjects.put("hda in", hdain);
+		mapLabelObjects.put("hda saug", saug);
+		mapLabelObjects.put("ets out", eout);
+		mapLabelObjects.put("ets in", ein);
+		mapLabelObjects.put("toss temperature sensor", toss);
+		
+		
+	
 	}
 	
-	private void listWindTurbines() {
+	private void loadWindTurbineList() {
+		System.out.println("**D.loadWindTurbineList() : Fills up the list to display available Wind Turbine Names.");
+		
 		GlobalInitializerService.Util.getInstance().listWindTurbines(new AsyncCallback<List<String>>() {
-					@Override
+			@Override
 			public void onSuccess(List<String> result) {
+				
+				// Fills up the Wind Turbine ListBox
+				// Set visibility of WT ListBox and Source CaptionPanel
 				for( String wt : result) {
 					listBox.addItem(wt);
 				}
+				
 				listBox.setSelectedIndex(-1);
+				listBox.setVisible(true);
+				capPanSource.setVisible(true);
 			}
 			
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error in D.listWindTurbines");
+				Window.alert("Error in D.listWindTurbines()");
 			}
 		});
 	}
 	
-	private void getDataSourceInfoFor(String wtName) {
+	private void loadWindTurbineInfoFor(String wtName) {
+		System.out.println("**D.loadWindTurbineInfoFor(wtName) : Displays information found in the src file for the given WT name.");
 		
 		GlobalInitializerService.Util.getInstance().getInfoFor(wtName, new AsyncCallback<Map<String,String>>() {
 			@Override
@@ -478,33 +621,47 @@ public class D extends Composite {
 			@Override
 			public void onSuccess(Map<String, String> result) {
 				
-				if(!result.isEmpty()) {
-					mapDataSourceInfo = (HashMap<String, String>) result;
-				
+				// Display alert if result is empty map
+				if(result.isEmpty()) {
+					Window.alert("Selection not available.");
+					
+				} else {
+					// Using Map.Key get the Label corresponding to it from Map mapLabelObjects
+					// Fill the Label Text and set visibility true for Wind Turbine Info CaptionPanel and Buttons HorizontalPanel.
+										
 					for(Entry<String, String> entry : result.entrySet()) {
 //						System.out.println("Callback result : " + entry.getKey() + " -- " + entry.getValue());
 						
 						String key = entry.getKey().toString().toLowerCase();
 						String value = entry.getValue().toString();
 						
-//						System.out.println("Setting Labels in GUI for key" + key);
-		
-						Label temp = mapLabelObjects.get(key);
-						temp.setText(value);
+						// if no label is found against a Key i.e. an Entry in the *.info file alert user.
+						if(mapLabelObjects.get(key) == null) {
+							Window.alert("No Display label present for the information '" + entry.getKey() + "'. It will be removed from future processing.");
+							System.out.println("**IMPORTANT : No Display label present for the information '" + entry.getKey() + "'. It will be removed from future processing.");
+						} else {
+							
+//							System.out.println("key - " + entry.getKey() + " : value - " + entry.getValue());
+							// Add Key and Value to mapDataSoruceInfo
+							mapDataSourceInfo.put(entry.getKey(), entry.getValue());
+							
+							// Set Display Text of the retrieved Label object and add 
+//							System.out.println("Setting Labels in GUI for key" + key);
+							Label temp = mapLabelObjects.get(key);
+							temp.setText(value);
+						}
 					}
 
 					capPanelWTInfo.setVisible(true);
 					horPanButtons.setVisible(true);
-					
-					
-				} else {
-					Window.alert("Selection not available.");
 				}
 			}
 		});
 	}
 
-	private void sendDataSourceInfo() {
+	private void sendWindTurbineInfo() {
+		System.out.println("**D.sendWindTurbineInfo() : Send WT info for Conceptual ABox generation.");
+		
 		RDFEncoderServiceUtil.getInstance().setDataSourceInfo(mapDataSourceInfo, new AsyncCallback<Void>() {
 			@Override
 			public void onSuccess(Void result) {

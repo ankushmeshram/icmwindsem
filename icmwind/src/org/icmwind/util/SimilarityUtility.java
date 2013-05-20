@@ -141,6 +141,7 @@ public class SimilarityUtility {
 	 * @return
 	 */
 	public static Map<String, List<String>> getSimilarityBetweenLists(List<String> queryList, List<String> dataList) {
+		System.out.println("**SimilarityUtility.getSimilarityBetweenLists(querylist, datalist) : Checks for similar texts in datalist.");
 		Map<String, List<String>> map = new HashMap<String, List<String>>();
 		
 		for(String query : queryList) {

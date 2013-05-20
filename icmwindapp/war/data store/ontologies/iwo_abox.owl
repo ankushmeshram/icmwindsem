@@ -1,0 +1,85 @@
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:wto="http://www.icmwind.com/icmwindontology.owl#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+  <owl:ObjectProperty rdf:about="http://www.icmwind.com/icmwindontology.owl#isSensorOf"/>
+  <owl:ObjectProperty rdf:about="http://www.icmwind.com/icmwindontology.owl#isPartOf"/>
+  <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#hlb_marpI">
+    <wto:isSensorOf>
+      <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#gb_marpI">
+        <wto:isPartOf>
+          <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#marpI">
+            <rdf:type>http://www.w3.org/2002/07/owl#NamedIndividual</rdf:type>
+            <rdf:type rdf:resource="http://www.icmwind.com/icmwindontology.owl#Wind_Turbine"/>
+          </rdf:Description>
+        </wto:isPartOf>
+        <rdf:type>http://www.w3.org/2002/07/owl#NamedIndividual</rdf:type>
+        <rdf:type rdf:resource="http://www.icmwind.com/icmwindontology.owl#Gearbox"/>
+      </rdf:Description>
+    </wto:isSensorOf>
+    <rdf:type>http://www.w3.org/2002/07/owl#NamedIndividual</rdf:type>
+    <rdf:type rdf:resource="http://www.icmwind.com/icmwindontology.owl#HYDAC_Lab"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#hda_in_marpI">
+    <wto:isSensorOf rdf:resource="http://www.icmwind.com/icmwindontology.owl#gb_marpI"/>
+    <rdf:type>http://www.w3.org/2002/07/owl#NamedIndividual</rdf:type>
+    <rdf:type rdf:resource="http://www.icmwind.com/icmwindontology.owl#HDA_In"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#cool_marpI">
+    <wto:isPartOf rdf:resource="http://www.icmwind.com/icmwindontology.owl#marpI"/>
+    <rdf:type>http://www.w3.org/2002/07/owl#NamedIndividual</rdf:type>
+    <rdf:type rdf:resource="http://www.icmwind.com/icmwindontology.owl#Cooler"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#cs_marpI">
+    <wto:isSensorOf rdf:resource="http://www.icmwind.com/icmwindontology.owl#gb_marpI"/>
+    <rdf:type>http://www.w3.org/2002/07/owl#NamedIndividual</rdf:type>
+    <rdf:type rdf:resource="http://www.icmwind.com/icmwindontology.owl#CS_1000"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#speed_marpI">
+    <wto:isSensorOf rdf:resource="http://www.icmwind.com/icmwindontology.owl#gb_marpI"/>
+    <rdf:type>http://www.w3.org/2002/07/owl#NamedIndividual</rdf:type>
+    <rdf:type rdf:resource="http://www.icmwind.com/icmwindontology.owl#Pulsotronic_9000"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#ets_out_marpI">
+    <wto:isSensorOf rdf:resource="http://www.icmwind.com/icmwindontology.owl#gb_marpI"/>
+    <rdf:type>http://www.w3.org/2002/07/owl#NamedIndividual</rdf:type>
+    <rdf:type rdf:resource="http://www.icmwind.com/icmwindontology.owl#ETS_Out"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#tbv_marpI">
+    <wto:isPartOf rdf:resource="http://www.icmwind.com/icmwindontology.owl#marpI"/>
+    <rdf:type>http://www.w3.org/2002/07/owl#NamedIndividual</rdf:type>
+    <rdf:type rdf:resource="http://www.icmwind.com/icmwindontology.owl#Thermo_Bypass_Valve"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#toss_marpI">
+    <wto:isSensorOf rdf:resource="http://www.icmwind.com/icmwindontology.owl#gb_marpI"/>
+    <rdf:type>http://www.w3.org/2002/07/owl#NamedIndividual</rdf:type>
+    <rdf:type rdf:resource="http://www.icmwind.com/icmwindontology.owl#TOSS_Temperature_Sensor"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#pump_marpI">
+    <wto:isPartOf rdf:resource="http://www.icmwind.com/icmwindontology.owl#marpI"/>
+    <rdf:type>http://www.w3.org/2002/07/owl#NamedIndividual</rdf:type>
+    <rdf:type rdf:resource="http://www.icmwind.com/icmwindontology.owl#Oil_Pump"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#ets_in_marpI">
+    <wto:isSensorOf rdf:resource="http://www.icmwind.com/icmwindontology.owl#gb_marpI"/>
+    <rdf:type>http://www.w3.org/2002/07/owl#NamedIndividual</rdf:type>
+    <rdf:type rdf:resource="http://www.icmwind.com/icmwindontology.owl#ETS_In"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#saug_marpI">
+    <wto:isSensorOf rdf:resource="http://www.icmwind.com/icmwindontology.owl#gb_marpI"/>
+    <rdf:type>http://www.w3.org/2002/07/owl#NamedIndividual</rdf:type>
+    <rdf:type rdf:resource="http://www.icmwind.com/icmwindontology.owl#HDA_Saug"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#mcs_marpI">
+    <wto:isSensorOf rdf:resource="http://www.icmwind.com/icmwindontology.owl#gb_marpI"/>
+    <rdf:type>http://www.w3.org/2002/07/owl#NamedIndividual</rdf:type>
+    <rdf:type rdf:resource="http://www.icmwind.com/icmwindontology.owl#MCS_1000"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#vl_marpI">
+    <wto:isSensorOf rdf:resource="http://www.icmwind.com/icmwindontology.owl#gb_marpI"/>
+    <rdf:type>http://www.w3.org/2002/07/owl#NamedIndividual</rdf:type>
+    <rdf:type rdf:resource="http://www.icmwind.com/icmwindontology.owl#VL_GW"/>
+  </rdf:Description>
+</rdf:RDF>

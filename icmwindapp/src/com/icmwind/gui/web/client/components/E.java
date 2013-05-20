@@ -368,6 +368,7 @@ public class E extends Composite {
 			flexTable.setWidget(row, 2, lblValue);
 			flexTable.getCellFormatter().setHorizontalAlignment(row, 2, HasHorizontalAlignment.ALIGN_CENTER);
 			
+						
 			//remove
 //			listBox.addItem(values.get(0));
 //			listBox.isItemSelected(0);

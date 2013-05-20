@@ -22,10 +22,15 @@ public final class ICMWindConfig {
 	private static String GER2ENG_DICT_PATH;
 	
 	private static String RESOURCE_FOLDER_PATH = "C:/Users/anme05/git/icmwindsem/icmwind/res/";
-	
+		
 	private static boolean isInitialised = false;
 
+	private static String PROPERTY2SENSOR_CONFIG_FILE_PATH = "conf/property2sensor.info";
+	private static String SENSOR2SYSTEM_CONFIG_FILE_PATH = "conf/sensor2system.info";
+	
 	private static final String CONFIG_FILE_PATH = "conf/ICMWindConfig.config";
+
+	private static final String ONTOLOGY_URI = "http://www.icmwind.com/icmwindontology.owl";
 
 	private static Properties icmwindconfig = new Properties();
 
@@ -38,6 +43,8 @@ public final class ICMWindConfig {
 	 * 
 	 */
 	public static void init() {
+		System.out.println("**ICMWindConfig.init() : Initializing. Get all the path variables value from config file.");
+		
 		try {
 			icmwindconfig.load(ICMWindConfig.class.getClassLoader().getResourceAsStream(CONFIG_FILE_PATH));
 			isInitialised = true;
@@ -49,8 +56,6 @@ public final class ICMWindConfig {
 					"! GSE Configuration File not found.");
 			GER2ENG_DICT_PATH = icmwindconfig.getProperty("GER2ENG_DICTIONARY",
 					"! Ger-Eng Dictionary not found.");
-	
-			System.out.println("SYSTEM: Initializing ICMWindSetup");
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -102,4 +107,21 @@ public final class ICMWindConfig {
 		return RESOURCE_FOLDER_PATH;
 	}
 
+	/**
+	 * @return the pROPERTY2STRING_CONFIG_FILE_PATH
+	 */
+	public static String getProp2SenConfigFilePath() {
+		return PROPERTY2SENSOR_CONFIG_FILE_PATH;
+	}
+
+	/**
+	 * @return the sENSOR2SYSTEM_CONFIG_FILE_PATH
+	 */
+	public static String getSen2SysConfigFilePath() {
+		return SENSOR2SYSTEM_CONFIG_FILE_PATH;
+	}
+
+	public static String getOntologyURI() {
+		return ONTOLOGY_URI;
+	}
 }

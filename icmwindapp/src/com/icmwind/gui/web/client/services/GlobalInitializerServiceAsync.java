@@ -20,6 +20,8 @@ import java.util.Map;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 public interface GlobalInitializerServiceAsync {
+	public void initGlobalInitializer(AsyncCallback<Void> callback);
+	
 	public void listWindTurbines(AsyncCallback<List<String>> callback);
 	
 	public void getInfoFor(String wind_turbine, AsyncCallback<Map<String,String>> callback);
