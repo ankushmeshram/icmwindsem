@@ -4,8 +4,26 @@
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:icmwindontology="http://www.icmwind.com/icmwindontology.owl#">
     <owl:Ontology rdf:about="http://www.icmwind.com/instances/iwo-abox.owl"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.icmwind.com/icmwindontology.owl#observedTime -->
+
+    <owl:DatatypeProperty rdf:about="http://www.icmwind.com/icmwindontology.owl#observedTime"/>
     
 
 
@@ -26,6 +44,12 @@
     
 
 
+    <!-- http://www.icmwind.com/icmwindontology.owl#Time -->
+
+    <owl:Class rdf:about="http://www.icmwind.com/icmwindontology.owl#Time"/>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -41,6 +65,15 @@
 
     <owl:NamedIndividual rdf:about="http://www.icmwind.com/icmwindontology.owl#Observation_1">
         <rdf:type rdf:resource="http://www.icmwind.com/icmwindontology.owl#Observation"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.icmwind.com/icmwindontology.owl#Time_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.icmwind.com/icmwindontology.owl#Time_1">
+        <rdf:type rdf:resource="http://www.icmwind.com/icmwindontology.owl#Time"/>
+        <icmwindontology:observedTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2008-09-12T00:13:00+02:00</icmwindontology:observedTime>
     </owl:NamedIndividual>
 </rdf:RDF>
 

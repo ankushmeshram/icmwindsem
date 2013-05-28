@@ -24,6 +24,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.apache.bcel.generic.NEW;
+import org.icmwind.core.impl.EncoderImpl;
 import org.icmwind.core.impl.RDFEncoderImpl;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
@@ -40,7 +42,8 @@ public class RDFEncoderServiceImpl extends RemoteServiceServlet implements RDFEn
 
 	private static final long serialVersionUID = 1L;
 	
-	private RDFEncoderImpl rdfencoder = RDFEncoderImpl.getInstance();
+//	private RDFEncoderImpl rdfencoder = RDFEncoderImpl.getInstance();
+	private EncoderImpl rdfencoder = EncoderImpl.getInstance();
 
 	// Initialize encoding environment 
 	@Override

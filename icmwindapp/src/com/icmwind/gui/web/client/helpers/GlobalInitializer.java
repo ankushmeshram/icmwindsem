@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
 
+import org.icmwind.core.impl.EncoderImpl;
 import org.icmwind.core.impl.RDFEncoderImpl;
 import org.icmwind.util.ICMWindConfig;
 
@@ -67,10 +68,12 @@ public class GlobalInitializer {
 		ICMWindConfig.init();
 		
 		// Initialise Ontology Processing
-		RDFEncoderImpl.getInstance().initOntologyProcess();
+//		RDFEncoderImpl.getInstance().initOntologyProcess();
+		EncoderImpl.getInstance().initOntologyProcess();
 		
 		// Set Path to store encoded triples
-		RDFEncoderImpl.getInstance().setEncodeStorage(GlobalInitializer.get().ONTOLOGIES_LOCATION);
+//		RDFEncoderImpl.getInstance().setEncodeStorage(GlobalInitializer.get().ONTOLOGIES_LOCATION);
+		EncoderImpl.getInstance().setEncodeStorage(GlobalInitializer.get().ONTOLOGIES_LOCATION);
 	}
 	
 	public List<String> listWindTurbines() {

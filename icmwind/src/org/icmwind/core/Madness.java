@@ -34,6 +34,8 @@ public interface Madness {
 	
 	public OWLNamedIndividual createtNamedIndividualFor(String individualName);
 	
+	public OWLNamedIndividual createtNamedIndividualForURI(String individualURI);
+	
 	public OWLAxiom createClassAssertion(OWLClass clazz, OWLIndividual individual);
 	
 	public OWLAxiom createObjectPropertyAssertion(OWLObjectProperty objectProperty, OWLIndividual individual1,

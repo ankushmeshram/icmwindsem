@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" output="target/classes" path="src/main/java"/>
+	<classpathentry kind="src" output="target/test-classes" path="src/test/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5"/>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
+	<classpathentry kind="lib" path="/icmwind/libs/owlapi-distribution-3.4.4-bin.jar"/>
+	<classpathentry kind="lib" path="org.semanticweb.HermiT.jar"/>
+	<classpathentry kind="lib" path="pellet-datatypes.jar"/>
+	<classpathentry kind="lib" path="pellet-owlapiv3.jar"/>
+	<classpathentry kind="lib" path="aterm-java-1.6.jar"/>
+	<classpathentry kind="lib" path="pellet-core.jar"/>
+	<classpathentry kind="lib" path="pellet-rules.jar"/>
+	<classpathentry kind="lib" path="pellet-el.jar"/>
+	<classpathentry kind="lib" path="FaCTpp-OWLAPI-3.4-v1.6.2.jar"/>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>

@@ -1,0 +1,13 @@
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:j.0="http://www.test.com/test.owl#" > 
+  <rdf:Description rdf:about="http://www.test.com/test.owl#hasValue">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.test.com/test.owl#i">
+    <j.0:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.5</j.0:hasValue>
+  </rdf:Description>
+</rdf:RDF>

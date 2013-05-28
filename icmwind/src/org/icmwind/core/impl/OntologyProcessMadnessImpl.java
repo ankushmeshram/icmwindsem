@@ -16,6 +16,8 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
+import javax.xml.bind.DatatypeConverter;
+
 import org.icmwind.core.Madness;
 import org.icmwind.util.ICMWindConfig;
 import org.icmwind.util.Normalization;
@@ -185,6 +187,10 @@ public class OntologyProcessMadnessImpl implements Madness {
 		} catch (OWLOntologyStorageException e) {
 			e.printStackTrace();
 		}
+		
+		String iri = ontology.getOntologyID().getOntologyIRI().toString();
+		String docIri = filepath;
+		mapABoxURIToFileLocation.put(iri, docIri);
 	}
 	
 	@Override
@@ -237,11 +243,11 @@ public class OntologyProcessMadnessImpl implements Madness {
 	@Override
 	public OWLNamedIndividual createtNamedIndividualFor(String individualName) {
 		OWLNamedIndividual tempInst = factory.getOWLNamedIndividual(individualName, pm);
-		if (this.existsInstance(tempInst.getIRI())) {
+//		if (this.existsInstance(tempInst.getIRI())) {
 			return tempInst;
-		} else {
-			return null;
-		}
+//		} else {
+//			return null;
+//		}
 	}
 	
 	public List<String> getNormClassNamesList() {
@@ -260,14 +266,14 @@ public class OntologyProcessMadnessImpl implements Madness {
 		}
 	}
 
-
-	public boolean existsInstance(IRI instanceIri) {
-		if (tboxOntology.containsIndividualInSignature(instanceIri)) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+	// TODO remove it
+//	public boolean existsInstance(IRI instanceIri) {
+//		if (tboxOntology.containsIndividualInSignature(instanceIri)) {
+//			return true;
+//		} else {
+//			return false;
+//		}
+//	}
 
 
 	public boolean existsObjectProperty(IRI propertyIri) {
@@ -345,11 +351,15 @@ public class OntologyProcessMadnessImpl implements Madness {
 	public OWLLiteral createDateTimeLiteral(Date date) {
 		Calendar cal = GregorianCalendar.getInstance();
 		cal.setTime(date);
-		
-		OWLDatatype dateTimeDatatype = factory.getOWLDatatype(OWL2Datatype.XSD_DATE_TIME.getIRI());
-        OWLLiteral literal = factory.getOWLLiteral(cal.getTime().toString(), dateTimeDatatype);
+
+		OWLLiteral literal = factory.getOWLLiteral(DatatypeConverter.printDateTime(cal), OWL2Datatype.XSD_DATE_TIME);		        
         
         return literal;
+	}
+
+	@Override
+	public OWLNamedIndividual createtNamedIndividualForURI(String individualURI) {
+		return factory.getOWLNamedIndividual(IRI.create(individualURI));
 	}
 	
 

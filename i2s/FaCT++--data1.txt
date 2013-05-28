@@ -1,0 +1,8 @@
+file:/C:/workspace_sdre/i2s/iwo-abox-04.09-06.09.2008.owl
+CLASS ASSERTION - time taken : 233048324915 ns
+CLASS HIERARCHY - time taken : 141515 ns
+DATA PROPERTY ASSERTIONS - time taken : 38029 ns
+CLASS ASSERTION - time taken : 233048324915 ns
+OBJECT PROPERTY ASSERTIONS - time taken : 35836 ns
+CHECK CONSISTENCY : true
+CHECK CONSISTENCY - time taken : 103485 ns

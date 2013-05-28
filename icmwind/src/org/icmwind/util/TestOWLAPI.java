@@ -1,9 +1,16 @@
 package org.icmwind.util;
 
 import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
+import javax.xml.bind.DatatypeConverter;
 
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.io.RDFXMLOntologyFormat;
@@ -12,12 +19,18 @@ import org.semanticweb.owlapi.model.OWLAxiom;
 import org.semanticweb.owlapi.model.OWLClass;
 import org.semanticweb.owlapi.model.OWLClassAssertionAxiom;
 import org.semanticweb.owlapi.model.OWLDataFactory;
+import org.semanticweb.owlapi.model.OWLDataProperty;
+import org.semanticweb.owlapi.model.OWLDataPropertyAssertionAxiom;
+import org.semanticweb.owlapi.model.OWLDatatype;
+import org.semanticweb.owlapi.model.OWLLiteral;
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
+import org.semanticweb.owlapi.model.OWLObjectProperty;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 import org.semanticweb.owlapi.util.SimpleIRIMapper;
+import org.semanticweb.owlapi.vocab.OWL2Datatype;
 
 public class TestOWLAPI {
 	
@@ -34,7 +47,7 @@ public class TestOWLAPI {
 	
 	private OWLOntologyManager manager = null;
 	private OWLDataFactory factory = null;
-	private OWLOntology tboxOntology = null;
+	public OWLOntology tboxOntology = null;
 	
 	private void init() {
 		manager = OWLManager.createOWLOntologyManager();
@@ -84,8 +97,21 @@ public class TestOWLAPI {
 			e.printStackTrace();
 		}
 	}
-		
-	public static void main(String args[]) {
+	
+	private OWLDataFactory getFactory() {
+		return factory;
+	}
+	
+	private void saveToStream(OWLOntology ontology) {
+		try {
+			manager.saveOntology(ontology, System.out);
+		} catch (OWLOntologyStorageException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void main(String args[]) throws ParseException {
 		TestOWLAPI test = new TestOWLAPI();
 		Set<OWLAxiom> axioms = new HashSet<OWLAxiom>();
 		
@@ -93,12 +119,40 @@ public class TestOWLAPI {
 		test.loadTbox();
 		OWLClass obs = test.getClassFor("Observation");
 		OWLNamedIndividual indi = test.createNamedIndividualFor("Observation_1");
-		
 		axioms.add(test.createClassAssertion(obs, indi));
+		
+		OWLClass time = test.getClassFor("Time");
+		OWLNamedIndividual indi2 = test.createNamedIndividualFor("Time_1");
+		axioms.add(test.createClassAssertion(time, indi2));
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+		Date date = sdf.parse("12.09.2008 00:13:00");
+		
+				
+		System.out.println(sdf.format(date).toString());
+		
+		OWLDataProperty observedTime = test.getFactory().getOWLDataProperty(IRI.create("http://www.icmwind.com/icmwindontology.owl#observedTime"));
+		Calendar cal = GregorianCalendar.getInstance();
+		cal.setTime(date);
+		OWLLiteral literal = test.getFactory().getOWLLiteral(DatatypeConverter.printDateTime(cal), OWL2Datatype.XSD_DATE_TIME);
+		OWLDataPropertyAssertionAxiom dpa = test.getFactory().getOWLDataPropertyAssertionAxiom(observedTime, indi2, literal);
+		axioms.add(dpa);
 		
 		OWLOntology abox = test.createABoxOntology("http://www.icmwind.com/instances/iwo-abox.owl");		
 		test.addAxioms(abox, axioms);
-		test.saveRDFXMLOntology(abox, "iwo-aboxw.owl");
+		
+		OWLClass sensor = test.getClassFor("Sensor");
+		System.out.println(sensor.getIRI());
+		System.out.println(sensor.getSuperClasses(test.tboxOntology).toString());
+		
+		Set<OWLObjectProperty> OP = sensor.getObjectPropertiesInSignature();
+		for(OWLObjectProperty o : OP)
+			System.out.println(o.getIRI());
+		
+
+//		test.saveToStream(abox);
+		
+//		test.saveRDFXMLOntology(abox, "iwo-aboxw.owl");
 		
 		
 		

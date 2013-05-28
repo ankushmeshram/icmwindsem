@@ -1,0 +1,2886 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns="http://www.icmwind.com/icmwindontology.owl#"
+    xmlns:spin="http://spinrdf.org/spin#"
+    xmlns:sp="http://spinrdf.org/sp#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:spl="http://spinrdf.org/spl#"
+  xml:base="http://www.icmwind.com/icmwindontology.owl">
+  <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://spinrdf.org/spin"/>
+  </owl:Ontology>
+  <owl:Class rdf:ID="MCS_C">
+    <spin:rule>
+      <CreateValueRangeFault>
+        <sp:arg1 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >0</sp:arg1>
+        <sp:arg2 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >30000</sp:arg2>
+      </CreateValueRangeFault>
+    </spin:rule>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:ID="Ferromagnetic_Particles_Contamination"/>
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class rdf:ID="Bigger_Than_500"/>
+            </owl:someValuesFrom>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="measuresParticleSize"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="HYDAC_Lab">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Sensor"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="HLB_DK"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="measuresProperty"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="HLB_S"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="#measuresProperty"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="HYDAC"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="hasManufacturer"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Thermo_Bypass_Valve_To_Cooler"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="hasPosition"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Oil"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="hasFeatureOfInterest"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="HLB_Temp"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="#measuresProperty"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Gearbox"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="isSensorOf"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Gearbox_To_Oil_Pump">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:ID="Connection"/>
+          <owl:Restriction>
+            <owl:onClass>
+              <owl:Class rdf:ID="Oil_Pump"/>
+            </owl:onClass>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="connectedTo"/>
+            </owl:onProperty>
+            <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >1</owl:qualifiedCardinality>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onClass>
+              <owl:Class rdf:about="#Gearbox"/>
+            </owl:onClass>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="connectionFrom"/>
+            </owl:onProperty>
+            <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >1</owl:qualifiedCardinality>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="Close">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:ID="Status"/>
+          <owl:Restriction>
+            <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+            >false</owl:hasValue>
+            <owl:onProperty>
+              <owl:DatatypeProperty rdf:ID="isValveOpen"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Status"/>
+    </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Closed</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="Warning">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Fault_Level"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="ISO_6">
+    <spin:rule>
+      <CreateValueRangeFault>
+        <sp:arg1 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >0</sp:arg1>
+        <sp:arg2 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >25</sp:arg2>
+      </CreateValueRangeFault>
+    </spin:rule>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:ID="Solid_Particle_Contamination"/>
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class rdf:ID="Smaller_Than_6"/>
+            </owl:someValuesFrom>
+            <owl:onProperty rdf:resource="#measuresParticleSize"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="Oil_Filter_To_Thermo_Bypass_Valve">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Connection"/>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="#connectedTo"/>
+            <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >1</owl:qualifiedCardinality>
+            <owl:onClass>
+              <owl:Class rdf:ID="Thermo_Bypass_Valve"/>
+            </owl:onClass>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onClass>
+              <owl:Class rdf:ID="Oil_Filter"/>
+            </owl:onClass>
+            <owl:onProperty rdf:resource="#connectionFrom"/>
+            <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >1</owl:qualifiedCardinality>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="Temperature">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Property"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="ETS_Out">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="ETS_7000"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Oil_Pump_To_Oil_Filter"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="#hasPosition"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Gearbox"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="#isSensorOf"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#HYDAC"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="#hasManufacturer"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="#measuresProperty"/>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="T_Out"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Oil"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="#hasFeatureOfInterest"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Fault">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Time"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="faultOccurrenceTime"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Fault_Level"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="faultLevel"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="MCS_D">
+    <spin:rule>
+      <CreateValueRangeFault>
+        <sp:arg1 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >0</sp:arg1>
+        <sp:arg2 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >30000</sp:arg2>
+      </CreateValueRangeFault>
+    </spin:rule>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:ID="Non_Ferromagnetic_Particles_Contamination"/>
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class rdf:ID="Bigger_Than_200"/>
+            </owl:someValuesFrom>
+            <owl:onProperty rdf:resource="#measuresParticleSize"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Gearbox">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:ID="Sub_System"/>
+          <owl:Restriction>
+            <owl:onClass rdf:resource="#Gearbox_To_Oil_Pump"/>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="hasConnection"/>
+            </owl:onProperty>
+            <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >1</owl:qualifiedCardinality>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="Unit_Of_Measurement"/>
+  <owl:Class rdf:ID="Contamination">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Property"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Oil_Filter">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Sub_System"/>
+          <owl:Restriction>
+            <owl:onClass rdf:resource="#Oil_Filter_To_Thermo_Bypass_Valve"/>
+            <owl:onProperty rdf:resource="#hasConnection"/>
+            <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >1</owl:qualifiedCardinality>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="CSM_ON">
+    <spin:rule>
+      <CreateValueRangeFault>
+        <sp:arg1 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >0</sp:arg1>
+        <sp:arg2 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >100</sp:arg2>
+      </CreateValueRangeFault>
+    </spin:rule>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Status"/>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="isPropertyOf"/>
+            </owl:onProperty>
+            <owl:someValuesFrom>
+              <owl:Class rdf:about="#Sensor"/>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#HLB_Temp">
+    <spin:rule>
+      <sp:Construct>
+        <sp:templates rdf:parseType="Collection">
+          <rdf:Description>
+            <sp:object>
+              <owl:Class rdf:ID="Open"/>
+            </sp:object>
+            <sp:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >sts</sp:varName>
+            </sp:subject>
+          </rdf:Description>
+          <rdf:Description>
+            <sp:object rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+            >true</sp:object>
+            <sp:predicate rdf:resource="#isValveOpen"/>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >sts</sp:varName>
+            </sp:subject>
+          </rdf:Description>
+          <rdf:Description>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >sts</sp:varName>
+            </sp:object>
+            <sp:predicate>
+              <owl:ObjectProperty rdf:ID="hasStatus"/>
+            </sp:predicate>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >valve</sp:varName>
+            </sp:subject>
+          </rdf:Description>
+          <rdf:Description>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >obs</sp:varName>
+            </sp:object>
+            <sp:predicate>
+              <owl:ObjectProperty rdf:ID="hasObservation"/>
+            </sp:predicate>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >valve</sp:varName>
+            </sp:subject>
+          </rdf:Description>
+        </sp:templates>
+        <sp:where rdf:parseType="Collection">
+          <rdf:Description>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >value</sp:varName>
+            </sp:object>
+            <sp:predicate>
+              <owl:DatatypeProperty rdf:ID="hasValue"/>
+            </sp:predicate>
+            <sp:subject rdf:resource="http://spinrdf.org/spin#_this"/>
+          </rdf:Description>
+          <sp:Filter>
+            <sp:expression>
+              <sp:lt>
+                <sp:arg2 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+                >55</sp:arg2>
+                <sp:arg1 rdf:parseType="Resource">
+                  <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                  >value</sp:varName>
+                </sp:arg1>
+              </sp:lt>
+            </sp:expression>
+          </sp:Filter>
+          <rdf:Description>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >obs</sp:varName>
+            </sp:object>
+            <sp:predicate rdf:resource="#hasObservation"/>
+            <sp:subject rdf:resource="http://spinrdf.org/spin#_this"/>
+          </rdf:Description>
+          <rdf:Description>
+            <sp:object>
+              <owl:Class rdf:about="#Thermo_Bypass_Valve"/>
+            </sp:object>
+            <sp:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >valve</sp:varName>
+            </sp:subject>
+          </rdf:Description>
+          <sp:Bind>
+            <sp:expression>
+              <sp:iri>
+                <sp:arg1>
+                  <createTimeStamp>
+                    <sp:arg2 rdf:resource="http://spinrdf.org/spin#_this"/>
+                    <sp:arg1>Open</sp:arg1>
+                  </createTimeStamp>
+                </sp:arg1>
+              </sp:iri>
+            </sp:expression>
+            <sp:variable rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >sts</sp:varName>
+            </sp:variable>
+          </sp:Bind>
+        </sp:where>
+      </sp:Construct>
+    </spin:rule>
+    <spin:rule>
+      <sp:Construct>
+        <sp:templates rdf:parseType="Collection">
+          <rdf:Description>
+            <sp:object rdf:resource="#Close"/>
+            <sp:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >sts</sp:varName>
+            </sp:subject>
+          </rdf:Description>
+          <rdf:Description>
+            <sp:object rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+            >false</sp:object>
+            <sp:predicate rdf:resource="#isValveOpen"/>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >sts</sp:varName>
+            </sp:subject>
+          </rdf:Description>
+          <rdf:Description>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >sts</sp:varName>
+            </sp:object>
+            <sp:predicate>
+              <owl:ObjectProperty rdf:about="#hasStatus"/>
+            </sp:predicate>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >valve</sp:varName>
+            </sp:subject>
+          </rdf:Description>
+          <rdf:Description>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >obs</sp:varName>
+            </sp:object>
+            <sp:predicate rdf:resource="#hasObservation"/>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >valve</sp:varName>
+            </sp:subject>
+          </rdf:Description>
+        </sp:templates>
+        <sp:where rdf:parseType="Collection">
+          <rdf:Description>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >value</sp:varName>
+            </sp:object>
+            <sp:predicate rdf:resource="#hasValue"/>
+            <sp:subject rdf:resource="http://spinrdf.org/spin#_this"/>
+          </rdf:Description>
+          <sp:Filter>
+            <sp:expression>
+              <sp:gt>
+                <sp:arg2 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+                >55</sp:arg2>
+                <sp:arg1 rdf:parseType="Resource">
+                  <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                  >value</sp:varName>
+                </sp:arg1>
+              </sp:gt>
+            </sp:expression>
+          </sp:Filter>
+          <rdf:Description>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >obs</sp:varName>
+            </sp:object>
+            <sp:predicate rdf:resource="#hasObservation"/>
+            <sp:subject rdf:resource="http://spinrdf.org/spin#_this"/>
+          </rdf:Description>
+          <rdf:Description>
+            <sp:object>
+              <owl:Class rdf:about="#Thermo_Bypass_Valve"/>
+            </sp:object>
+            <sp:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >valve</sp:varName>
+            </sp:subject>
+          </rdf:Description>
+          <sp:Bind>
+            <sp:expression>
+              <sp:iri>
+                <sp:arg1>
+                  <createTimeStamp>
+                    <sp:arg2 rdf:resource="http://spinrdf.org/spin#_this"/>
+                    <sp:arg1>Close</sp:arg1>
+                  </createTimeStamp>
+                </sp:arg1>
+              </sp:iri>
+            </sp:expression>
+            <sp:variable rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >sts</sp:varName>
+            </sp:variable>
+          </sp:Bind>
+        </sp:where>
+      </sp:Construct>
+    </spin:rule>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Temperature"/>
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class rdf:about="#Oil"/>
+            </owl:someValuesFrom>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#isPropertyOf"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <spin:rule>
+      <CreateValueRangeFault>
+        <sp:arg1 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >0</sp:arg1>
+        <sp:arg2 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >100</sp:arg2>
+      </CreateValueRangeFault>
+    </spin:rule>
+  </owl:Class>
+  <owl:Class rdf:about="#Open">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Status"/>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="#isValveOpen"/>
+            <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+            >true</owl:hasValue>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Open</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Status"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Property">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Observation"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="#hasObservation"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Sensor"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="propertyMeasuredBy"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Feature_Of_Interest"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#isPropertyOf"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="#hasValue"/>
+        <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="HDA_Saug">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="HDA_4700"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Gearbox_To_Oil_Pump"/>
+        <owl:onProperty rdf:resource="#hasPosition"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="P_Saug"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="#measuresProperty"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Oil"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="#hasFeatureOfInterest"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#HYDAC"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="#hasManufacturer"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Gearbox"/>
+        <owl:onProperty rdf:resource="#isSensorOf"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="P_In">
+    <spin:rule>
+      <CreateValueRangeFault>
+        <sp:arg1 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >0</sp:arg1>
+        <sp:arg2 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >16</sp:arg2>
+      </CreateValueRangeFault>
+    </spin:rule>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:ID="Pressure"/>
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class rdf:about="#Oil"/>
+            </owl:someValuesFrom>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#isPropertyOf"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="Wind_Turbine">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:ID="System"/>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="hasPart"/>
+            </owl:onProperty>
+            <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >1</owl:qualifiedCardinality>
+            <owl:onClass>
+              <owl:Class rdf:ID="Cooler"/>
+            </owl:onClass>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onClass rdf:resource="#Gearbox"/>
+            <owl:onProperty rdf:resource="#hasPart"/>
+            <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >1</owl:qualifiedCardinality>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onClass rdf:resource="#Oil_Filter"/>
+            <owl:onProperty rdf:resource="#hasPart"/>
+            <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >1</owl:qualifiedCardinality>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onClass>
+              <owl:Class rdf:about="#Oil_Pump"/>
+            </owl:onClass>
+            <owl:onProperty rdf:resource="#hasPart"/>
+            <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >1</owl:qualifiedCardinality>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="#hasPart"/>
+            <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >1</owl:qualifiedCardinality>
+            <owl:onClass>
+              <owl:Class rdf:about="#Thermo_Bypass_Valve"/>
+            </owl:onClass>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="Smaller_Than_14">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:ID="Size"/>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="#hasValue"/>
+            <owl:someValuesFrom>
+              <rdfs:Datatype>
+                <owl:withRestrictions rdf:parseType="Collection">
+                  <rdf:Description>
+                    <xsd:maxExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                    >14.0</xsd:maxExclusive>
+                  </rdf:Description>
+                </owl:withRestrictions>
+                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+              </rdfs:Datatype>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="Pressure_Sensor">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Sensor"/>
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class rdf:about="#Pressure"/>
+            </owl:someValuesFrom>
+            <owl:onProperty rdf:resource="#measuresProperty"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="ETS_In">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#ETS_7000"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Oil"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="#hasFeatureOfInterest"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Cooler_to_Gearbox"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="#hasPosition"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#HYDAC"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="#hasManufacturer"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="T_In"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="#measuresProperty"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Gearbox"/>
+        <owl:onProperty rdf:resource="#isSensorOf"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Non_Ferromagnetic_Particles_Contamination">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Metallic_Particle_Contamination"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="MCS_1000">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#HYDAC"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="#hasManufacturer"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="MCS_Temp"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="#measuresProperty"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="MCS_E"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="#measuresProperty"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Oil"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="#hasFeatureOfInterest"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Contamination_Sensor"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#MCS_C"/>
+        <owl:onProperty rdf:resource="#measuresProperty"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="MCS_B"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="#measuresProperty"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Oil_Pump_To_Oil_Filter"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="#hasPosition"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="MCS_A"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="#measuresProperty"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Gearbox"/>
+        <owl:onProperty rdf:resource="#isSensorOf"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="#measuresProperty"/>
+        <owl:someValuesFrom rdf:resource="#MCS_D"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="MCS_F"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="#measuresProperty"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Smaller_Than_4">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Size"/>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="#hasValue"/>
+            <owl:someValuesFrom>
+              <rdfs:Datatype>
+                <owl:withRestrictions rdf:parseType="Collection">
+                  <rdf:Description>
+                    <xsd:maxExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                    >4.0</xsd:maxExclusive>
+                  </rdf:Description>
+                </owl:withRestrictions>
+                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+              </rdfs:Datatype>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="VLGW_P">
+    <spin:rule>
+      <CreateValueRangeFault>
+        <sp:arg1 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >0</sp:arg1>
+        <sp:arg2 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >25</sp:arg2>
+      </CreateValueRangeFault>
+    </spin:rule>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Pressure"/>
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class rdf:about="#Oil"/>
+            </owl:someValuesFrom>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#isPropertyOf"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#HDA_4700">
+    <rdfs:subClassOf rdf:resource="#Pressure_Sensor"/>
+  </owl:Class>
+  <owl:Class rdf:ID="T_Air">
+    <spin:rule>
+      <CreateValueRangeFault>
+        <sp:arg1 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >0</sp:arg1>
+        <sp:arg2 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >100</sp:arg2>
+      </CreateValueRangeFault>
+    </spin:rule>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Temperature"/>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#isPropertyOf"/>
+            </owl:onProperty>
+            <owl:someValuesFrom>
+              <owl:Class rdf:ID="Air"/>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#MCS_A">
+    <spin:rule>
+      <CreateValueRangeFault>
+        <sp:arg1 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >0</sp:arg1>
+        <sp:arg2 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >30000</sp:arg2>
+      </CreateValueRangeFault>
+    </spin:rule>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Ferromagnetic_Particles_Contamination"/>
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class rdf:about="#Bigger_Than_200"/>
+            </owl:someValuesFrom>
+            <owl:onProperty rdf:resource="#measuresParticleSize"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="ISO_4">
+    <spin:rule>
+      <CreateValueRangeFault>
+        <sp:arg1 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >0</sp:arg1>
+        <sp:arg2 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >25</sp:arg2>
+      </CreateValueRangeFault>
+    </spin:rule>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Solid_Particle_Contamination"/>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#Smaller_Than_4"/>
+            <owl:onProperty rdf:resource="#measuresParticleSize"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#System">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="#hasPart"/>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Sub_System"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Manufacturer"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="#hasManufacturer"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Bigger_Than_500">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Size"/>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="#hasValue"/>
+            <owl:someValuesFrom>
+              <rdfs:Datatype>
+                <owl:withRestrictions rdf:parseType="Collection">
+                  <rdf:Description>
+                    <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                    >500.0</xsd:minExclusive>
+                  </rdf:Description>
+                </owl:withRestrictions>
+                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+              </rdfs:Datatype>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Size">
+    <rdfs:subClassOf rdf:resource="#Property"/>
+  </owl:Class>
+  <owl:Class rdf:ID="CS_Drive">
+    <spin:rule>
+      <CreateValueRangeFault>
+        <sp:arg1 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >0</sp:arg1>
+        <sp:arg2 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >100</sp:arg2>
+      </CreateValueRangeFault>
+    </spin:rule>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:ID="Drive"/>
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class rdf:about="#Oil"/>
+            </owl:someValuesFrom>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#isPropertyOf"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Feature_Of_Interest">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="hasProperty"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#Property"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Alarm">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Fault_Level"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="#Warning"/>
+  </owl:Class>
+  <owl:Class rdf:ID="High_Differential_Pressure">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:ID="VLGW_dP"/>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="#hasValue"/>
+            <owl:someValuesFrom>
+              <rdfs:Datatype>
+                <owl:withRestrictions rdf:parseType="Collection">
+                  <rdf:Description>
+                    <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                    >3.0</xsd:minExclusive>
+                  </rdf:Description>
+                </owl:withRestrictions>
+                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+              </rdfs:Datatype>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Oil">
+    <rdfs:subClassOf rdf:resource="#Feature_Of_Interest"/>
+  </owl:Class>
+  <owl:Class rdf:ID="HDA_4300">
+    <rdfs:subClassOf rdf:resource="#Pressure_Sensor"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Cooler_to_Gearbox">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Connection"/>
+          <owl:Restriction>
+            <owl:onClass rdf:resource="#Gearbox"/>
+            <owl:onProperty rdf:resource="#connectedTo"/>
+            <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >1</owl:qualifiedCardinality>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="#connectionFrom"/>
+            <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >1</owl:qualifiedCardinality>
+            <owl:onClass>
+              <owl:Class rdf:about="#Cooler"/>
+            </owl:onClass>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Thermo_Bypass_Valve">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Observation"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="#hasObservation"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="#isValveOpen"/>
+        <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Sub_System"/>
+          <owl:Restriction>
+            <owl:onClass>
+              <owl:Class rdf:about="#Thermo_Bypass_Valve_To_Cooler"/>
+            </owl:onClass>
+            <owl:onProperty rdf:resource="#hasConnection"/>
+            <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >1</owl:qualifiedCardinality>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="#hasConnection"/>
+            <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >1</owl:qualifiedCardinality>
+            <owl:onClass>
+              <owl:Class rdf:ID="Thermo_Bypass_Valve_To_Gearbox"/>
+            </owl:onClass>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Thermo_Bypass_Valve_To_Cooler">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Connection"/>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="#connectedTo"/>
+            <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >1</owl:qualifiedCardinality>
+            <owl:onClass>
+              <owl:Class rdf:about="#Cooler"/>
+            </owl:onClass>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="#connectionFrom"/>
+            <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >1</owl:qualifiedCardinality>
+            <owl:onClass rdf:resource="#Thermo_Bypass_Valve"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#ETS_7000">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Temperature_Sensor"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#MCS_B">
+    <spin:rule>
+      <CreateValueRangeFault>
+        <sp:arg1 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >0</sp:arg1>
+        <sp:arg2 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >30000</sp:arg2>
+      </CreateValueRangeFault>
+    </spin:rule>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Ferromagnetic_Particles_Contamination"/>
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class rdf:ID="Bigger_Than_300"/>
+            </owl:someValuesFrom>
+            <owl:onProperty rdf:resource="#measuresParticleSize"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Oil_Pump">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Sub_System"/>
+          <owl:Restriction>
+            <owl:onClass>
+              <owl:Class rdf:about="#Oil_Pump_To_Oil_Filter"/>
+            </owl:onClass>
+            <owl:onProperty rdf:resource="#hasConnection"/>
+            <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >1</owl:qualifiedCardinality>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Bigger_Than_300">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Size"/>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="#hasValue"/>
+            <owl:someValuesFrom>
+              <rdfs:Datatype>
+                <owl:withRestrictions rdf:parseType="Collection">
+                  <rdf:Description>
+                    <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                    >300.0</xsd:minExclusive>
+                  </rdf:Description>
+                </owl:withRestrictions>
+                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+              </rdfs:Datatype>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#HYDAC">
+    <rdfs:subClassOf rdf:resource="#Manufacturer"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Dielectricity">
+    <rdfs:subClassOf rdf:resource="#Property"/>
+  </owl:Class>
+  <owl:Class rdf:about="#HLB_DK">
+    <spin:rule>
+      <CreateValueRangeFault>
+        <sp:arg1 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >-30</sp:arg1>
+        <sp:arg2 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >30</sp:arg2>
+      </CreateValueRangeFault>
+    </spin:rule>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Dielectricity"/>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#Oil"/>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#isPropertyOf"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Time">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:ID="observedTime"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Air">
+    <rdfs:subClassOf rdf:resource="#Feature_Of_Interest"/>
+    <owl:disjointWith rdf:resource="#Oil"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Smaller_Than_6">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Size"/>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="#hasValue"/>
+            <owl:someValuesFrom>
+              <rdfs:Datatype>
+                <owl:withRestrictions rdf:parseType="Collection">
+                  <rdf:Description>
+                    <xsd:maxExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                    >6.0</xsd:maxExclusive>
+                  </rdf:Description>
+                </owl:withRestrictions>
+                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+              </rdfs:Datatype>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="Sensor_Fault">
+    <rdfs:subClassOf rdf:resource="#Fault"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="faultCondition"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#Property"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Sensor"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="faultyComponent"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="CS_Flow">
+    <spin:rule>
+      <CreateValueRangeFault>
+        <sp:arg1 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >0</sp:arg1>
+        <sp:arg2 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >500</sp:arg2>
+      </CreateValueRangeFault>
+    </spin:rule>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:ID="Flow_Rate"/>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#Oil"/>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#isPropertyOf"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Temperature_Sensor">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Sensor"/>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="#measuresProperty"/>
+            <owl:someValuesFrom rdf:resource="#Temperature"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Observation">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="hasSamplingTime"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#Time"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#P_Saug">
+    <spin:rule>
+      <CreateValueRangeFault>
+        <sp:arg1 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >-1</sp:arg1>
+        <sp:arg2 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >9</sp:arg2>
+      </CreateValueRangeFault>
+    </spin:rule>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Pressure"/>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#Oil"/>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#isPropertyOf"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="Speed">
+    <spin:rule>
+      <CreateValueRangeFault>
+        <sp:arg1 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >0</sp:arg1>
+        <sp:arg2 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >2000</sp:arg2>
+      </CreateValueRangeFault>
+    </spin:rule>
+    <rdfs:subClassOf rdf:resource="#Property"/>
+  </owl:Class>
+  <owl:Class rdf:ID="TOSS">
+    <rdfs:subClassOf rdf:resource="#Manufacturer"/>
+  </owl:Class>
+  <owl:Class rdf:ID="System_Fault">
+    <rdfs:subClassOf rdf:resource="#Fault"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Sub_System"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#faultyComponent"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="#faultCondition"/>
+        <owl:someValuesFrom>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="#Fault"/>
+              <owl:Class rdf:about="#Property"/>
+            </owl:unionOf>
+          </owl:Class>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#HLB_S">
+    <spin:rule>
+      <CreateValueRangeFault>
+        <sp:arg1 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >0</sp:arg1>
+        <sp:arg2 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >100</sp:arg2>
+      </CreateValueRangeFault>
+    </spin:rule>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:ID="Water_Solvency"/>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#Oil"/>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#isPropertyOf"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="Pulsotronic_9000">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Speed_Sensor"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Gearbox"/>
+        <owl:onProperty rdf:resource="#isSensorOf"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Speed"/>
+        <owl:onProperty rdf:resource="#measuresProperty"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Gearbox"/>
+        <owl:onProperty rdf:resource="#hasPosition"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Pulsotronic"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="#hasManufacturer"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Drive">
+    <rdfs:subClassOf rdf:resource="#Property"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Cooler_Temperature_Difference">
+    <spin:rule>
+      <sp:Construct>
+        <sp:templates rdf:parseType="Collection">
+          <rdf:Description>
+            <sp:object>
+              <owl:Class rdf:ID="High_Cooler_Temperature_Difference"/>
+            </sp:object>
+            <sp:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >ans</sp:varName>
+            </sp:subject>
+          </rdf:Description>
+          <rdf:Description>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >value</sp:varName>
+            </sp:object>
+            <sp:predicate rdf:resource="#hasValue"/>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >ans</sp:varName>
+            </sp:subject>
+          </rdf:Description>
+          <rdf:Description>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >obs</sp:varName>
+            </sp:object>
+            <sp:predicate rdf:resource="#hasObservation"/>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >ans</sp:varName>
+            </sp:subject>
+          </rdf:Description>
+        </sp:templates>
+        <sp:where rdf:parseType="Collection">
+          <rdf:Description>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >value</sp:varName>
+            </sp:object>
+            <sp:predicate rdf:resource="#hasValue"/>
+            <sp:subject rdf:resource="http://spinrdf.org/spin#_this"/>
+          </rdf:Description>
+          <rdf:Description>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >obs</sp:varName>
+            </sp:object>
+            <sp:predicate rdf:resource="#hasObservation"/>
+            <sp:subject rdf:resource="http://spinrdf.org/spin#_this"/>
+          </rdf:Description>
+          <sp:Filter>
+            <sp:expression>
+              <sp:gt>
+                <sp:arg2 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+                >10</sp:arg2>
+                <sp:arg1 rdf:parseType="Resource">
+                  <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                  >value</sp:varName>
+                </sp:arg1>
+              </sp:gt>
+            </sp:expression>
+          </sp:Filter>
+          <sp:Bind>
+            <sp:expression>
+              <sp:iri>
+                <sp:arg1>
+                  <createTimeStamp>
+                    <sp:arg2 rdf:resource="http://spinrdf.org/spin#_this"/>
+                    <sp:arg1>HCTD</sp:arg1>
+                  </createTimeStamp>
+                </sp:arg1>
+              </sp:iri>
+            </sp:expression>
+            <sp:variable rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >ans</sp:varName>
+            </sp:variable>
+          </sp:Bind>
+        </sp:where>
+      </sp:Construct>
+    </spin:rule>
+    <spin:rule>
+      <sp:Construct>
+        <sp:templates rdf:parseType="Collection">
+          <rdf:Description>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >diff</sp:varName>
+            </sp:object>
+            <sp:predicate rdf:resource="#hasValue"/>
+            <sp:subject rdf:resource="http://spinrdf.org/spin#_this"/>
+          </rdf:Description>
+        </sp:templates>
+        <sp:where rdf:parseType="Collection">
+          <rdf:Description>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >obs</sp:varName>
+            </sp:object>
+            <sp:predicate rdf:resource="#hasObservation"/>
+            <sp:subject rdf:resource="http://spinrdf.org/spin#_this"/>
+          </rdf:Description>
+          <sp:Bind>
+            <sp:expression>
+              <coolerTemperatureDifference>
+                <sp:arg1 rdf:parseType="Resource">
+                  <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                  >obs</sp:varName>
+                </sp:arg1>
+              </coolerTemperatureDifference>
+            </sp:expression>
+            <sp:variable rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >diff</sp:varName>
+            </sp:variable>
+          </sp:Bind>
+        </sp:where>
+      </sp:Construct>
+    </spin:rule>
+    <rdfs:subClassOf rdf:resource="#Temperature"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Thermo_Bypass_Valve_To_Gearbox">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Connection"/>
+          <owl:Restriction>
+            <owl:onClass rdf:resource="#Gearbox"/>
+            <owl:onProperty rdf:resource="#connectedTo"/>
+            <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >1</owl:qualifiedCardinality>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="#connectionFrom"/>
+            <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >1</owl:qualifiedCardinality>
+            <owl:onClass rdf:resource="#Thermo_Bypass_Valve"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#MCS_Temp">
+    <spin:rule>
+      <CreateValueRangeFault>
+        <sp:arg1 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >0</sp:arg1>
+        <sp:arg2 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >100</sp:arg2>
+      </CreateValueRangeFault>
+    </spin:rule>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Temperature"/>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#Oil"/>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#isPropertyOf"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="ISO_14">
+    <spin:rule>
+      <CreateValueRangeFault>
+        <sp:arg1 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >0</sp:arg1>
+        <sp:arg2 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >25</sp:arg2>
+      </CreateValueRangeFault>
+    </spin:rule>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Solid_Particle_Contamination"/>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#Smaller_Than_14"/>
+            <owl:onProperty rdf:resource="#measuresParticleSize"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="TOSS_Temperature_Sensor">
+    <rdfs:subClassOf rdf:resource="#Temperature_Sensor"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Cooler"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="#hasPosition"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="#measuresProperty"/>
+        <owl:someValuesFrom rdf:resource="#T_Air"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#TOSS"/>
+        <owl:onProperty rdf:resource="#hasManufacturer"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Air"/>
+        <owl:onProperty rdf:resource="#hasFeatureOfInterest"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Gearbox"/>
+        <owl:onProperty rdf:resource="#isSensorOf"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Ferromagnetic_Particles_Contamination">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Metallic_Particle_Contamination"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Water_Solvency">
+    <rdfs:subClassOf rdf:resource="#Property"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Sensor">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Sub_System"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="#isSensorOf"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="#hasPosition"/>
+        <owl:someValuesFrom>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="#Connection"/>
+              <owl:Class rdf:about="#Sub_System"/>
+            </owl:unionOf>
+          </owl:Class>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="#measuresProperty"/>
+        <owl:someValuesFrom rdf:resource="#Property"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Feature_Of_Interest"/>
+        <owl:onProperty rdf:resource="#hasFeatureOfInterest"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Manufacturer"/>
+        <owl:onProperty rdf:resource="#hasManufacturer"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#High_Cooler_Temperature_Difference">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Cooler_Temperature_Difference"/>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="#hasValue"/>
+            <owl:someValuesFrom>
+              <rdfs:Datatype>
+                <owl:withRestrictions rdf:parseType="Collection">
+                  <rdf:Description>
+                    <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                    >10.0</xsd:minExclusive>
+                  </rdf:Description>
+                </owl:withRestrictions>
+                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+              </rdfs:Datatype>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Cooler">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Sub_System"/>
+          <owl:Restriction>
+            <owl:onClass rdf:resource="#Cooler_to_Gearbox"/>
+            <owl:onProperty rdf:resource="#hasConnection"/>
+            <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >1</owl:qualifiedCardinality>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Contamination_Sensor">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Sensor"/>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#Contamination"/>
+            <owl:onProperty rdf:resource="#measuresProperty"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Pulsotronic">
+    <rdfs:subClassOf rdf:resource="#Manufacturer"/>
+  </owl:Class>
+  <owl:Class rdf:about="#T_In">
+    <spin:rule>
+      <CreateValueRangeFault>
+        <sp:arg1 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >0</sp:arg1>
+        <sp:arg2 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >100</sp:arg2>
+      </CreateValueRangeFault>
+    </spin:rule>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Temperature"/>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#Oil"/>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#isPropertyOf"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Sub_System">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Connection"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="#hasConnection"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#System"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="isPartOf"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Manufacturer"/>
+        <owl:onProperty rdf:resource="#hasManufacturer"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="hasSensor"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#Sensor"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Oil_Pump_To_Oil_Filter">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Connection"/>
+          <owl:Restriction>
+            <owl:onClass rdf:resource="#Oil_Filter"/>
+            <owl:onProperty rdf:resource="#connectedTo"/>
+            <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >1</owl:qualifiedCardinality>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="#connectionFrom"/>
+            <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >1</owl:qualifiedCardinality>
+            <owl:onClass rdf:resource="#Oil_Pump"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Pressure">
+    <rdfs:subClassOf rdf:resource="#Property"/>
+  </owl:Class>
+  <owl:Class rdf:ID="CS_1000">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#ISO_6"/>
+        <owl:onProperty rdf:resource="#measuresProperty"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#Contamination_Sensor"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#ISO_4"/>
+        <owl:onProperty rdf:resource="#measuresProperty"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#CSM_ON"/>
+        <owl:onProperty rdf:resource="#measuresProperty"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Oil"/>
+        <owl:onProperty rdf:resource="#hasFeatureOfInterest"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="#measuresProperty"/>
+        <owl:someValuesFrom rdf:resource="#ISO_14"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Gearbox"/>
+        <owl:onProperty rdf:resource="#isSensorOf"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="#measuresProperty"/>
+        <owl:someValuesFrom rdf:resource="#CS_Drive"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Oil_Pump_To_Oil_Filter"/>
+        <owl:onProperty rdf:resource="#hasPosition"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#CS_Flow"/>
+        <owl:onProperty rdf:resource="#measuresProperty"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#HYDAC"/>
+        <owl:onProperty rdf:resource="#hasManufacturer"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Flow_Rate">
+    <rdfs:subClassOf rdf:resource="#Property"/>
+  </owl:Class>
+  <owl:Class rdf:ID="HDA_In">
+    <rdfs:subClassOf rdf:resource="#HDA_4300"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Gearbox"/>
+        <owl:onProperty rdf:resource="#isSensorOf"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Cooler_to_Gearbox"/>
+        <owl:onProperty rdf:resource="#hasPosition"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Oil"/>
+        <owl:onProperty rdf:resource="#hasFeatureOfInterest"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#HYDAC"/>
+        <owl:onProperty rdf:resource="#hasManufacturer"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#P_In"/>
+        <owl:onProperty rdf:resource="#measuresProperty"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="VL_GW">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Differential_Pressure_Sensor"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Oil_Filter"/>
+        <owl:onProperty rdf:resource="#hasPosition"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Oil"/>
+        <owl:onProperty rdf:resource="#hasFeatureOfInterest"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Gearbox"/>
+        <owl:onProperty rdf:resource="#isSensorOf"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#VLGW_dP"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="#measuresProperty"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#HYDAC"/>
+        <owl:onProperty rdf:resource="#hasManufacturer"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#VLGW_P"/>
+        <owl:onProperty rdf:resource="#measuresProperty"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#MCS_E">
+    <spin:rule>
+      <CreateValueRangeFault>
+        <sp:arg1 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >0</sp:arg1>
+        <sp:arg2 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >30000</sp:arg2>
+      </CreateValueRangeFault>
+    </spin:rule>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Non_Ferromagnetic_Particles_Contamination"/>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#Bigger_Than_300"/>
+            <owl:onProperty rdf:resource="#measuresParticleSize"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Connection">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="#connectionFrom"/>
+        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:qualifiedCardinality>
+        <owl:onClass rdf:resource="#Sub_System"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="#connectedTo"/>
+        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:qualifiedCardinality>
+        <owl:onClass rdf:resource="#Sub_System"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Speed_Sensor">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Sensor"/>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#Speed"/>
+            <owl:onProperty rdf:resource="#measuresProperty"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#VLGW_dP">
+    <spin:rule>
+      <CreateValueRangeFault>
+        <sp:arg1 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >0</sp:arg1>
+        <sp:arg2 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >10</sp:arg2>
+      </CreateValueRangeFault>
+    </spin:rule>
+    <spin:rule>
+      <sp:Construct>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >High Pressure Difference with value &gt; 3 , according to Expert's Knowledge</rdfs:comment>
+        <sp:templates rdf:parseType="Collection">
+          <rdf:Description>
+            <sp:object rdf:resource="#High_Differential_Pressure"/>
+            <sp:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >hdp</sp:varName>
+            </sp:subject>
+          </rdf:Description>
+          <rdf:Description>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >value</sp:varName>
+            </sp:object>
+            <sp:predicate rdf:resource="#hasValue"/>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >hdp</sp:varName>
+            </sp:subject>
+          </rdf:Description>
+          <rdf:Description>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >obs</sp:varName>
+            </sp:object>
+            <sp:predicate rdf:resource="#hasObservation"/>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >hdp</sp:varName>
+            </sp:subject>
+          </rdf:Description>
+        </sp:templates>
+        <sp:where rdf:parseType="Collection">
+          <rdf:Description>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >value</sp:varName>
+            </sp:object>
+            <sp:predicate rdf:resource="#hasValue"/>
+            <sp:subject rdf:resource="http://spinrdf.org/spin#_this"/>
+          </rdf:Description>
+          <sp:Filter>
+            <sp:expression>
+              <sp:gt>
+                <sp:arg2 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+                >3</sp:arg2>
+                <sp:arg1 rdf:parseType="Resource">
+                  <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                  >value</sp:varName>
+                </sp:arg1>
+              </sp:gt>
+            </sp:expression>
+          </sp:Filter>
+          <sp:Bind>
+            <sp:expression>
+              <sp:iri>
+                <sp:arg1>
+                  <createTimeStamp>
+                    <sp:arg2 rdf:resource="http://spinrdf.org/spin#_this"/>
+                    <sp:arg1>HDP</sp:arg1>
+                  </createTimeStamp>
+                </sp:arg1>
+              </sp:iri>
+            </sp:expression>
+            <sp:variable rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >hdp</sp:varName>
+            </sp:variable>
+          </sp:Bind>
+          <rdf:Description>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >obs</sp:varName>
+            </sp:object>
+            <sp:predicate rdf:resource="#hasObservation"/>
+            <sp:subject rdf:resource="http://spinrdf.org/spin#_this"/>
+          </rdf:Description>
+        </sp:where>
+      </sp:Construct>
+    </spin:rule>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:ID="Differential_Pressure"/>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#Oil"/>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#isPropertyOf"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Fault_Level">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:ID="faultMessage"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Status">
+    <rdfs:subClassOf rdf:resource="#Property"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Differential_Pressure_Sensor">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Sensor"/>
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class rdf:about="#Differential_Pressure"/>
+            </owl:someValuesFrom>
+            <owl:onProperty rdf:resource="#measuresProperty"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Solid_Particle_Contamination">
+    <rdfs:subClassOf rdf:resource="#Contamination"/>
+  </owl:Class>
+  <owl:Class rdf:about="#T_Out">
+    <spin:rule>
+      <CreateValueRangeFault>
+        <sp:arg1 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >0</sp:arg1>
+        <sp:arg2 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >100</sp:arg2>
+      </CreateValueRangeFault>
+    </spin:rule>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Temperature"/>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#Oil"/>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#isPropertyOf"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#MCS_F">
+    <spin:rule>
+      <CreateValueRangeFault>
+        <sp:arg1 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >0</sp:arg1>
+        <sp:arg2 rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >30000</sp:arg2>
+      </CreateValueRangeFault>
+    </spin:rule>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Non_Ferromagnetic_Particles_Contamination"/>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#Bigger_Than_500"/>
+            <owl:onProperty rdf:resource="#measuresParticleSize"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Metallic_Particle_Contamination">
+    <rdfs:subClassOf rdf:resource="#Contamination"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Bigger_Than_200">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Size"/>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="#hasValue"/>
+            <owl:someValuesFrom>
+              <rdfs:Datatype>
+                <owl:withRestrictions rdf:parseType="Collection">
+                  <rdf:Description>
+                    <xsd:maxExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                    >200.0</xsd:maxExclusive>
+                  </rdf:Description>
+                </owl:withRestrictions>
+                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+              </rdfs:Datatype>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Differential_Pressure">
+    <rdfs:subClassOf rdf:resource="#Pressure"/>
+  </owl:Class>
+  <owl:ObjectProperty rdf:about="#isPartOf">
+    <owl:inverseOf rdf:resource="#hasPart"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#hasStatus">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >has status</rdfs:label>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasFault"/>
+  <owl:ObjectProperty rdf:about="#isPropertyOf">
+    <owl:inverseOf rdf:resource="#hasProperty"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#hasSensor">
+    <owl:inverseOf rdf:resource="#isSensorOf"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#faultyComponent">
+    <owl:inverseOf rdf:resource="#hasFault"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#propertyMeasuredBy">
+    <owl:inverseOf rdf:resource="#measuresProperty"/>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:about="#observedTime">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="#faultMessage">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:AllDisjointClasses>
+    <owl:members rdf:parseType="Collection">
+      <owl:Class rdf:about="#Cooler"/>
+      <owl:Class rdf:about="#Gearbox"/>
+      <owl:Class rdf:about="#Oil_Filter"/>
+      <owl:Class rdf:about="#Oil_Pump"/>
+      <owl:Class rdf:about="#Thermo_Bypass_Valve"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
+  <owl:AllDisjointClasses>
+    <owl:members rdf:parseType="Collection">
+      <owl:Class rdf:about="#Cooler_to_Gearbox"/>
+      <owl:Class rdf:about="#Gearbox_To_Oil_Pump"/>
+      <owl:Class rdf:about="#Oil_Filter_To_Thermo_Bypass_Valve"/>
+      <owl:Class rdf:about="#Oil_Pump_To_Oil_Filter"/>
+      <owl:Class rdf:about="#Thermo_Bypass_Valve_To_Cooler"/>
+      <owl:Class rdf:about="#Thermo_Bypass_Valve_To_Gearbox"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
+  <rdf:Description rdf:nodeID="A0">
+    <rdf:rest rdf:parseType="Collection">
+      <rdf:Description>
+        <sp:object rdf:parseType="Resource">
+          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+          >time</sp:varName>
+        </sp:object>
+        <sp:predicate rdf:resource="#hasSamplingTime"/>
+        <sp:subject rdf:parseType="Resource">
+          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+          >obs</sp:varName>
+        </sp:subject>
+      </rdf:Description>
+    </rdf:rest>
+    <rdf:first rdf:parseType="Resource">
+      <sp:object rdf:parseType="Resource">
+        <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >obs</sp:varName>
+      </sp:object>
+      <sp:predicate rdf:resource="#hasObservation"/>
+      <sp:subject rdf:resource="http://spinrdf.org/spin#_this"/>
+    </rdf:first>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A1">
+    <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >time</sp:varName>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A2">
+    <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >flt</sp:varName>
+  </rdf:Description>
+  <createTimeStamp rdf:nodeID="A3">
+    <sp:arg2 rdf:resource="http://spinrdf.org/spin#_this"/>
+    <sp:arg1>SF</sp:arg1>
+  </createTimeStamp>
+  <rdf:Description rdf:nodeID="A4">
+    <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >alm</sp:varName>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A5">
+    <sp:object rdf:resource="#Sensor_Fault"/>
+    <sp:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+    <sp:subject rdf:nodeID="A2"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A6">
+    <rdf:first>
+      <sp:Bind>
+        <sp:expression>
+          <sp:iri>
+            <sp:arg1>
+              <createTimeStamp>
+                <sp:arg2 rdf:resource="http://spinrdf.org/spin#_this"/>
+                <sp:arg1>ALM</sp:arg1>
+              </createTimeStamp>
+            </sp:arg1>
+          </sp:iri>
+        </sp:expression>
+        <sp:variable rdf:parseType="Resource">
+          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+          >alm</sp:varName>
+        </sp:variable>
+      </sp:Bind>
+    </rdf:first>
+    <rdf:rest rdf:nodeID="A0"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A7">
+    <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >flt</sp:varName>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A8">
+    <rdf:rest rdf:parseType="Collection">
+      <rdf:Description>
+        <sp:object rdf:nodeID="A1"/>
+        <sp:predicate rdf:resource="#faultOccurrenceTime"/>
+        <sp:subject rdf:parseType="Resource">
+          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+          >flt</sp:varName>
+        </sp:subject>
+      </rdf:Description>
+      <rdf:Description>
+        <sp:object rdf:nodeID="A4"/>
+        <sp:predicate rdf:resource="#faultLevel"/>
+        <sp:subject rdf:nodeID="A7"/>
+      </rdf:Description>
+      <rdf:Description>
+        <sp:object rdf:resource="#Alarm"/>
+        <sp:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <sp:subject rdf:parseType="Resource">
+          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+          >alm</sp:varName>
+        </sp:subject>
+      </rdf:Description>
+      <rdf:Description>
+        <sp:object rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Replace the sensor</sp:object>
+        <sp:predicate rdf:resource="#faultMessage"/>
+        <sp:subject rdf:parseType="Resource">
+          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+          >alm</sp:varName>
+        </sp:subject>
+      </rdf:Description>
+    </rdf:rest>
+    <rdf:first rdf:parseType="Resource">
+      <sp:object rdf:resource="http://spinrdf.org/spin#_this"/>
+      <sp:predicate rdf:resource="#faultCondition"/>
+      <sp:subject rdf:parseType="Resource">
+        <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >flt</sp:varName>
+      </sp:subject>
+    </rdf:first>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A9">
+    <rdf:rest rdf:parseType="Collection">
+      <sp:Bind>
+        <sp:expression>
+          <sp:abs>
+            <sp:arg1>
+              <sp:sub>
+                <sp:arg2 rdf:parseType="Resource">
+                  <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                  >t2</sp:varName>
+                </sp:arg2>
+                <sp:arg1 rdf:parseType="Resource">
+                  <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                  >t1</sp:varName>
+                </sp:arg1>
+              </sp:sub>
+            </sp:arg1>
+          </sp:abs>
+        </sp:expression>
+        <sp:variable rdf:parseType="Resource">
+          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+          >value</sp:varName>
+        </sp:variable>
+      </sp:Bind>
+    </rdf:rest>
+    <rdf:first rdf:parseType="Resource">
+      <sp:object rdf:parseType="Resource">
+        <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >t1</sp:varName>
+      </sp:object>
+      <sp:predicate rdf:resource="#hasValue"/>
+      <sp:subject rdf:parseType="Resource">
+        <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >intemp</sp:varName>
+      </sp:subject>
+    </rdf:first>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A10">
+    <rdf:rest rdf:nodeID="A8"/>
+    <rdf:first rdf:parseType="Resource">
+      <sp:object rdf:parseType="Resource">
+        <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >sensor</sp:varName>
+      </sp:object>
+      <sp:predicate rdf:resource="#faultyComponent"/>
+      <sp:subject rdf:parseType="Resource">
+        <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >flt</sp:varName>
+      </sp:subject>
+    </rdf:first>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A11">
+    <rdf:rest rdf:parseType="Resource">
+      <rdf:rest rdf:nodeID="A9"/>
+      <rdf:first rdf:parseType="Resource">
+        <sp:object rdf:resource="http://spinrdf.org/spin#_arg1"/>
+        <sp:predicate rdf:resource="#hasObservation"/>
+        <sp:subject rdf:parseType="Resource">
+          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+          >intemp</sp:varName>
+        </sp:subject>
+      </rdf:first>
+    </rdf:rest>
+    <rdf:first rdf:parseType="Resource">
+      <sp:object rdf:resource="#HLB_Temp"/>
+      <sp:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+      <sp:subject rdf:parseType="Resource">
+        <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >intemp</sp:varName>
+      </sp:subject>
+    </rdf:first>
+  </rdf:Description>
+  <spl:Argument rdf:nodeID="A12">
+    <spl:valueType rdf:resource="#Observation"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Observation at which the cooler temperature difference will be measured</rdfs:comment>
+    <spl:predicate rdf:resource="http://spinrdf.org/sp#arg1"/>
+  </spl:Argument>
+  <rdf:Description rdf:nodeID="A13">
+    <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >value</sp:varName>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A14">
+    <sp:object rdf:resource="#T_In"/>
+    <sp:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+    <sp:subject rdf:parseType="Resource">
+      <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+      >outtemp</sp:varName>
+    </sp:subject>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A15">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first>
+      <sp:Bind>
+        <sp:expression>
+          <sp:concat>
+            <sp:arg2>
+              <sp:concat>
+                <sp:arg2 rdf:parseType="Resource">
+                  <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                  >part</sp:varName>
+                </sp:arg2>
+                <sp:arg1>
+                  <sp:concat>
+                    <sp:arg2>_</sp:arg2>
+                    <sp:arg1 rdf:resource="http://spinrdf.org/spin#_arg1"/>
+                  </sp:concat>
+                </sp:arg1>
+              </sp:concat>
+            </sp:arg2>
+            <sp:arg1>http://www.icmwind.com/icmwindontology.owl#</sp:arg1>
+          </sp:concat>
+        </sp:expression>
+        <sp:variable rdf:parseType="Resource">
+          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+          >stamp</sp:varName>
+        </sp:variable>
+      </sp:Bind>
+    </rdf:first>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A16">
+    <rdf:first>
+      <sp:Bind>
+        <sp:expression>
+          <sp:iri>
+            <sp:arg1 rdf:nodeID="A3"/>
+          </sp:iri>
+        </sp:expression>
+        <sp:variable rdf:parseType="Resource">
+          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+          >flt</sp:varName>
+        </sp:variable>
+      </sp:Bind>
+    </rdf:first>
+    <rdf:rest rdf:nodeID="A6"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A17">
+    <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >stamp</sp:varName>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A18">
+    <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >value</sp:varName>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A19">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:nodeID="A17"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A20">
+    <sp:object rdf:resource="http://spinrdf.org/spin#_arg1"/>
+    <sp:predicate rdf:resource="#hasObservation"/>
+    <sp:subject rdf:parseType="Resource">
+      <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+      >outtemp</sp:varName>
+    </sp:subject>
+  </rdf:Description>
+  <sp:gt rdf:nodeID="A21">
+    <sp:arg2 rdf:resource="http://spinrdf.org/spin#_arg2"/>
+    <sp:arg1 rdf:nodeID="A13"/>
+  </sp:gt>
+  <rdf:Description rdf:nodeID="A22">
+    <rdf:rest rdf:nodeID="A10"/>
+    <rdf:first rdf:nodeID="A5"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A23">
+    <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >t2</sp:varName>
+  </rdf:Description>
+  <sp:Select rdf:nodeID="A24">
+    <sp:resultVariables rdf:parseType="Collection">
+      <rdf:Description>
+        <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >value</sp:varName>
+      </rdf:Description>
+    </sp:resultVariables>
+    <sp:where rdf:parseType="Resource">
+      <rdf:rest rdf:parseType="Resource">
+        <rdf:rest rdf:parseType="Resource">
+          <rdf:rest rdf:nodeID="A11"/>
+          <rdf:first rdf:parseType="Resource">
+            <sp:object rdf:nodeID="A23"/>
+            <sp:predicate rdf:resource="#hasValue"/>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >outtemp</sp:varName>
+            </sp:subject>
+          </rdf:first>
+        </rdf:rest>
+        <rdf:first rdf:nodeID="A20"/>
+      </rdf:rest>
+      <rdf:first rdf:nodeID="A14"/>
+    </sp:where>
+  </sp:Select>
+  <rdf:Description rdf:nodeID="A25">
+    <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >label</sp:varName>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A26">
+    <sp:object rdf:nodeID="A25"/>
+    <sp:predicate rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+    <sp:subject rdf:resource="http://spinrdf.org/spin#_this"/>
+  </rdf:Description>
+  <sp:Filter rdf:nodeID="A27">
+    <sp:expression>
+      <sp:or>
+        <sp:arg2 rdf:nodeID="A21"/>
+        <sp:arg1>
+          <sp:lt>
+            <sp:arg2 rdf:resource="http://spinrdf.org/spin#_arg1"/>
+            <sp:arg1 rdf:nodeID="A18"/>
+          </sp:lt>
+        </sp:arg1>
+      </sp:or>
+    </sp:expression>
+  </sp:Filter>
+  <rdf:Description rdf:nodeID="A28">
+    <rdf:first rdf:parseType="Resource">
+      <sp:object rdf:resource="http://spinrdf.org/spin#_this"/>
+      <sp:predicate rdf:resource="#measuresProperty"/>
+      <sp:subject rdf:parseType="Resource">
+        <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >sensor</sp:varName>
+      </sp:subject>
+    </rdf:first>
+    <rdf:rest rdf:nodeID="A16"/>
+  </rdf:Description>
+  <spin:ConstructTemplate rdf:ID="CreateValueRangeFault">
+    <spin:labelTemplate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Check Value Range fault for ?this Property with range ( {?arg1}, {?arg2}) .</spin:labelTemplate>
+    <spin:body>
+      <sp:Construct>
+        <sp:templates rdf:nodeID="A22"/>
+        <sp:where rdf:parseType="Resource">
+          <rdf:rest rdf:parseType="Resource">
+            <rdf:first rdf:nodeID="A26"/>
+            <rdf:rest rdf:parseType="Resource">
+              <rdf:first rdf:nodeID="A27"/>
+              <rdf:rest rdf:nodeID="A28"/>
+            </rdf:rest>
+          </rdf:rest>
+          <rdf:first rdf:parseType="Resource">
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >value</sp:varName>
+            </sp:object>
+            <sp:predicate rdf:resource="#hasValue"/>
+            <sp:subject rdf:resource="http://spinrdf.org/spin#_this"/>
+          </rdf:first>
+        </sp:where>
+      </sp:Construct>
+    </spin:body>
+    <spin:constraint>
+      <spl:Argument>
+        <spl:valueType rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Maximum value measured</rdfs:comment>
+        <spl:predicate rdf:resource="http://spinrdf.org/sp#arg2"/>
+      </spl:Argument>
+    </spin:constraint>
+    <spin:constraint>
+      <spl:Argument>
+        <spl:valueType rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Minimum value measured</rdfs:comment>
+        <spl:predicate rdf:resource="http://spinrdf.org/sp#arg1"/>
+      </spl:Argument>
+    </spin:constraint>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Create value range fault</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://spinrdf.org/spin#ConstructTemplates"/>
+  </spin:ConstructTemplate>
+  <spin:Function rdf:ID="createTimeStamp">
+    <spin:body>
+      <sp:Select>
+        <sp:resultVariables rdf:nodeID="A19"/>
+        <sp:where rdf:parseType="Resource">
+          <rdf:rest rdf:nodeID="A15"/>
+          <rdf:first>
+            <sp:Bind>
+              <sp:expression>
+                <sp:strafter>
+                  <sp:arg2>#</sp:arg2>
+                  <sp:arg1>
+                    <sp:str>
+                      <sp:arg1 rdf:resource="http://spinrdf.org/spin#_arg2"/>
+                    </sp:str>
+                  </sp:arg1>
+                </sp:strafter>
+              </sp:expression>
+              <sp:variable rdf:parseType="Resource">
+                <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >part</sp:varName>
+              </sp:variable>
+            </sp:Bind>
+          </rdf:first>
+        </sp:where>
+      </sp:Select>
+    </spin:body>
+    <spin:returnType rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <spin:constraint>
+      <spl:Argument>
+        <spl:valueType rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >URI which will be used to create time stamp</rdfs:comment>
+        <spl:predicate rdf:resource="http://spinrdf.org/sp#arg2"/>
+      </spl:Argument>
+    </spin:constraint>
+    <spin:constraint>
+      <spl:Argument>
+        <spl:valueType rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Initial prefix as string used to define what kind of instance is it</rdfs:comment>
+        <spl:predicate rdf:resource="http://spinrdf.org/sp#arg1"/>
+      </spl:Argument>
+    </spin:constraint>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >create time stamp</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://spinrdf.org/spin#Functions"/>
+  </spin:Function>
+  <spin:Function rdf:ID="coolerTemperatureDifference">
+    <spin:body rdf:nodeID="A24"/>
+    <spin:constraint rdf:nodeID="A12"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cooler temperature difference</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://spinrdf.org/spin#Functions"/>
+  </spin:Function>
+</rdf:RDF>
+
+<!-- Created with TopBraid -->
