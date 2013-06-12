@@ -1,0 +1,91 @@
+
+Uploaded File: special_test_data
+
+Selected Analysis Period
+- From: Wed Jun 01 00:00:00 CEST 2011
+- To: Sun Jun 05 00:00:00 CEST 2011
+
+Total Observations: 7200
+Total Axioms: 734511
+Total Encoding Time: 33234 ms
+ABoxes created: 
+- URI: http://www.icmwind.com/instances/iwo-infobox.owl
+- Path: C:/Users/anme05/git/icmwindsem/icmwindapp/war/data store/ontologies/iwo-infobox.owl
+- Axioms: 31
+
+- URI: http://www.icmwind.com/instances/iwo-databox-01.06.2011-01.06.2011.owl
+- Path: C:/Users/anme05/git/icmwindsem/icmwindapp/war/data store/ontologies/iwo-databox-01.06.2011-01.06.2011.owl
+- Axioms: 101908
+
+- URI: http://www.icmwind.com/instances/iwo-databox-01.06.2011-02.06.2011.owl
+- Path: C:/Users/anme05/git/icmwindsem/icmwindapp/war/data store/ontologies/iwo-databox-01.06.2011-02.06.2011.owl
+- Axioms: 102010
+
+- URI: http://www.icmwind.com/instances/iwo-databox-02.06.2011-03.06.2011.owl
+- Path: C:/Users/anme05/git/icmwindsem/icmwindapp/war/data store/ontologies/iwo-databox-02.06.2011-03.06.2011.owl
+- Axioms: 102010
+
+- URI: http://www.icmwind.com/instances/iwo-databox-03.06.2011-03.06.2011.owl
+- Path: C:/Users/anme05/git/icmwindsem/icmwindapp/war/data store/ontologies/iwo-databox-03.06.2011-03.06.2011.owl
+- Axioms: 102010
+
+- URI: http://www.icmwind.com/instances/iwo-databox-03.06.2011-04.06.2011.owl
+- Path: C:/Users/anme05/git/icmwindsem/icmwindapp/war/data store/ontologies/iwo-databox-03.06.2011-04.06.2011.owl
+- Axioms: 102010
+
+- URI: http://www.icmwind.com/instances/iwo-databox-04.06.2011-05.06.2011.owl
+- Path: C:/Users/anme05/git/icmwindsem/icmwindapp/war/data store/ontologies/iwo-databox-04.06.2011-05.06.2011.owl
+- Axioms: 102010
+
+- URI: http://www.icmwind.com/instances/iwo-databox-05.06.2011-05.06.2011.owl
+- Path: C:/Users/anme05/git/icmwindsem/icmwindapp/war/data store/ontologies/iwo-databox-05.06.2011-05.06.2011.owl
+- Axioms: 102010
+
+- URI: http://www.icmwind.com/instances/iwo-databox-05.06.2011-06.06.2011.owl
+- Path: C:/Users/anme05/git/icmwindsem/icmwindapp/war/data store/ontologies/iwo-databox-05.06.2011-06.06.2011.owl
+- Axioms: 20512
+
+
+Merge Ontologies: 
+- Ontology 1: http://www.icmwind.com/instances/iwo-infobox.owl
+- Ontology 2: http://www.icmwind.com/instances/iwo-databox-01.06.2011-01.06.2011.owl
+- Ontology 3: http://www.icmwind.com/instances/iwo-databox-01.06.2011-02.06.2011.owl
+- Ontology 4: http://www.icmwind.com/instances/iwo-databox-02.06.2011-03.06.2011.owl
+- Ontology 5: http://www.icmwind.com/instances/iwo-databox-03.06.2011-03.06.2011.owl
+- Ontology 6: http://www.icmwind.com/instances/iwo-databox-03.06.2011-04.06.2011.owl
+- Ontology 7: http://www.icmwind.com/instances/iwo-databox-04.06.2011-05.06.2011.owl
+- Ontology 8: http://www.icmwind.com/instances/iwo-databox-05.06.2011-05.06.2011.owl
+- Ontology 9: http://www.icmwind.com/instances/iwo-databox-05.06.2011-06.06.2011.owl
+Merging...
+Saving...
+
+Merged Ontology Information. 
+- URI: http://www.icmwind.com/instances/iwo-abox-01.06.2011-05.06.2011.owl
+- Path: C:/Users/anme05/git/icmwindsem/icmwindapp/war/data store/ontologies/iwo-abox-01.06.2011-05.06.2011.owl
+- Axiom Count: 928898
+- Total Merging Time: 24595ms
+
+TopSPIN Inferencing.
+Ontology To Infer
+- URI: http://www.icmwind.com/instances/iwo-abox-01.06.2011-05.06.2011.owl
+- Path: C:/Users/anme05/git/icmwindsem/icmwindapp/war/data store/ontologies/iwo-abox-01.06.2011-05.06.2011.owl
+Running inferencing...
+Triples added: 91229
+Writing to file..
+Inferred Ontology
+- URI: http://www.icmwind.com/instances/iwo-spinbox-01.06.2011-05.06.2011.owl
+- Path: C:/Users/anme05/git/icmwindsem/icmwindapp/war/data store/ontologies/iwo-spinbox-01.06.2011-05.06.2011.owl
+- SPIN Inferencing Time: 604124ms
+
+Merge Ontologies: 
+- Ontology 1: http://www.icmwind.com/icmwindontology.owl
+- Ontology 2: http://www.icmwind.com/instances/iwo-abox-01.06.2011-05.06.2011.owl
+- Ontology 3: http://www.icmwind.com/instances/iwo-spinbox-01.06.2011-05.06.2011.owl
+Merging...
+Saving...
+
+Merged Ontology Information. 
+- URI: http://www.icmwind.com/instances/iwo-01.06.2011-05.06.2011.owl
+- Path: C:/Users/anme05/git/icmwindsem/icmwindapp/war/data store/ontologies/iwo-01.06.2011-05.06.2011.owl
+- Axiom Count: 1020452
+- Total Merging Time: 30456ms

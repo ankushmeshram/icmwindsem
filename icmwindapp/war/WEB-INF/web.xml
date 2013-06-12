@@ -12,7 +12,7 @@
 	
 	<servlet>
 		<servlet-name>RDFEncoderService</servlet-name>
-		<servlet-class>com.icmwind.gui.web.server.RDFEncoderServiceImpl</servlet-class>
+		<servlet-class>com.icmwind.gui.web.server.services.RDFEncoderServiceImpl</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>RDFEncoderService</servlet-name>

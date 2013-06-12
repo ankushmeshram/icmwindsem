@@ -87,7 +87,7 @@ public class OntologyProcessMadnessImpl implements Madness {
 		factory = manager.getOWLDataFactory();
 		
 		tboxUri	 = ICMWindConfig.getOntologyURI();
-		tboxFile = new File("C:/Users/anme05/Dropbox/Thesis/Ontology/icmwindontology.owl");
+		tboxFile = new File(ICMWindConfig.getResourceFolderPath() + ICMWindConfig.getCoreOntologyPath());
 		
 		ontoIri = IRI.create(tboxUri);
 		docIri  = IRI.create(tboxFile);
@@ -360,6 +360,11 @@ public class OntologyProcessMadnessImpl implements Madness {
 	@Override
 	public OWLNamedIndividual createtNamedIndividualForURI(String individualURI) {
 		return factory.getOWLNamedIndividual(IRI.create(individualURI));
+	}
+
+	@Override
+	public int axiomCountFor(OWLOntology ontology) {
+		return ontology.getAxiomCount();
 	}
 	
 

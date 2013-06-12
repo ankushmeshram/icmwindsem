@@ -1,8 +1,13 @@
 package com.icmwind.gui.web.client.helpers;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +35,8 @@ public class GlobalInitializer {
 	private String UPLOADED_FILE_PATH;
 	
 	private final static Map<String, String> mapWT2Source = new HashMap<String, String>();
+	
+	private static PrintWriter logWriter = null;
 	
 	private static Properties prop = new Properties();
 	
@@ -67,6 +74,9 @@ public class GlobalInitializer {
 		// initialise ICMWindConfig
 		ICMWindConfig.init();
 		
+		// Set Log Writer for Encoding initialized from GI 
+		ICMWindConfig.setEncodingLogWriter(GlobalInitializer.get().getLogWriter());
+		
 		// Initialise Ontology Processing
 //		RDFEncoderImpl.getInstance().initOntologyProcess();
 		EncoderImpl.getInstance().initOntologyProcess();
@@ -74,6 +84,8 @@ public class GlobalInitializer {
 		// Set Path to store encoded triples
 //		RDFEncoderImpl.getInstance().setEncodeStorage(GlobalInitializer.get().ONTOLOGIES_LOCATION);
 		EncoderImpl.getInstance().setEncodeStorage(GlobalInitializer.get().ONTOLOGIES_LOCATION);
+		
+		
 	}
 	
 	public List<String> listWindTurbines() {
@@ -111,7 +123,22 @@ public class GlobalInitializer {
 		UPLOADED_FILE_PATH = uploadfile_path;
 	}
 	
-	
+	public PrintWriter getLogWriter() {
+		Date date= new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+		
+		String timeStamp = sdf.format(date).substring(0, 10).replaceAll("\\.", "-") 
+							+ "_" + sdf.format(date).substring(11).replaceAll(":", "-");
+		
+		try {
+			logWriter = new PrintWriter("log-" + timeStamp + ".txt");
+			return logWriter;
+		} catch (FileNotFoundException e) {
+			System.out.println("\n**ERROR GI.getLogWriter() : Error in creating Log file.");
+			e.printStackTrace();
+			return null;
+		}
+	}
 	
 
 }

@@ -1,0 +1,11 @@
+
+TopSPIN Inferencing.
+Ontology To Infer
+- URI: http://www.icmwind.com/instances/iwo-abox-04.09.2008-06.09.2008.owl
+- Path: C:/Users/anme05/git/icmwindsem/icmwindapp/war/data store/ontologies/iwo-abox-04.09.2008-06.09.2008.owl
+Running inferencing...
+Triples added: 4
+Writing to file..
+Inferred Ontology
+- URI: http://www.icmwind.com/instances/iwo-spinbox-04.09.2008-06.09.2008.owl
+- SPIN Inferencing Time: 428ms

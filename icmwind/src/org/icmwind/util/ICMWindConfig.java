@@ -8,6 +8,7 @@
 package org.icmwind.util;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Properties;
 
 /**
@@ -33,6 +34,8 @@ public final class ICMWindConfig {
 	private static final String ONTOLOGY_URI = "http://www.icmwind.com/icmwindontology.owl";
 
 	private static Properties icmwindconfig = new Properties();
+	
+	private static PrintWriter writer = null;
 
 	private ICMWindConfig() {
 	}
@@ -123,5 +126,18 @@ public final class ICMWindConfig {
 
 	public static String getOntologyURI() {
 		return ONTOLOGY_URI;
+	}
+	
+	public static void setEncodingLogWriter(PrintWriter pw) {
+		writer = pw;
+	}
+	
+	public static PrintWriter getEncodingLogWriter() {
+		if(writer!=null) {
+			return writer;
+		} else {
+			System.out.println("\n**ERROR - ICMWindConfig.getEncodingLogWriter() : Log Writer not initialised.");
+			return null;
+		}
 	}
 }

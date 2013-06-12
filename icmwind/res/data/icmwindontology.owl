@@ -53,6 +53,18 @@
     
 
 
+    <!-- http://www.icmwind.com/icmwindontology.owl#consistsOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.icmwind.com/icmwindontology.owl#consistsOf"/>
+    
+
+
+    <!-- http://www.icmwind.com/icmwindontology.owl#detects -->
+
+    <owl:ObjectProperty rdf:about="http://www.icmwind.com/icmwindontology.owl#detects"/>
+    
+
+
     <!-- http://www.icmwind.com/icmwindontology.owl#faultCondition -->
 
     <owl:ObjectProperty rdf:about="http://www.icmwind.com/icmwindontology.owl#faultCondition"/>
@@ -74,6 +86,14 @@
     <!-- http://www.icmwind.com/icmwindontology.owl#faultyComponent -->
 
     <owl:ObjectProperty rdf:about="http://www.icmwind.com/icmwindontology.owl#faultyComponent">
+        <owl:inverseOf rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasFault"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.icmwind.com/icmwindontology.owl#faultySensor -->
+
+    <owl:ObjectProperty rdf:about="http://www.icmwind.com/icmwindontology.owl#faultySensor">
         <owl:inverseOf rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasFault"/>
     </owl:ObjectProperty>
     
@@ -133,17 +153,15 @@
     
 
 
-    <!-- http://www.icmwind.com/icmwindontology.owl#hasSensor -->
-
-    <owl:ObjectProperty rdf:about="http://www.icmwind.com/icmwindontology.owl#hasSensor">
-        <owl:inverseOf rdf:resource="http://www.icmwind.com/icmwindontology.owl#isSensorOf"/>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://www.icmwind.com/icmwindontology.owl#hasStatus -->
 
     <owl:ObjectProperty rdf:about="http://www.icmwind.com/icmwindontology.owl#hasStatus"/>
+    
+
+
+    <!-- http://www.icmwind.com/icmwindontology.owl#installedAt -->
+
+    <owl:ObjectProperty rdf:about="http://www.icmwind.com/icmwindontology.owl#installedAt"/>
     
 
 
@@ -163,29 +181,35 @@
     
 
 
-    <!-- http://www.icmwind.com/icmwindontology.owl#isSensorOf -->
-
-    <owl:ObjectProperty rdf:about="http://www.icmwind.com/icmwindontology.owl#isSensorOf"/>
-    
-
-
     <!-- http://www.icmwind.com/icmwindontology.owl#measuresParticleSize -->
 
     <owl:ObjectProperty rdf:about="http://www.icmwind.com/icmwindontology.owl#measuresParticleSize"/>
     
 
 
-    <!-- http://www.icmwind.com/icmwindontology.owl#measuresProperty -->
+    <!-- http://www.icmwind.com/icmwindontology.owl#monitoredProperty -->
 
-    <owl:ObjectProperty rdf:about="http://www.icmwind.com/icmwindontology.owl#measuresProperty"/>
+    <owl:ObjectProperty rdf:about="http://www.icmwind.com/icmwindontology.owl#monitoredProperty"/>
     
 
 
-    <!-- http://www.icmwind.com/icmwindontology.owl#propertyMeasuredBy -->
+    <!-- http://www.icmwind.com/icmwindontology.owl#monitors -->
 
-    <owl:ObjectProperty rdf:about="http://www.icmwind.com/icmwindontology.owl#propertyMeasuredBy">
-        <owl:inverseOf rdf:resource="http://www.icmwind.com/icmwindontology.owl#measuresProperty"/>
+    <owl:ObjectProperty rdf:about="http://www.icmwind.com/icmwindontology.owl#monitors"/>
+    
+
+
+    <!-- http://www.icmwind.com/icmwindontology.owl#observedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.icmwind.com/icmwindontology.owl#observedBy">
+        <owl:inverseOf rdf:resource="http://www.icmwind.com/icmwindontology.owl#observes"/>
     </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.icmwind.com/icmwindontology.owl#observes -->
+
+    <owl:ObjectProperty rdf:about="http://www.icmwind.com/icmwindontology.owl#observes"/>
     
 
 
@@ -243,7 +267,7 @@
 
     <owl:Class rdf:about="http://www.icmwind.com/icmwindontology.owl#Air">
         <rdfs:subClassOf rdf:resource="http://www.icmwind.com/icmwindontology.owl#Feature_Of_Interest"/>
-        <owl:disjointWith rdf:resource="http://www.icmwind.com/icmwindontology.owl#Oil"/>
+        <owl:disjointWith rdf:resource="http://www.icmwind.com/icmwindontology.owl#Fluids"/>
     </owl:Class>
     
 
@@ -362,44 +386,32 @@
         <rdfs:subClassOf rdf:resource="http://www.icmwind.com/icmwindontology.owl#Contamination_Sensor"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#measuresProperty"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#ISO_6"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#measuresProperty"/>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#observes"/>
                 <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#ISO_4"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#isSensorOf"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Gearbox"/>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#observes"/>
+                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#ISO_6"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#measuresProperty"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#ISO_14"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#measuresProperty"/>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#observes"/>
                 <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#CS_Drive"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasFeatureOfInterest"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Oil"/>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#observes"/>
+                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#CS_Flow"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#measuresProperty"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#CS_Flow"/>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasPosition"/>
+                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Oil_Pump_To_Oil_Filter"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -410,14 +422,20 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#measuresProperty"/>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#observes"/>
+                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#ISO_14"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#observes"/>
                 <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#CSM_ON"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasPosition"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Oil_Pump_To_Oil_Filter"/>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasFeatureOfInterest"/>
+                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Oil"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -474,20 +492,72 @@
     
 
 
+    <!-- http://www.icmwind.com/icmwindontology.owl#Component -->
+
+    <owl:Class rdf:about="http://www.icmwind.com/icmwindontology.owl#Component">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasConnection"/>
+                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Connection"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasManufacturer"/>
+                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Manufacturer"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#isPartOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#System"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.icmwind.com/icmwindontology.owl#Component_Fault -->
+
+    <owl:Class rdf:about="http://www.icmwind.com/icmwindontology.owl#Component_Fault">
+        <rdfs:subClassOf rdf:resource="http://www.icmwind.com/icmwindontology.owl#Fault"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#faultyComponent"/>
+                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Component"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#faultCondition"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Fault"/>
+                            <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Property"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
     <!-- http://www.icmwind.com/icmwindontology.owl#Connection -->
 
     <owl:Class rdf:about="http://www.icmwind.com/icmwindontology.owl#Connection">
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#connectionFrom"/>
-                <owl:onClass rdf:resource="http://www.icmwind.com/icmwindontology.owl#Sub_System"/>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#connectedTo"/>
+                <owl:onClass rdf:resource="http://www.icmwind.com/icmwindontology.owl#Component"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#connectedTo"/>
-                <owl:onClass rdf:resource="http://www.icmwind.com/icmwindontology.owl#Sub_System"/>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#connectionFrom"/>
+                <owl:onClass rdf:resource="http://www.icmwind.com/icmwindontology.owl#Component"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -511,7 +581,7 @@
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Sensor"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#measuresProperty"/>
+                        <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#observes"/>
                         <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Contamination"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -527,7 +597,7 @@
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Sub_System"/>
+                    <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Component"/>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasConnection"/>
                         <owl:onClass rdf:resource="http://www.icmwind.com/icmwindontology.owl#Cooler_to_Gearbox"/>
@@ -596,7 +666,7 @@
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Sensor"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#measuresProperty"/>
+                        <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#observes"/>
                         <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Differential_Pressure"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -628,32 +698,26 @@
         <rdfs:subClassOf rdf:resource="http://www.icmwind.com/icmwindontology.owl#ETS_7000"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasPosition"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Cooler_to_Gearbox"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasManufacturer"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#HYDAC"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasFeatureOfInterest"/>
                 <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Oil"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#measuresProperty"/>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasPosition"/>
+                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Cooler_to_Gearbox"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#observes"/>
                 <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#T_In"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#isSensorOf"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Gearbox"/>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasManufacturer"/>
+                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#HYDAC"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -666,32 +730,26 @@
         <rdfs:subClassOf rdf:resource="http://www.icmwind.com/icmwindontology.owl#ETS_7000"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasPosition"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Oil_Pump_To_Oil_Filter"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#measuresProperty"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#T_Out"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasFeatureOfInterest"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Oil"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasManufacturer"/>
                 <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#HYDAC"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#isSensorOf"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Gearbox"/>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#observes"/>
+                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#T_Out"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasPosition"/>
+                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Oil_Pump_To_Oil_Filter"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasFeatureOfInterest"/>
+                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Oil"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -759,13 +817,58 @@
     
 
 
+    <!-- http://www.icmwind.com/icmwindontology.owl#Fluid_Condition_Monitoring -->
+
+    <owl:Class rdf:about="http://www.icmwind.com/icmwindontology.owl#Fluid_Condition_Monitoring">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#installedAt"/>
+                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Component"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#monitoredProperty"/>
+                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Property"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#consistsOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Sensor"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#detects"/>
+                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Fault"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#monitors"/>
+                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Fluids"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.icmwind.com/icmwindontology.owl#Fluids -->
+
+    <owl:Class rdf:about="http://www.icmwind.com/icmwindontology.owl#Fluids">
+        <rdfs:subClassOf rdf:resource="http://www.icmwind.com/icmwindontology.owl#Feature_Of_Interest"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.icmwind.com/icmwindontology.owl#Gearbox -->
 
     <owl:Class rdf:about="http://www.icmwind.com/icmwindontology.owl#Gearbox">
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Sub_System"/>
+                    <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Component"/>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasConnection"/>
                         <owl:onClass rdf:resource="http://www.icmwind.com/icmwindontology.owl#Gearbox_To_Oil_Pump"/>
@@ -824,14 +927,8 @@
         <rdfs:subClassOf rdf:resource="http://www.icmwind.com/icmwindontology.owl#HDA_4300"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#isSensorOf"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Gearbox"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#measuresProperty"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#P_In"/>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasFeatureOfInterest"/>
+                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Oil"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -848,8 +945,8 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasFeatureOfInterest"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Oil"/>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#observes"/>
+                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#P_In"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -862,20 +959,14 @@
         <rdfs:subClassOf rdf:resource="http://www.icmwind.com/icmwindontology.owl#HDA_4700"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#measuresProperty"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#P_Saug"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasPosition"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Gearbox_To_Oil_Pump"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasManufacturer"/>
                 <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#HYDAC"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#observes"/>
+                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#P_Saug"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -886,8 +977,8 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#isSensorOf"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Gearbox"/>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasPosition"/>
+                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Gearbox_To_Oil_Pump"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -962,37 +1053,19 @@
         <rdfs:subClassOf rdf:resource="http://www.icmwind.com/icmwindontology.owl#Sensor"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasManufacturer"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#HYDAC"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#isSensorOf"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Gearbox"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#measuresProperty"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#HLB_DK"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasFeatureOfInterest"/>
                 <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Oil"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#measuresProperty"/>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#observes"/>
                 <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#HLB_Temp"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#measuresProperty"/>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#observes"/>
                 <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#HLB_S"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1000,6 +1073,18 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasPosition"/>
                 <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Thermo_Bypass_Valve_To_Cooler"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasManufacturer"/>
+                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#HYDAC"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#observes"/>
+                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#HLB_DK"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1116,38 +1201,14 @@
         <rdfs:subClassOf rdf:resource="http://www.icmwind.com/icmwindontology.owl#Contamination_Sensor"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#measuresProperty"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#MCS_Temp"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#measuresProperty"/>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#observes"/>
                 <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#MCS_F"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#isSensorOf"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Gearbox"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasFeatureOfInterest"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Oil"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#measuresProperty"/>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#observes"/>
                 <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#MCS_A"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#measuresProperty"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#MCS_D"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1158,25 +1219,43 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasFeatureOfInterest"/>
+                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Oil"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#observes"/>
+                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#MCS_D"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#observes"/>
+                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#MCS_B"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasPosition"/>
                 <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Oil_Pump_To_Oil_Filter"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#measuresProperty"/>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#observes"/>
                 <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#MCS_E"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#measuresProperty"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#MCS_B"/>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#observes"/>
+                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#MCS_Temp"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#measuresProperty"/>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#observes"/>
                 <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#MCS_C"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1348,7 +1427,7 @@
     <!-- http://www.icmwind.com/icmwindontology.owl#Oil -->
 
     <owl:Class rdf:about="http://www.icmwind.com/icmwindontology.owl#Oil">
-        <rdfs:subClassOf rdf:resource="http://www.icmwind.com/icmwindontology.owl#Feature_Of_Interest"/>
+        <rdfs:subClassOf rdf:resource="http://www.icmwind.com/icmwindontology.owl#Fluids"/>
     </owl:Class>
     
 
@@ -1359,7 +1438,7 @@
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Sub_System"/>
+                    <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Component"/>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasConnection"/>
                         <owl:onClass rdf:resource="http://www.icmwind.com/icmwindontology.owl#Oil_Filter_To_Thermo_Bypass_Valve"/>
@@ -1402,7 +1481,7 @@
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Sub_System"/>
+                    <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Component"/>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasConnection"/>
                         <owl:onClass rdf:resource="http://www.icmwind.com/icmwindontology.owl#Oil_Pump_To_Oil_Filter"/>
@@ -1505,7 +1584,7 @@
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Sensor"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#measuresProperty"/>
+                        <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#observes"/>
                         <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Pressure"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -1520,7 +1599,13 @@
     <owl:Class rdf:about="http://www.icmwind.com/icmwindontology.owl#Property">
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#propertyMeasuredBy"/>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasObservation"/>
+                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Observation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#observedBy"/>
                 <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Sensor"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1528,12 +1613,6 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#isPropertyOf"/>
                 <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Feature_Of_Interest"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasObservation"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Observation"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1560,7 +1639,13 @@
         <rdfs:subClassOf rdf:resource="http://www.icmwind.com/icmwindontology.owl#Speed_Sensor"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#measuresProperty"/>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasManufacturer"/>
+                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Pulsotronic"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#observes"/>
                 <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Speed"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1568,18 +1653,6 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasPosition"/>
                 <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Gearbox"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#isSensorOf"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Gearbox"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasManufacturer"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Pulsotronic"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1591,8 +1664,15 @@
     <owl:Class rdf:about="http://www.icmwind.com/icmwindontology.owl#Sensor">
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasFeatureOfInterest"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Feature_Of_Interest"/>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasPosition"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Component"/>
+                            <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Connection"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1603,27 +1683,14 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#measuresProperty"/>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasFeatureOfInterest"/>
+                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Feature_Of_Interest"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#observes"/>
                 <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Property"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasPosition"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:unionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Connection"/>
-                            <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Sub_System"/>
-                        </owl:unionOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#isSensorOf"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Sub_System"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1636,7 +1703,7 @@
         <rdfs:subClassOf rdf:resource="http://www.icmwind.com/icmwindontology.owl#Fault"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#faultyComponent"/>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#faultySensor"/>
                 <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Sensor"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1763,7 +1830,7 @@
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Sensor"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#measuresProperty"/>
+                        <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#observes"/>
                         <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Speed"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -1781,77 +1848,19 @@
     
 
 
-    <!-- http://www.icmwind.com/icmwindontology.owl#Sub_System -->
-
-    <owl:Class rdf:about="http://www.icmwind.com/icmwindontology.owl#Sub_System">
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasConnection"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Connection"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasManufacturer"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Manufacturer"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasSensor"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Sensor"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#isPartOf"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#System"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
     <!-- http://www.icmwind.com/icmwindontology.owl#System -->
 
     <owl:Class rdf:about="http://www.icmwind.com/icmwindontology.owl#System">
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasPart"/>
+                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Component"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasManufacturer"/>
                 <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Manufacturer"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasPart"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Sub_System"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://www.icmwind.com/icmwindontology.owl#System_Fault -->
-
-    <owl:Class rdf:about="http://www.icmwind.com/icmwindontology.owl#System_Fault">
-        <rdfs:subClassOf rdf:resource="http://www.icmwind.com/icmwindontology.owl#Fault"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#faultCondition"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:unionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Fault"/>
-                            <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Property"/>
-                        </owl:unionOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#faultyComponent"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Sub_System"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1872,8 +1881,8 @@
         <rdfs:subClassOf rdf:resource="http://www.icmwind.com/icmwindontology.owl#Temperature_Sensor"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasFeatureOfInterest"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Air"/>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#observes"/>
+                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#T_Air"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1884,20 +1893,14 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#isSensorOf"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Gearbox"/>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasFeatureOfInterest"/>
+                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Air"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasPosition"/>
                 <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Cooler"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#measuresProperty"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#T_Air"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1974,7 +1977,7 @@
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Sensor"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#measuresProperty"/>
+                        <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#observes"/>
                         <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Temperature"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -1990,7 +1993,7 @@
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Sub_System"/>
+                    <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Component"/>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasConnection"/>
                         <owl:onClass rdf:resource="http://www.icmwind.com/icmwindontology.owl#Thermo_Bypass_Valve_To_Cooler"/>
@@ -2129,20 +2132,8 @@
         <rdfs:subClassOf rdf:resource="http://www.icmwind.com/icmwindontology.owl#Differential_Pressure_Sensor"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#measuresProperty"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#VLGW_P"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasManufacturer"/>
                 <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#HYDAC"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasPosition"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Oil_Filter"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2153,14 +2144,20 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#isSensorOf"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Gearbox"/>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#observes"/>
+                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#VLGW_dP"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#measuresProperty"/>
-                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#VLGW_dP"/>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#hasPosition"/>
+                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#Oil_Filter"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.icmwind.com/icmwindontology.owl#observes"/>
+                <owl:someValuesFrom rdf:resource="http://www.icmwind.com/icmwindontology.owl#VLGW_P"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -2233,22 +2230,40 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Cooler"/>
-            <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Gearbox"/>
-            <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Oil_Filter"/>
-            <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Oil_Pump"/>
-            <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Thermo_Bypass_Valve"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
             <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Cooler_to_Gearbox"/>
             <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Gearbox_To_Oil_Pump"/>
             <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Oil_Filter_To_Thermo_Bypass_Valve"/>
             <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Oil_Pump_To_Oil_Filter"/>
             <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Thermo_Bypass_Valve_To_Cooler"/>
             <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Thermo_Bypass_Valve_To_Gearbox"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Component"/>
+            <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Connection"/>
+            <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Fault"/>
+            <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Fault_Level"/>
+            <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Feature_Of_Interest"/>
+            <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Fluid_Condition_Monitoring"/>
+            <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Manufacturer"/>
+            <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Observation"/>
+            <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Property"/>
+            <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Sensor"/>
+            <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#System"/>
+            <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Time"/>
+            <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Unit_Of_Measurement"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Cooler"/>
+            <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Gearbox"/>
+            <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Oil_Filter"/>
+            <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Oil_Pump"/>
+            <rdf:Description rdf:about="http://www.icmwind.com/icmwindontology.owl#Thermo_Bypass_Valve"/>
         </owl:members>
     </rdf:Description>
 </rdf:RDF>

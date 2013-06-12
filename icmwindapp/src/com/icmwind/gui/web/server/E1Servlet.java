@@ -2,6 +2,7 @@ package com.icmwind.gui.web.server;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -23,6 +24,7 @@ public class E1Servlet extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private PrintWriter logger = null;
 	
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		super.doGet(req, resp);
@@ -30,6 +32,12 @@ public class E1Servlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("E1Servlt Entered.");
+		logger = GlobalInitializer.get().getLogWriter();
+		logger.println();
+		logger.println("File Upload Operation.");
+		logger.flush();
+		
+		long startTime = System.currentTimeMillis();
 		
 		if(ServletFileUpload.isMultipartContent(req)) {
 			System.out.println("E1Servlet - entering right zone.");
@@ -85,6 +93,10 @@ public class E1Servlet extends HttpServlet {
 					
 					// Set Global variable UPLOADED FILE PATH to be used for getting path
 					GlobalInitializer.get().setUploadedFilePath(uploadedFile.getAbsolutePath());
+					
+					long elapsedTime = System.currentTimeMillis() - startTime; 
+					logger.println("File Upload Time: " + elapsedTime + "ms");
+					logger.flush();
 					
 					resp.flushBuffer();
 				}

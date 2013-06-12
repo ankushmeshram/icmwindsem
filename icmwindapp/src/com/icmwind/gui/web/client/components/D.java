@@ -126,51 +126,6 @@ public class D extends Composite {
 		verPanSource.add(listBox);
 				
 		listBox.addChangeHandler(new ListBoxHandler());
-//		listBox.addChangeHandler(new ChangeHandler() {
-//			
-//			@Override
-//			public void onChange(ChangeEvent event) {
-//				capPanelWTInfo.setVisible(false);
-//				horPanButtons.setVisible(false);
-//				
-//				String wtSelected = listBox.getItemText( listBox.getSelectedIndex() );
-//				
-//				getDataSourceInfoFor(wtSelected);
-//				
-//				
-//				
-////				GlobalInitializerService.Util.getInstance().getInfoFor(wtSelected, new AsyncCallback<Map<String,String>>() {
-////					@Override
-////					public void onFailure(Throwable caught) {
-////						Window.alert("D.callback()");
-////					}
-////
-////					@Override
-////					public void onSuccess(Map<String, String> result) {
-////						
-////						if(!result.isEmpty()) {
-////							for(Entry<String, String> entry : result.entrySet()) {
-//////								System.out.println("Callback result : " + entry.getKey() + " -- " + entry.getValue());
-////								
-////								String key = entry.getKey().toString().toLowerCase();
-////								String value = entry.getValue().toString();
-////								
-//////								System.out.println("Setting Labels in GUI for key" + key);
-////				
-////								Label temp = mapLabelObjects.get(key);
-////								temp.setText(value);
-////							}
-////
-////							capPanelWTInfo.setVisible(true);
-////							horPanButtons.setVisible(true);
-////						} else {
-////							Window.alert("Selection not available.");
-////						}
-////					}
-////				});
-//							
-//			}
-//		});
 		
 		capPanelWTInfo.setVisible(false);
 		capPanelWTInfo.setStyleName("blabla");

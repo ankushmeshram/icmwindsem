@@ -1,0 +1,56 @@
+
+Uploaded File: test_data_tbv_diagnosis
+
+Selected Analysis Period
+- From: Fri Jun 03 00:00:00 CEST 2011
+- To: Fri Jun 03 00:00:00 CEST 2011
+
+Total Observations: 5
+Total Axioms: 551
+Total Encoding Time: 701 ms
+ABoxes created: 
+- URI: http://www.icmwind.com/instances/iwo-infobox.owl
+- Path: C:/Users/anme05/git/icmwindsem/icmwindapp/war/data store/ontologies/iwo-infobox.owl
+- Axioms: 31
+
+- URI: http://www.icmwind.com/instances/iwo-databox-03.06.2011-04.06.2011.owl
+- Path: C:/Users/anme05/git/icmwindsem/icmwindapp/war/data store/ontologies/iwo-databox-03.06.2011-04.06.2011.owl
+- Axioms: 520
+
+
+Merge Ontologies: 
+- Ontology 1: http://www.icmwind.com/instances/iwo-infobox.owl
+- Ontology 2: http://www.icmwind.com/instances/iwo-databox-03.06.2011-04.06.2011.owl
+Merging...
+Saving...
+
+Merged Ontology Information. 
+- URI: http://www.icmwind.com/instances/iwo-abox-03.06.2011.owl
+- Path: C:/Users/anme05/git/icmwindsem/icmwindapp/war/data store/ontologies/iwo-abox-03.06.2011.owl
+- Axiom Count: 743
+- Total Merging Time: 99ms
+
+TopSPIN Inferencing.
+Ontology To Infer
+- URI: http://www.icmwind.com/instances/iwo-abox-03.06.2011.owl
+- Path: C:/Users/anme05/git/icmwindsem/icmwindapp/war/data store/ontologies/iwo-abox-03.06.2011.owl
+Running inferencing...
+Triples added: 91
+Writing to file..
+Inferred Ontology
+- URI: http://www.icmwind.com/instances/iwo-spinbox-03.06.2011.owl
+- Path: C:/Users/anme05/git/icmwindsem/icmwindapp/war/data store/ontologies/iwo-spinbox-03.06.2011.owl
+- SPIN Inferencing Time: 1261ms
+
+Merge Ontologies: 
+- Ontology 1: http://www.icmwind.com/icmwindontology.owl
+- Ontology 2: http://www.icmwind.com/instances/iwo-abox-03.06.2011.owl
+- Ontology 3: http://www.icmwind.com/instances/iwo-spinbox-03.06.2011.owl
+Merging...
+Saving...
+
+Merged Ontology Information. 
+- URI: http://www.icmwind.com/instances/iwo-03.06.2011.owl
+- Path: C:/Users/anme05/git/icmwindsem/icmwindapp/war/data store/ontologies/iwo-03.06.2011.owl
+- Axiom Count: 1159
+- Total Merging Time: 175ms

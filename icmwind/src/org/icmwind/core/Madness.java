@@ -47,5 +47,6 @@ public interface Madness {
 	
 	public OWLLiteral createFloatLiteral(String value);
 	
+	public int axiomCountFor(OWLOntology ontology);
 
 }

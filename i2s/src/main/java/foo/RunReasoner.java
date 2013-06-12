@@ -116,7 +116,7 @@ public class RunReasoner {
 				reasoner.precomputeInferences(InferenceType.OBJECT_PROPERTY_ASSERTIONS);
 				opa = tm.elapsedTime(); tm.restart();
 				System.out.println("** time taken : " + opa + " ns");
-				writer.println("OBJECT PROPERTY ASSERTIONS - time taken : " + ca + " ns");
+				writer.println("OBJECT PROPERTY ASSERTIONS - time taken : " + opa + " ns");
 				
 				System.out.println("5. OBJECT PROPERTY HIERARCHY");
 				reasoner.precomputeInferences(InferenceType.OBJECT_PROPERTY_HIERARCHY);
@@ -134,7 +134,8 @@ public class RunReasoner {
 				
 		
 				System.out.println("reasoner - " + rn + ": ca = " + ca + "; ch = " + ch + "; dpa = " + dpa + "; opa = " + opa + "; oph = " + oph + "; consistency= " + cons);
-			
+				writer.println("reasoner - " + rn + ": ca = " + ca + "; ch = " + ch + "; dpa = " + dpa + "; opa = " + opa + "; oph = " + oph + "; consistency= " + cons);
+				
 				writer.close();
 			}
 			

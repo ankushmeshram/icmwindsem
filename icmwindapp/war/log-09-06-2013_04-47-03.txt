@@ -1,0 +1,56 @@
+
+Uploaded File: testing
+
+Selected Analysis Period
+- From: Thu Sep 04 00:00:00 CEST 2008
+- To: Thu Sep 04 00:00:00 CEST 2008
+
+Total Observations: 23
+Total Axioms: 2387
+Total Encoding Time: 937 ms
+ABoxes created: 
+- URI: http://www.icmwind.com/instances/iwo-infobox.owl
+- Path: C:/Users/anme05/git/icmwindsem/icmwindapp/war/data store/ontologies/iwo-infobox.owl
+- Axioms: 31
+
+- URI: http://www.icmwind.com/instances/iwo-databox-04.09.2008-05.09.2008.owl
+- Path: C:/Users/anme05/git/icmwindsem/icmwindapp/war/data store/ontologies/iwo-databox-04.09.2008-05.09.2008.owl
+- Axioms: 2356
+
+
+Merge Ontologies: 
+- Ontology 1: http://www.icmwind.com/instances/iwo-infobox.owl
+- Ontology 2: http://www.icmwind.com/instances/iwo-databox-04.09.2008-05.09.2008.owl
+Merging...
+Saving...
+
+Merged Ontology Information. 
+- URI: http://www.icmwind.com/instances/iwo-abox-04.09.2008.owl
+- Path: C:/Users/anme05/git/icmwindsem/icmwindapp/war/data store/ontologies/iwo-abox-04.09.2008.owl
+- Axiom Count: 3065
+- Total Merging Time: 327ms
+
+TopSPIN Inferencing.
+Ontology To Infer
+- URI: http://www.icmwind.com/instances/iwo-abox-04.09.2008.owl
+- Path: C:/Users/anme05/git/icmwindsem/icmwindapp/war/data store/ontologies/iwo-abox-04.09.2008.owl
+Running inferencing...
+Triples added: 850
+Writing to file..
+Inferred Ontology
+- URI: http://www.icmwind.com/instances/iwo-spinbox-04.09.2008.owl
+- Path: C:/Users/anme05/git/icmwindsem/icmwindapp/war/data store/ontologies/iwo-spinbox-04.09.2008.owl
+- SPIN Inferencing Time: 2145ms
+
+Merge Ontologies: 
+- Ontology 1: http://www.icmwind.com/icmwindontology.owl
+- Ontology 2: http://www.icmwind.com/instances/iwo-abox-04.09.2008.owl
+- Ontology 3: http://www.icmwind.com/instances/iwo-spinbox-04.09.2008.owl
+Merging...
+Saving...
+
+Merged Ontology Information. 
+- URI: http://www.icmwind.com/instances/iwo-04.09.2008.owl
+- Path: C:/Users/anme05/git/icmwindsem/icmwindapp/war/data store/ontologies/iwo-04.09.2008.owl
+- Axiom Count: 4240
+- Total Merging Time: 463ms
