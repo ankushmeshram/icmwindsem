@@ -69,6 +69,8 @@ public interface RDFEncoderServiceAsync {
 	 * @param endAnalysisPeriod TODO
 	 */
 	public void encodeFile(Map<String, String> headToClassNameMap, Date beginAnalysisPeriod, Date endAnalysisPeriod, AsyncCallback<Boolean> callback);
+
 	
+	public void returnEncodedFile(Map<String, String> headToClassNameMap, Date beginAnalysisPeriod, Date endAnalysisPeriod, AsyncCallback<String> callback);
 	
 }

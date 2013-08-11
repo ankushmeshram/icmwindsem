@@ -1,7 +1,11 @@
 package org.icmwind.core.impl;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -36,7 +40,6 @@ import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 import org.semanticweb.owlapi.util.OWLOntologyMerger;
 
 import foo.TestSpin;
-
 
 public class EncoderImpl {
 
@@ -86,7 +89,7 @@ public class EncoderImpl {
 	// Namespace of ontology
 	private static final String NS = coreOntologyIri + "#";
 	
-	private static final String DATASTORE_FOLDER = "C:/Users/anme05/git/icmwindsem/icmwindapp/war/data store/";
+	private static final String DATASTORE_FOLDER = "C:/Users/anme05/alternative_git/icmwindsem/icmwindapp/war/data store/";
 																										
 	Logger logger = Logger.getLogger(EncoderImpl.class);
 	
@@ -399,6 +402,250 @@ public class EncoderImpl {
 		logWriter.close();
 		
 		return true;
+	}
+	
+public String returnEncodedFile() {
+		
+		StringBuilder sb = new StringBuilder();
+		
+		TimeManagement.get().startTime();
+
+		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+		
+		String aboxTimeStamp = null;
+		if(startAnalysisPeriod.equals(endAnalysisPeriod)) {
+			aboxTimeStamp = sdf.format(startAnalysisPeriod).subSequence(0, 10).toString();
+		} else {
+			aboxTimeStamp = sdf.format(startAnalysisPeriod).subSequence(0, 10).toString() 
+								+ "-" + sdf.format(endAnalysisPeriod).subSequence(0, 10).toString();
+		}
+		
+		Calendar c = Calendar.getInstance();
+		c.setTime(endAnalysisPeriod);
+		c.add(Calendar.DATE, 1);
+		endAnalysisPeriod = c.getTime();
+		
+		System.out.println("endAnalysis : " + endAnalysisPeriod);
+		
+		int rowsRead = 1;
+		
+		String beginDate = null;
+		String endDate = null;
+		
+		boolean reset = false;
+		
+		Set<OWLAxiom> axioms = new HashSet<OWLAxiom>();
+		
+		//while records(rows) exists in file 
+		while(fileproc.existsRecord()) {
+			try {
+				
+				Date temp = sdf.parse(fileproc.readRecord("Zeit"));
+				
+				// read when the observation date is between startAnalysisPeriod and endAnalysisPeriod
+				if(temp.equals(startAnalysisPeriod) || (temp.after(startAnalysisPeriod) && temp.before(endAnalysisPeriod)) ) {
+				
+					// Create ABox
+					if(rowsRead == 1 || reset) {
+						reset = false;
+						beginDate = fileproc.readRecord("Zeit").substring(0, 10); System.gc(); System.gc();
+					}
+					
+					OWLClass 		tempObsClass = op.getClassFor("Observation"); 
+					OWLNamedIndividual	tempObservationInstance = op.createtNamedIndividualFor("Observation_" + rowsRead); 
+					axioms.add(op.createClassAssertion(tempObsClass, tempObservationInstance)); 
+							
+					
+					// Read headers acc to final headerToClassNameMap
+					for(Map.Entry<String, String> entry :  headerToOntoClassNameMap.entrySet()) {
+						
+						String headerName = entry.getKey();
+						String propertyName = entry.getValue();
+						
+						System.out.println("Reading header - " + headerName + " : class - " + propertyName);
+						
+						// If Sensor measuring a particular property class name is present in existing scenario, only then do this
+						if(checkSensorAvailabilityFor(propertyName)) {
+							
+							// Get mapped Class for Header and create its instance 
+							OWLClass tempClass = op.getClassFor(propertyName); 
+							OWLNamedIndividual tempInstance = op.createtNamedIndividualFor(propertyName + "_" + rowsRead);
+							axioms.add(op.createClassAssertion(tempClass, tempInstance));
+							
+							// Define Cooler_Temperature_Difference and its hasObservation Observation
+							OWLNamedIndividual tempCTDInstance = op.createtNamedIndividualFor("CTD_" + rowsRead); 
+							axioms.add(op.createClassAssertion(op.getClassFor("Cooler_Temperature_Difference"), tempCTDInstance));
+							
+							
+							if(headerName.equals("Zeit")) {
+								
+								System.out.println("This is ZEIt.......................................................................................");
+								
+								// Time--observedTime--""^^xsd:dateTime
+								OWLDataProperty observedTimeDataProperty = op.getDataPropertyFor("observedTime");
+								axioms.add(op.createDataPropertyAssertion(observedTimeDataProperty, tempInstance,temp ));
+																
+								// Observation--hasSamplingTime--Time
+								OWLObjectProperty hasSamplingTimeObjectProperty = op.getObjectPropertyFor("hasSamplingTime"); 
+								axioms.add(op.createObjectPropertyAssertion(hasSamplingTimeObjectProperty, tempObservationInstance, tempInstance));
+								
+							} else {
+															
+								// Property--hasValue--""^^xsd:Float
+								OWLDataProperty hasValueDataProperty = op.getDataPropertyFor("hasValue");
+								String value = fileproc.readRecord(headerName);
+								value = value.equals("NaN") ? "0.0" : value;
+								axioms.add(op.createDataPropertyAssertion(hasValueDataProperty, tempInstance, Float.parseFloat(value)));
+								
+								// Property--hasObservation--Observation
+								OWLObjectProperty hasObservationObjectProperty = op.getObjectPropertyFor("hasObservation"); 
+								axioms.add(op.createObjectPropertyAssertion(hasObservationObjectProperty, tempInstance, tempObservationInstance)); 
+							
+								// Cooler_Temperature_Difference--hasObservation--Observation
+								axioms.add(op.createObjectPropertyAssertion(hasObservationObjectProperty, tempCTDInstance, tempObservationInstance));
+								
+								// Sensor--measuresProperty--Property
+								String sensorClassName = op.getPropertyClassNameToSensorClassNameMap().get(propertyName);
+								String sensorInstanceURI = op.getTBoxClassNameToIndividualURIMap().get(sensorClassName);
+								
+								OWLNamedIndividual tempSensorInstance = op.createtNamedIndividualForURI(sensorInstanceURI);
+								axioms.add(op.createClassAssertion(op.getClassFor(sensorClassName),tempSensorInstance));
+								
+								OWLObjectProperty measuresPropertyObjectProperty = op.getObjectPropertyFor("observes");
+								axioms.add(op.createObjectPropertyAssertion(measuresPropertyObjectProperty, tempSensorInstance, tempInstance));
+								
+							}
+						} // close checkSensorAvailabilityFor()
+					}// finish reading a row
+					
+					System.out.println("******Observations read : " + rowsRead);
+										
+					rowsRead++;
+					
+					
+				} else if(temp.equals(endAnalysisPeriod)) {
+					endDate = fileproc.readRecord("Zeit").substring(0, 10);
+
+					String timestamp = beginDate + "-" + endDate; 
+					
+					String aboxUri = "http://www.icmwind.com/instances/iwo-databox" + "-" + timestamp + ".owl";
+					String aboxFile = DATASTORE_FOLDER + "ontologies/iwo-databox-" + timestamp + ".owl";
+					
+					System.out.println("** End of Records.");
+					System.out.println("** Saving file please wait......");
+					
+					OWLOntology tempOntology = op.createABox(aboxUri);
+					op.addAxioms(tempOntology, axioms);
+					op.saveRDFXMLOntology(tempOntology, aboxFile);
+					
+					aboxes.add(new OntologyInformation(aboxUri, aboxFile, tempOntology));
+					
+					count = count + tempOntology.getAxiomCount();
+					
+					System.out.println("Axiom Count : " + count);
+					System.out.println("File saved at " + aboxFile);
+					
+					axioms.clear(); System.gc(); System.gc();
+				}
+				
+				
+				// Write ABox to a File
+				if( (rowsRead % 1000) == 0 ) {
+					endDate = fileproc.readRecord("Zeit").substring(0, 10);
+
+					String timestamp = beginDate + "-" + endDate; 
+					
+					String aboxUri = "http://www.icmwind.com/instances/iwo-databox" + "-" + timestamp + ".owl";
+					String aboxFile = DATASTORE_FOLDER + "ontologies/iwo-databox-" + timestamp + ".owl";
+					
+					System.out.println("** More records...");
+					System.out.println("** Saving file please wait......");
+					
+					OWLOntology tempOntology = op.createABox(aboxUri);
+					op.addAxioms(tempOntology, axioms);
+					op.saveRDFXMLOntology(tempOntology, aboxFile);
+					
+					aboxes.add(new OntologyInformation(aboxUri, aboxFile, tempOntology));
+					
+					count = count + tempOntology.getAxiomCount();
+
+					System.out.println("Axiom Count : " + count);
+					System.out.println("File saved at " + aboxFile);
+					
+					axioms.clear();	System.gc(); System.gc();
+					reset = true;
+				}
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		} // all the rows have been read
+	
+		fileproc.closeFile();
+		
+		// TODO Get AboxURI-FileLoc Map 
+		System.out.println("@@@ABox URI - File Path : " + op.getABoxURIToFilePathMap().toString());
+		
+		long axiomcount = count;
+		System.out.println("Totals number of axioms : " + axiomcount);
+		
+		long encodingtime = TimeManagement.get().elapsedTime() / 1000000;
+		System.out.println("Total time taken for RDFication : " + encodingtime + " millis" );
+		
+		logWriter.println();
+		logWriter.println("Total Observations: " + ( rowsRead - 1) );
+		logWriter.println("Total Axioms: " + axiomcount);
+		logWriter.println("Total Encoding Time: " + encodingtime + " ms");
+		logWriter.println("ABoxes created: ");
+		
+		for(OntologyInformation oi : aboxes) {
+			logWriter.println("- URI: " + oi.getURI());
+			logWriter.println("- Path: " + oi.getFilePath());
+			logWriter.println("- Axioms: " + oi.getAxiomCount());
+			logWriter.println();
+		}
+				
+		logWriter.flush();
+
+		String aboxOntologyIRI = "http://www.icmwind.com/instances/iwo-abox-" + aboxTimeStamp + ".owl"; 
+		String aboxOntologyPath = DATASTORE_FOLDER + "ontologies/iwo-abox-" + aboxTimeStamp + ".owl";
+		
+		OntologyMerger om = new OntologyMerger(aboxes, aboxOntologyIRI, aboxOntologyPath, logWriter);
+		om.merge();
+		
+//		TestSpin spinInf = new TestSpin(aboxOntologyIRI, aboxOntologyPath, logWriter);  //
+//		spinInf.spin(); //
+
+		List<OntologyInformation> mrgOnts = new ArrayList<OntologyInformation>();
+		mrgOnts.add(new OntologyInformation(coreOntologyIri, coreOntologyPath, null));
+		mrgOnts.add(new OntologyInformation(aboxOntologyIRI, aboxOntologyPath, null));
+//		mrgOnts.add(new OntologyInformation(spinInf.getInfOntURI(), spinInf.getInfOntPath(), null));
+		
+		String finalOntologyIRI = "http://www.icmwind.com/instances/iwo-" + aboxTimeStamp + ".owl"; 
+		String finalOntologyPath = DATASTORE_FOLDER + "ontologies/iwo-" + aboxTimeStamp + ".owl";
+		
+		OntologyMerger merger = new OntologyMerger(mrgOnts, finalOntologyIRI, finalOntologyPath, logWriter);
+		merger.merge();
+		
+		logWriter.close();
+		
+		// copy to folder - C:\Users\anme05\git\sdre\de.dfki.sdre\res\gse_config\ontologies
+		
+		String destFolder = "C:/Users/anme05/alternative_git/sdre/de.dfki.sdre/res/gse_config/ontologies/";
+		String destFilePath = destFolder + finalOntologyIRI.substring(33);
+		
+		Path srcFile = new File(finalOntologyPath).toPath();
+		Path destFile = new File(destFilePath).toPath();
+		
+		try {
+			Files.copy(srcFile, destFile, StandardCopyOption.REPLACE_EXISTING);
+			sb.append(finalOntologyIRI);
+			sb.append("@");
+			sb.append(destFile);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	
+		return sb.toString();
 	}
 
 	public Map<String, String> getFileSummary() {

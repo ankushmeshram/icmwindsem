@@ -183,6 +183,7 @@ public class OntologyProcessMadnessImpl implements Madness {
 	@Override
 	public void saveRDFXMLOntology(OWLOntology ontology, String filepath) {
 		try {
+			
 			manager.saveOntology(ontology, new RDFXMLOntologyFormat(), IRI.create(new File(filepath)));
 		} catch (OWLOntologyStorageException e) {
 			e.printStackTrace();
@@ -192,6 +193,7 @@ public class OntologyProcessMadnessImpl implements Madness {
 		String docIri = filepath;
 		mapABoxURIToFileLocation.put(iri, docIri);
 	}
+	
 	
 	@Override
 	public void addAxioms(OWLOntology ontology, Set<OWLAxiom> axioms) {

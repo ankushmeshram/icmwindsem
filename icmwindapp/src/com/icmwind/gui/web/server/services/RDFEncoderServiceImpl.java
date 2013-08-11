@@ -93,6 +93,20 @@ public class RDFEncoderServiceImpl extends RemoteServiceServlet implements RDFEn
 		return rdfencoder.encode();
 	}
 
+	@Override
+	public String returnEncodedFile(Map<String, String> mapping, Date beginAnalysisPeriod, Date endAnalysisPeriod) {
+		
+		rdfencoder.setHeaderToClassNamesMap(mapping);
+		
+		//Set Storage Folder for encoded files
+		rdfencoder.setEncodeStorage("C:\\Users\\anme05\\git\\icmwindsem\\icmwindapp\\war\\data\\encoded");
+		
+		// Set analysis period
+		rdfencoder.setAnalysisPeriod(beginAnalysisPeriod, endAnalysisPeriod);
+		
+		return rdfencoder.returnEncodedFile();
+	}
+	
 	
 	//CHECK HERE
 	public static <K extends Comparable,V extends Comparable> Map<K,V> sortMapByValues(Map<K,V> unsortedMap) {
@@ -138,6 +152,9 @@ public class RDFEncoderServiceImpl extends RemoteServiceServlet implements RDFEn
 	public void setDataSourceInfo(Map<String, String> dsInfoMap) {
 		rdfencoder.setDataFileSourceInfo(dsInfoMap);
 	}
+
+
+	
 
 		
 }

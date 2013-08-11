@@ -49,6 +49,8 @@ public class D extends Composite {
 	Label lblRotorHub = new Label("Rotor Hub");Label label_16 = new Label(" : ");Label rotorhub = new Label("");
 	HorizontalPanel horPanOP = new HorizontalPanel();
 	Label lblOilPump = new Label("Oil Pump");Label label_18 = new Label(" : ");Label oilpump = new Label("");
+	HorizontalPanel horPanOF = new HorizontalPanel();
+	Label lblOilFilter = new Label("Oil Filter");Label label_23 = new Label(" : ");Label oilfilter = new Label("");
 	HorizontalPanel horPanTBV = new HorizontalPanel();
 	Label lblThermoBypassValve = new Label("Thermo Bypass Valve");Label label_21 = new Label(" : ");Label tbv = new Label("");
 	HorizontalPanel horPanCooler = new HorizontalPanel();
@@ -245,7 +247,25 @@ public class D extends Composite {
 		
 		horPanOP.add(oilpump);
 		oilpump.setWidth("100px");
+		//
+		horPanOF.setSpacing(5);
+		verPanParts.add(horPanOF);
+		horPanOF.setWidth("300px");
 		
+		
+		lblOilFilter.setStyleName("gwt-Label-Bold");
+		horPanOF.add(lblOilFilter);
+		lblOilFilter.setWidth("130px");
+		
+		
+		label_23.setStyleName("gwt-Label-Bold");
+		horPanOF.add(label_23);
+		label_23.setWidth("10px");
+		
+		
+		horPanOF.add(oilfilter);
+		oilfilter.setWidth("100px");
+		//
 		
 		horPanTBV.setSpacing(5);
 		verPanParts.add(horPanTBV);
@@ -521,6 +541,7 @@ public class D extends Composite {
 		mapLabelObjects.put("gearbox", gearbox);
 		mapLabelObjects.put("rotor hub", rotorhub);
 		mapLabelObjects.put("oil pump", oilpump);
+		mapLabelObjects.put("oil filter", oilfilter);
 		mapLabelObjects.put("thermo bypass valve", tbv);
 		mapLabelObjects.put("cooler", cooler);
 		

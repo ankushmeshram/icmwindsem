@@ -22,7 +22,7 @@ public final class ICMWindConfig {
 	private static String GSE_CONFIG_PATH;
 	private static String GER2ENG_DICT_PATH;
 	
-	private static String RESOURCE_FOLDER_PATH = "C:/Users/anme05/git/icmwindsem/icmwind/res/";
+	private static String RESOURCE_FOLDER_PATH = "C:/Users/anme05/sdre_icmiwnd/icmwind/res/";
 		
 	private static boolean isInitialised = false;
 

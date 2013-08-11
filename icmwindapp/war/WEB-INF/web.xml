@@ -46,5 +46,14 @@
 		<servlet-name>GlobalInitializerService</servlet-name>
 		<url-pattern>/com.icmwind.gui.web.home/GlobalInitializerService</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>AnalysisService</servlet-name>
+		<servlet-class>com.icmwind.gui.web.server.services.AnalysisServiceImpl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AnalysisService</servlet-name>
+		<url-pattern>/com.icmwind.gui.web.home/AnalysisService</url-pattern>
+	</servlet-mapping>
 
 </web-app>

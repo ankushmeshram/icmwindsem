@@ -12,9 +12,17 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/slf4j-api-1.6.4.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/jena-arq-2.10.0.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/jena-iri-0.9.5.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/allegro-3.2.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/jetty-server-8.0.0.M0.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/jetty-util-8.0.0.M0.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/openrdf-sesame-2.6.6-onejar.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/owlim-lite-5.1.jar"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/icmwind"/>
 	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.USER_LIBRARY/JenaLibs"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/i2s"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/de.dfki.sdre"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/de.dfki.isreal.semantic"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/de.dfki.isreal"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

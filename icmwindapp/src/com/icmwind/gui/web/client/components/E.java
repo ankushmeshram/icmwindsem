@@ -1,5 +1,10 @@
 package com.icmwind.gui.web.client.components;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -25,6 +30,7 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.datepicker.client.DateBox;
 import com.google.gwt.user.datepicker.client.DateBox.DefaultFormat;
@@ -32,6 +38,7 @@ import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.FormPanel.SubmitEvent;
 import com.icmwind.gui.web.client.helpers.FoundMatch;
 import com.icmwind.gui.web.client.helpers.GlobalInitializer;
+import com.icmwind.gui.web.client.services.AnalysisService.AnalysisServiceUtil;
 import com.icmwind.gui.web.client.services.GlobalInitializerService;
 import com.icmwind.gui.web.client.services.RDFEncoderService;
 import com.icmwind.gui.web.client.services.RDFEncoderService.RDFEncoderServiceUtil;
@@ -46,6 +53,9 @@ public class E extends Composite {
 	private Date minDate = null;
 	private Date maxDate = null;
 	
+	private String ontPath = null;
+	private String ontURI = null;
+		
 	// TODO change later
 //	private Map<String, ListBox> mapListMap;
 	
@@ -212,14 +222,18 @@ public class E extends Composite {
 		setWidth("600px");
 		
 		formPanel.addSubmitCompleteHandler(new SubmitCompleteHandler() {
+					
 			
 			@Override
 			public void onSubmitComplete(SubmitCompleteEvent event) {
+				
+//				LoadingImage.showLoadingImage("Submiting Form.");
+				
 				Window.alert(event.getResults());
 				
 				// RemoteService Call to pass read uploaded file and initialize RDFEncoder.initFileProcess(String filepath).
 				RDFEncoderServiceUtil.getInstance().readUploadedFile(new AsyncCallback<String>() {
-
+					
 					@Override
 					public void onFailure(Throwable caught) {
 										
@@ -250,8 +264,10 @@ public class E extends Composite {
 								is.setBeginAnalysisDate(minDate);
 								is.setEndAnalysisDate(maxDate);
 //								is.setMaxAnalysisPeriod(900);
-								
+							
+//								LoadingImage.hideLoadingImage();
 							}
+							
 						});
 						
 						
@@ -279,6 +295,8 @@ public class E extends Composite {
 								
 								//debug
 								System.out.println(headToClassNameMap.toString());
+								
+								
 							}
 						});
 					}
@@ -293,20 +311,38 @@ public class E extends Composite {
 			public void onClick(ClickEvent event) {
 				
 			
-				RDFEncoderServiceUtil.getInstance().encodeFile(headToClassNameMap, is.getInitDate(), is.getEndDate(),new AsyncCallback<Boolean>() {
+//				RDFEncoderServiceUtil.getInstance().encodeFile(headToClassNameMap, is.getInitDate(), is.getEndDate(),new AsyncCallback<Boolean>() {
+//					
+//					@Override
+//					public void onFailure(Throwable caught) {
+//						
+//					}
+//
+//					@Override
+//					public void onSuccess(Boolean result) {
+//						if(result)
+//							lblNotify.setVisible(true);
+//					}
+//				});
+				
+				
+				RDFEncoderServiceUtil.getInstance().returnEncodedFile(headToClassNameMap, is.getInitDate(), is.getEndDate(), new AsyncCallback<String>() {
+					
+					@Override
+					public void onSuccess(String result) {
+						
+						ontPath = result.substring(result.indexOf("@") + 1);
+						ontURI = result.substring(0, result.indexOf("@"));
+						
+						lblNotify.setText(ontPath);
+						lblNotify.setVisible(true);
+					}
 					
 					@Override
 					public void onFailure(Throwable caught) {
-						
-					}
-
-					@Override
-					public void onSuccess(Boolean result) {
-						if(result)
-							lblNotify.setVisible(true);
+					
 					}
 				});
-				
 				
 				
 				// TODO change later
@@ -323,6 +359,47 @@ public class E extends Composite {
 			public void onClick(ClickEvent event) {
 				lblStartlabel.setText(is.getInitDate().toString());
 				lblEndlabel.setText(is.getEndDate().toString());
+			}
+		});
+		
+		btnAnalyse.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				
+//				LoadingImage.showLoadingImage("Initializing Analysis - Writing Annotations...");
+				
+				AnalysisServiceUtil.getInstance().initAnalysis(ontURI, new AsyncCallback<String>() {
+					@Override
+					public void onFailure(Throwable caught) {
+						
+					}
+
+					@Override
+					public void onSuccess(String result) {
+						Window.alert(result);
+						
+						initSDREGUI(result);
+					}
+				});
+			}
+		});
+		
+	}
+	
+	
+	private void initSDREGUI(String configFilePath) {
+		
+		AnalysisServiceUtil.getInstance().initSDRE(configFilePath, new AsyncCallback<Boolean>() {
+			@Override
+			public void onFailure(Throwable caught) {
+				
+			}
+
+			@Override
+			public void onSuccess(Boolean result) {
+								
+				RootPanel.get("contentContainer").clear();
+				RootPanel.get("contentContainer").add(new F());
 			}
 		});
 		

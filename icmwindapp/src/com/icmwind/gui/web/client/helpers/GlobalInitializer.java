@@ -22,7 +22,7 @@ public class GlobalInitializer {
 	
 	// CONSTANTS
 	// Path to SYSTEM_DATA_STORE and its contents
-	private final String DATA_STORE = "C:/Users/anme05/git/icmwindsem/icmwindapp/war/data store";
+	private final String DATA_STORE = "C:/Users/anme05/sdre_icmiwnd/icmwindapp/war/data store";
 	
 	public final String DATA_LOCATION = DATA_STORE + "/data/" ;
 	public final String WIND_TURBINES_INFO_LOCATION = DATA_STORE + "/wind turbines/" ;

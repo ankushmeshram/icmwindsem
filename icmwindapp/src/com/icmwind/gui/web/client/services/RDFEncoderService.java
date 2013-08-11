@@ -95,6 +95,8 @@ public interface RDFEncoderService extends RemoteService {
 	 * @gwt.typeArgs java.util.Map<java.lang.String, java.lang.String>
 	 */
 	public boolean encodeFile(Map<String, String> headToClassNameMap, Date beginAnalysisPeriod, Date endAnalysisPeriod);
+
 	
+	public String returnEncodedFile(Map<String, String> headToClassNameMap, Date beginAnalysisPeriod, Date endAnalysisPeriod);
 	
 }

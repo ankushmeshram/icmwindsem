@@ -1,13 +1,8 @@
 package foo;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.topbraid.spin.inference.SPINExplanations;
 import org.topbraid.spin.inference.SPINInferences;
@@ -18,11 +13,7 @@ import com.hp.hpl.jena.ontology.DatatypeProperty;
 import com.hp.hpl.jena.ontology.ObjectProperty;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
-import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.hp.hpl.jena.rdf.model.RDFWriter;
-import com.hp.hpl.jena.shared.AddDeniedException;
-import com.hp.hpl.jena.shared.ReificationStyle;
 
 
 public class TestSpin {
@@ -45,6 +36,7 @@ public class TestSpin {
 		logger = logWriter;
 		
 		model.getDocumentManager().addAltEntry("http://www.icmwind.com/icmwindontology.owl", "file:C:/Users/anme05/git/icmwindsem/i2s/icmwindontology.owl");
+		
 		
 		OntModel abox = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);
 		abox.getDocumentManager().addAltEntry(ontoURI, "file:" + ontoFilePath);

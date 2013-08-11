@@ -15,32 +15,11 @@
 package com.icmwind.gui.web.client;
 
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.dev.asm.tree.IntInsnNode;
-import com.google.gwt.event.logical.shared.ValueChangeEvent;
-import com.google.gwt.event.logical.shared.ValueChangeHandler;
-import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.icmwind.gui.web.client.components.About;
-import com.icmwind.gui.web.client.components.AdvancedAnalysis;
-import com.icmwind.gui.web.client.components.Analyse;
-import com.icmwind.gui.web.client.components.C;
-import com.icmwind.gui.web.client.components.Conceptual;
 import com.icmwind.gui.web.client.components.D;
-import com.icmwind.gui.web.client.components.E;
-import com.icmwind.gui.web.client.components.E1;
-import com.icmwind.gui.web.client.components.FileUpload;
-import com.icmwind.gui.web.client.components.Footer;
-import com.icmwind.gui.web.client.components.Home;
-import com.icmwind.gui.web.client.components.Navigation;
-import com.icmwind.gui.web.client.components.Report;
-import com.icmwind.gui.web.client.components.Settings;
-import com.icmwind.gui.web.client.components.T;
-import com.icmwind.gui.web.client.components.TestSelector;
 import com.icmwind.gui.web.client.services.GlobalInitializerService;
-import com.icmwind.gui.web.client.services.RDFEncoderService.RDFEncoderServiceUtil;
-import com.icmwind.gui.web.server.services.GlobalInitializerServiceImpl;
 
 
 /**
